@@ -1,6 +1,31 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
+    <color name="pink">#ee5b7b</color>
+    <color name="white">#ffffff</color>
+    <color name="black">#000000</color>
+    <color name="default_background">#1db3bf</color>
+    <!--<color name="dark_grey">#555555</color>-->
+    <color name="fully_transparent_black">#00000000</color>
+    <color name="transparent_white">#80FFFFFF</color>
+    <color name="fully_opaque_black">#FF000000</color>
+    <color name="semi_transparent_black">#80000000</color>
+
+    <color name="gold">#DAA520</color>
+    <color name="red_glow">#f60f42</color>
+    <color name="yellow">#f5dd34</color>
+    <color name="blue">#22b2be</color>
+    <color name="red">#ed375f</color>
+    <color name="green">#2fc875</color>
+    <color name="dark_orange">#ac7800</color>
+
+    <color name="yellow1">#F9E60E</color>
+    <color name="yellow2">#F9F89D</color>
+    <color name="orange4">#F7BE45</color>
+    <color name="orange5">#F7D896</color>
+    <color name="blue2">#19FCDA</color>
+    <color name="blue25">#D9F7F2</color>
+    <color name="grey05">#ACA899</color>
+    <color name="white1">#FFFFFF</color>
+    <color name="white2">#DDDDDD</color>
+    <color name="dark_grey">#333333</color>
 </resources>
