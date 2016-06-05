@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
     android:orientation="vertical"
-    tools:context="com.trelokopoi.core.LoginActivity">
+    tools:context="com.trelokopoi.dentist.LoginActivity">
 
 
     <ProgressBar
@@ -62,7 +62,8 @@
             android:layout_marginTop="200dp"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:text="Login"/>
+            android:text="Login"
+            android:id="@+id/login" />
 
     </RelativeLayout>
 
