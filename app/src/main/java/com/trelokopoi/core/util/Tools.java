@@ -1,5 +1,6 @@
 package com.trelokopoi.core.util;
 
+import android.app.Activity;
 import android.content.Context;
 import android.hardware.Camera;
 import android.os.Handler;
@@ -9,6 +10,10 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.android.gms.analytics.GoogleAnalytics;
+import com.google.android.gms.analytics.Tracker;
+import com.trelokopoi.core.App;
+import com.trelokopoi.core.BuildConfig;
 import com.trelokopoi.core.R;
 
 import static android.R.attr.id;
@@ -98,6 +103,15 @@ public class Tools {
         }
 
         return hasCamera;
+    }
+
+    public static void setupGoogleAnalytics(Activity activity) {
+        if (!BuildConfig.DEBUG) {
+            App app = (App) activity.getApplication();
+            Tracker myTracker=app.getTracker(App.TrackerName.APP_TRACKER);
+            myTracker.enableAutoActivityTracking(true);
+            GoogleAnalytics.getInstance(activity).enableAutoActivityReports(app);
+        }
     }
 
 }
