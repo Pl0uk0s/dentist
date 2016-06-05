@@ -13,7 +13,7 @@ public class App extends Application{
 
     public static final String TAG = "Core";
     public static String VERSION = "";
-    public Context contextOfApplication;
+    public static Context contextOfApplication;
     private static final String PROPERTY_ID = "";
 
     /**
