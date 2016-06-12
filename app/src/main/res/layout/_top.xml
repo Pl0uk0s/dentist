@@ -5,7 +5,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp" >
+        android:layout_height="50dp"
+        android:background="@color/blue">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -13,7 +14,8 @@
             android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_action_next_item"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_keyboard_arrow_left_white_24dp"
             android:id="@+id/previous"/>
 
         <TextView
@@ -29,7 +31,8 @@
             android:layout_alignParentRight="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:src="@drawable/ic_action_next_item"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_keyboard_arrow_right_white_24dp"
 
             android:id="@+id/next"/>
 

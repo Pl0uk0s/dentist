@@ -1,6 +1,7 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.provider.ContactsContract;
 import android.support.v4.view.MotionEventCompat;
@@ -11,6 +12,7 @@ import android.view.animation.AccelerateInterpolator;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,7 +28,7 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        LinearLayout activity_main = (LinearLayout) findViewById(R.id.activity_main);
+        RelativeLayout activity_main = (RelativeLayout) findViewById(R.id.activity_main);
 
         final TextView date = (TextView) findViewById(R.id.date);
         final TextView text = (TextView) findViewById(R.id.text);
@@ -53,6 +55,16 @@ public class MainActivity extends Activity {
             public void onClick(View v) {
                 LinearLayout firstData = (LinearLayout) findViewById(R.id.firstData);
                 firstData.setVisibility(View.VISIBLE);
+            }
+        });
+
+        ImageView add_product = (ImageView) findViewById(R.id.add_product);
+        add_product.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_add_product"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/blue"
+tools:context="com.trelokopoi.dentist.AddProductActivity">
+
+    <RelativeLayout
+        android:id="@+id/add_top"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="@color/blue">
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_arrow_back_white_24dp"
+            android:id="@+id/back"/>
+
+        <EditText
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginRight="10dp"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@+id/back"
+            android:hint="Search Product"
+            android:textColorHint="@color/transparent_white"
+            android:textAlignment="center"
+            android:drawableRight="@drawable/ic_search_white_24dp"
+            android:drawableTint="@color/transparent_white"
+            android:id="@+id/search_product" />
+
+    </RelativeLayout>
+
+<View
+    android:layout_width="match_parent"
+    android:layout_height="1dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp"
+    android:background="@color/white"
+    android:layout_alignBottom="@+id/add_top"
+    android:layout_centerHorizontal="true"
+    android:id="@+id/view" />
+
+</RelativeLayout>
