@@ -7,6 +7,10 @@ import android.os.Bundle;
 
 import com.google.android.gms.analytics.Tracker;
 import com.trelokopoi.dentist.util.Tools;
+import com.trelokopoi.dentist.util.LocalStorage;
+
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 
 public class SplashScreen extends Activity {
 
@@ -22,6 +26,12 @@ public class SplashScreen extends Activity {
 
         setContentView(R.layout.activity_splash_screen);
 
+        Calendar c = Calendar.getInstance();
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        String currentDate = df.format(c.getTime());
+
+        LocalStorage.setDayForInfo(currentDate);
+
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -29,6 +39,8 @@ public class SplashScreen extends Activity {
                 Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
                 startActivity(intent);
                 finish();
+                overridePendingTransition(R.anim.fadein,
+                        R.anim.fadeout);
             }
         }, SPLASH_TIME_OUT);
     }

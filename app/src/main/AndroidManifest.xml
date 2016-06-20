@@ -22,10 +22,10 @@
         android:required="false" />
 
     <permission
-        android:name="com.quizdom.permission.C2D_MESSAGE"
+        android:name="com.trelokopoi.dentist.permission.C2D_MESSAGE"
         android:protectionLevel="signature" />
 
-    <uses-permission android:name="com.quizdom.permission.C2D_MESSAGE" />
+    <uses-permission android:name="com.trelokopoi.dentist.permission.C2D_MESSAGE" />
     <uses-permission android:name="com.google.android.gms.permission.ACTIVITY_RECOGNITION" />
 
     <uses-feature

@@ -20,4 +20,10 @@ public class AddProductActivity extends Activity {
             }
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
+
 }
