@@ -7,26 +7,8 @@
         jumboMode="true"
         optimize="false"
         revision="23.0.3"
-        sha1="d70c1722a4c1742ec97e08624e8906f99bf6c14e">
+        sha1="b3beb283c9eb43d610c43e40197852e9d0a8d50c">
         <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\instant-run_c7ef76f8cec27a16f5747289509803f4dc161ddb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.9\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="6bcf11222c8dd57b4ddf4da06fa15c8fc3f903dd">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-crashlytics-core-2.3.9_36bc585b02e6b0153466f0f3a78578f33c8ec6e6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.0.2_b1acbf22ae38acc7d4f0e4912edb9d1daea365e8.jar" />
     </item>
     <item
         is-multidex="false"
@@ -45,6 +27,24 @@
         revision="23.0.3"
         sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
         <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_d0d9c039e13291e0d9144625c0f50988b644e667.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.9\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="6bcf11222c8dd57b4ddf4da06fa15c8fc3f903dd">
+        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-crashlytics-core-2.3.9_36bc585b02e6b0153466f0f3a78578f33c8ec6e6.jar" />
+    </item>
+    <item
+        is-multidex="false"
+        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.2\jars\classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.0.2_b1acbf22ae38acc7d4f0e4912edb9d1daea365e8.jar" />
     </item>
     <item
         is-multidex="false"
@@ -169,7 +169,7 @@
         jumboMode="true"
         optimize="false"
         revision="23.0.3"
-        sha1="b65498cb741db8f66b1a58d7584c1bc5533485b1">
+        sha1="fdf694ab4c5e720df1041271d12c178c8a085622">
         <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_33513bb859d28bb35b1eb9eeb3d0d5006c7ebb79.jar" />
     </item>
     <item
