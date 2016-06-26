@@ -69,7 +69,9 @@
             android:screenOrientation="portrait"
             android:windowSoftInputMode="stateHidden|adjustResize" />
         <activity android:name=".MainActivity" />
-        <activity android:name=".AddProductActivity"></activity>
+        <activity
+            android:name=".AddProductActivity"
+            android:windowSoftInputMode="stateHidden"/>
     </application>
 
 </manifest>
