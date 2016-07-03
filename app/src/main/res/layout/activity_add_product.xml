@@ -16,10 +16,10 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="10dp"
+            android:layout_marginLeft="10dp"
             android:src="@drawable/ic_arrow_back_white_24dp"
             android:id="@+id/back"/>
 
@@ -27,12 +27,11 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_marginRight="10dp"
-            android:layout_marginLeft="10dp"
-            android:layout_toEndOf="@+id/back"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@+id/back"
             android:hint="Search Product"
-            android:inputType="textVisiblePassword"
+            android:background="@android:color/transparent"
             android:textColorHint="@color/transparent_white"
-            android:textAlignment="center"
             android:id="@+id/search_product" />
 
     </RelativeLayout>
@@ -46,11 +45,5 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
     android:layout_alignBottom="@+id/add_top"
     android:layout_centerHorizontal="true"
     android:id="@+id/view" />
-
-    <ListView
-        android:id="@+id/list_view"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/view"/>
 
 </RelativeLayout>

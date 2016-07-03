@@ -2,6 +2,8 @@ package com.trelokopoi.dentist;
 
 import android.app.Application;
 import android.content.Context;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
@@ -13,6 +15,7 @@ public class App extends Application{
 
     public static final String TAG = "Core";
     public static String VERSION = "";
+    public static int VERSION_ID = 0;
     public static Context contextOfApplication;
     private static final String PROPERTY_ID = "";
 
@@ -55,6 +58,17 @@ public class App extends Application{
         super.onCreate();
         L.debug("onCreate App");
         contextOfApplication = getApplicationContext();
+
+        PackageInfo pinfo;
+        try {
+            pinfo = contextOfApplication.getPackageManager().getPackageInfo(contextOfApplication.getPackageName(), 0);
+            //VERSION = "a"+pinfo.versionName;
+            VERSION = contextOfApplication.getString(R.string.versionBackend)+pinfo.versionName; // a-t- / a-m-
+            VERSION_ID = pinfo.versionCode;
+        } catch (PackageManager.NameNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     public static Context getContextOfApplication(){

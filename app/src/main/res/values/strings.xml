@@ -1,5 +1,6 @@
 <resources>
-    <string name="app_name">core</string>
+    <string name="app_name">dentist</string>
+    <string name="versionBackend">a-m-</string>
     <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->

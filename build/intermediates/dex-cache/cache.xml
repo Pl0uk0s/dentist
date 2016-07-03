@@ -2,202 +2,220 @@
 <items version="2" >
 
     <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\incremental-runtime-classes\debug\instant-run.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="b3beb283c9eb43d610c43e40197852e9d0a8d50c">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\instant-run_c7ef76f8cec27a16f5747289509803f4dc161ddb.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\support-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-support-vector-drawable-23.4.0_bf2b32ce5b0fa2c05f67c38a7f8e842642ba7630.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-support-v4-23.4.0_d0d9c039e13291e0d9144625c0f50988b644e667.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics-core\2.3.9\jars\classes.jar"
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics-core/2.3.9/jars/classes.jar"
         jumboMode="true"
         optimize="false"
         revision="23.0.3"
         sha1="6bcf11222c8dd57b4ddf4da06fa15c8fc3f903dd">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-crashlytics-core-2.3.9_36bc585b02e6b0153466f0f3a78578f33c8ec6e6.jar" />
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.crashlytics.sdk.android-crashlytics-core-2.3.9_df97cbd24694f715ddf217f0501f6a6f6f64cd7a/classes.dex" />
     </item>
     <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.firebase\firebase-common\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.firebase-firebase-common-9.0.2_b1acbf22ae38acc7d4f0e4912edb9d1daea365e8.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\beta\1.1.5\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="557bcc987cc2438e5162476bc8c953a37b683fb9">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-beta-1.1.5_dcc79ed6e8838995d083511303e4328e0fa3cf29.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics-impl\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="6c58c14d15602fea2c50138c73bb107e8b832b62">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-impl-9.0.2_11b90cbdff2cc24c7d5e0386b1fd19bee12c09c9.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\libs\picasso-2.5.2.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\picasso-2.5.2_c112d9eebf8d88eb82988a73b65bc5570784ae82.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-analytics\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="fe5b47e764869f1076cb9cfe12801ed2ef4e9117">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-analytics-9.0.2_8c15b9914e957fa8a2ccb90485b4c473e8874a88.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-base\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-base-9.0.2_d4fed65086988f46bc8a93e4888ead0f0704e767.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\animated-vector-drawable\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-animated-vector-drawable-23.4.0_930cd2e41ff427b1a899b4a60d74bc4770688e43.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\design\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-design-23.4.0_3503ce6c2b8c6176eecf2c126e909543df4473b6.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\crashlytics\2.5.6\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="cb73560edb89cb7afe1d0d5455595c27866af7c6">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-crashlytics-2.5.6_8ebe902d106914105d86140016bc73c0a36f17c3.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="D:\AndroidSDK\extras\android\m2repository\com\android\support\support-annotations\23.4.0\support-annotations-23.4.0.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\support-annotations-23.4.0_6d851d9a3cbbe5d1dac573180ea50da442a0ff00.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\support-v4\23.4.0\jars\libs\internal_impl-23.4.0.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\internal_impl-23.4.0_aa1ea15a77903e15fbf9149a52df98b71a840f6c.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-tasks\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-tasks-9.0.2_00ca9cf60217c2a4b99817b4d4191af2857b7771.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\recyclerview-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-recyclerview-v7-23.4.0_a4cbb2a6fff60d17f1b882232054dd51ac4fb70a.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.android.support\appcompat-v7\23.4.0\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.android.support-appcompat-v7-23.4.0_df31ca1dbb2b5c0f9a78224749a7f0e473bc770e.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\incremental-classes\debug\instant-run-bootstrap.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="fdf694ab4c5e720df1041271d12c178c8a085622">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\instant-run-bootstrap_33513bb859d28bb35b1eb9eeb3d0d5006c7ebb79.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.google.android.gms\play-services-basement\9.0.2\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.google.android.gms-play-services-basement-9.0.2_91dbc4e1a5191ae28d6449b037c377105790c459.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\io.fabric.sdk.android\fabric\1.3.11\jars\classes.jar"
-        jumboMode="true"
-        optimize="false"
-        revision="23.0.3"
-        sha1="9505232840ada5bc281f012c9798a6e49900d4ea">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\io.fabric.sdk.android-fabric-1.3.11_8bc0e76ed724f1ad1532270d55e29ca07e2bcd0f.jar" />
-    </item>
-    <item
-        is-multidex="false"
-        jar="C:\AndroidStudioProjects\dentist\app\build\intermediates\exploded-aar\com.crashlytics.sdk.android\answers\1.3.7\jars\classes.jar"
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/answers/1.3.7/jars/classes.jar"
         jumboMode="true"
         optimize="false"
         revision="23.0.3"
         sha1="4711b6bd1e41291912e98c23954cb3d11ca36bd5">
-        <dex dex="C:\AndroidStudioProjects\dentist\app\build\intermediates\pre-dexed\debug\com.crashlytics.sdk.android-answers-1.3.7_ab77bb94f8cc4d1f7c0a0c9c810fa15f0c20005f.jar" />
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.crashlytics.sdk.android-answers-1.3.7_4d7e242feabf180fa5025a7a9c7e3808efff8aec/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/Library/Android/sdk/extras/android/m2repository/com/android/support/support-annotations/23.4.0/support-annotations-23.4.0.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ffbe55fdb2bb456b1485831706a9eac3300bb6b8">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/support-annotations-23.4.0_4f21882103bb9f46c62431513ce5146fa3f20ce0/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support.constraint/constraint-layout/1.0.0-alpha2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ef0c8364efe2e1b72b3903d6ba588d6cbde9aa6f">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support.constraint-constraint-layout-1.0.0-alpha2_34e61fca2728221c98ee907397f1c3995134faaf/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/recyclerview-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ec75036c3c52e451d0cde50a5aedaf5fd32354a0">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-recyclerview-v7-23.4.0_ca88b852ccb23f0bee080b7e38d91b04596058e1/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-basement/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="4022261eeea0d92eb2997a68d2c1f084a16abad9">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-basement-9.0.2_e6af5927591427af5b2f3c648b695b63ef4d7044/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-tasks/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="aec1bc54964a85d851c2c1b1cb7f90f7dbd755ab">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-tasks-9.0.2_511e44113a89ad179955ecaad9afe1fd8d439dd2/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics-impl/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="6c58c14d15602fea2c50138c73bb107e8b832b62">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-impl-9.0.2_b25f31a16dadfe9f50d549ccb959cb02892a5287/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.firebase/firebase-common/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="9919563cffd8e3732e944d3c437d4b9575a08448">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.firebase-firebase-common-9.0.2_86aa5e063dab07d3be73ba1cbcf73a664c1b3f64/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-analytics/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="fe5b47e764869f1076cb9cfe12801ed2ef4e9117">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-analytics-9.0.2_be1d4d408567d17053d88c492aca087c12ebf332/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/appcompat-v7/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="548f06de403a9409f00554b3ee12a9fdea0e236c">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-appcompat-v7-23.4.0_830a14c21f7b692ebbff8d632f1f96968954f918/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/libs/internal_impl-23.4.0.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="ea3c07504d2c8f4b13aa17c45c1b68ed9c1c3674">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/internal_impl-23.4.0_cb1e533c197245eed3a312e773ef0ba94c6371eb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/design/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="5326d9a850d491714fef8cbfaa9ea3416f0bf0d2">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-design-23.4.0_f169e87132add41eec4686d5dafd8ed69f26aec4/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.google.android.gms/play-services-base/9.0.2/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="94d9cedd04b124aed044ac71c451a292856d854c">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.google.android.gms-play-services-base-9.0.2_995957e8468181cddd6a653598bbb1000d03a28e/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/animated-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="de4db3785756bfb0915a9f59a9b3f2fea7407be4">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-animated-vector-drawable-23.4.0_f6f00b14b0aed5fdabae8f55a175048dc8863b4d/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/incremental-classes/debug/instant-run-bootstrap.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="4c0052dd493c9971b6a8a783dd9869add544a2e1">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a4c1c23206ae17d6dc70a433e2e7cd2880673176/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/support-vector-drawable/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="c2c594cace5d83a3227b2b6e658ecbfd586d3ed9">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-vector-drawable-23.4.0_631dddfeed50f64eda98bc5ea304290ad672bdf6/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/Library/Android/sdk/extras/m2repository/com/android/support/constraint/constraint-layout-solver/1.0.0-alpha2/constraint-layout-solver-1.0.0-alpha2.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="aa52b18e81a499129a981d0d8681b8b030130a6d">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/constraint-layout-solver-1.0.0-alpha2_1a32718b54d889479bdccb060035365c91f667cb/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/libs/picasso-2.5.2.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="7446d06ec8d4f7ffcc53f1da37c95f200dcb9387">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/2/picasso-2.5.2_e702d134fbac74012a073e4258944b8729222ebe/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/beta/1.1.5/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="557bcc987cc2438e5162476bc8c953a37b683fb9">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.crashlytics.sdk.android-beta-1.1.5_a789496238a370a9a02ba35f96c516397626b021/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.crashlytics.sdk.android/crashlytics/2.5.6/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="cb73560edb89cb7afe1d0d5455595c27866af7c6">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.crashlytics.sdk.android-crashlytics-2.5.6_31e514fa9dd493900af8606f6322fd0104e2c5b9/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/com.android.support/support-v4/23.4.0/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="67bd36ee9340ec7c254108936ad16b24bed160cc">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/com.android.support-support-v4-23.4.0_3498e3939742c4bdd144876bd886744183b7754c/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/exploded-aar/io.fabric.sdk.android/fabric/1.3.11/jars/classes.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="9505232840ada5bc281f012c9798a6e49900d4ea">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/io.fabric.sdk.android-fabric-1.3.11_1304bc8cc75b5f95c9a1f130271cd2c012409306/classes.dex" />
+    </item>
+    <item
+        is-multidex="true"
+        jar="/Users/kostasploumidakis/dentist/app/build/intermediates/incremental-runtime-classes/debug/instant-run.jar"
+        jumboMode="true"
+        optimize="false"
+        revision="23.0.3"
+        sha1="20a702ec1c05238c1a8100f7c18b1734b69e4869">
+        <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_925bf47f02ab5ca4deb8e1d79a9658ae8092c355/classes.dex" />
     </item>
 
 </items>

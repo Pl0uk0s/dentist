@@ -9,8 +9,8 @@ import javax.crypto.spec.SecretKeySpec;
 
 public class Crypt {
 
-    private String iv = "";
-    private String secretkey = "";
+    private String iv = "x~dxyT%*+vtyx%*T";
+    private String secretkey = "\u00ef\u00fa\u00a1\u00a0\u00c3\u00cc\u00cc\u00ff\u00ff\u00f1\u00f3\u00ea\u00a8\u00aa\u00ff\u00fd";
 
     private IvParameterSpec ivspec;
     private SecretKeySpec keyspec;

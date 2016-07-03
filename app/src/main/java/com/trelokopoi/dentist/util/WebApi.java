@@ -1,7 +1,12 @@
 package com.trelokopoi.dentist.util;
 
+import android.content.Context;
+import android.provider.Settings;
+
 import com.trelokopoi.dentist.App;
 import com.trelokopoi.dentist.BuildConfig;
+
+import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -11,33 +16,88 @@ import java.util.Locale;
 public class WebApi {
 
     private static final String URL = "";
-    private static final String FINALURL = "";
+    private static final String FINALURL = "http://52.58.254.12/K2m/";
 
-    public static final String URL_CHECKINTERNET = "http://checkinternet.example.gr/";
+    public static final String URL_CHECKINTERNET = "http://52.58.254.12/K2m/checkinternet.html";
+
+    private static final String PLAYMAKER_URL = "playmaker.php";
+
+    private static final String ACTION_AUTHENTICATE = "?action=authenticate";
+    private static final String ACTION_GETCHILDREN = "?action=getChildren";
+    private static final String ACTION_GETCHILDINFO = "?action=getChildInfo";
+
+    public final static String VALUE_FIELD_VERSION = "&v=";
+    private static final String VALUE_USERNAME = "&userName=";
+    private static final String VALUE_USERPASSWORD = "&userPassword=";
+    private static final String VALUE_USERID = "&userId=";
+    private static final String VALUE_USER_DEVICE_OS = "&userDeviceOs=";
+    private static final String VALUE_USER_DEVICE_HW = "&userDeviceHardware=";
+    private static final String VALUE_USER_DEVICE_SCR = "&userDeviceScreen=";
+    private static final String VALUE_USER_NETWORK_CARRIER = "&userNetworkCarrier=";
+    private static final String VALUE_USER_NETWORK_OPERATOR = "&userNetworkOperator=";
+    private static final String VALUE_USER_PHONE_NUMBER = "&userPhoneNumber=";
+    private static final String VALUE_DATE = "&date=";
+    private static final String VALUE_CHILD_ID = "&childId=";
 
     private static String returnURL() {
-
-        if (FINALURL.isEmpty()) {
-            //WebApi.setApiDirectory(WebInterface.executeWeb(getApiDirectory()));
-        }
-
         if (!BuildConfig.DEBUG) {
             return FINALURL;
         }
-
-        //return EDUURL;
         return FINALURL;
-        //return URL;
     }
 
     private static String deviceDataUrl() {
 
-        String url = DeviceInfo.returnAndroidVersion();
-        url += DeviceInfo.returnDeviceName();
-        url += DeviceInfo.returnScreenDimensions();
-        url += DeviceInfo.returnNetworkCarrier();
-        url += DeviceInfo.returnNetworkOperator();
-        url += DeviceInfo.returnPhoneNumber();
+        String url = VALUE_USER_DEVICE_OS+DeviceInfo.returnAndroidVersion();
+        url += VALUE_USER_DEVICE_HW+DeviceInfo.returnDeviceName();
+        url += VALUE_USER_DEVICE_SCR+DeviceInfo.returnScreenDimensions();
+        url += VALUE_USER_NETWORK_CARRIER+DeviceInfo.returnNetworkCarrier();
+        url += VALUE_USER_NETWORK_OPERATOR+DeviceInfo.returnNetworkOperator();
+        url += VALUE_USER_PHONE_NUMBER+DeviceInfo.returnPhoneNumber();
+        return url;
+    }
+
+    public static JSONObject authenticate(Context context, String username, String password) {
+
+        String uniqueId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        L.debug(App.TAG, "uniqueId: "+uniqueId);
+
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_AUTHENTICATE;
+        url += VALUE_USERNAME+username;
+        url += VALUE_USERPASSWORD+sha1Hash(password);
+        url += deviceDataUrl();
+
+        url += VALUE_FIELD_VERSION+App.VERSION;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static String getChidren() {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETCHILDREN;
+
+        url += VALUE_USERNAME+LocalStorage.getUsername();
+        url += VALUE_USERPASSWORD+LocalStorage.getUserPassword();
+        url += VALUE_USERID+LocalStorage.getUserId();
+
+        return url;
+    }
+
+    public static String getChildInfo(String date, int childId) {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETCHILDINFO;
+
+        url += VALUE_USERNAME+LocalStorage.getUsername();
+        url += VALUE_USERPASSWORD+LocalStorage.getUserPassword();
+        url += VALUE_USERID+LocalStorage.getUserId();
+
+        url += VALUE_DATE+date;
+        url += VALUE_CHILD_ID+childId;
+
         return url;
     }
 
@@ -81,7 +141,7 @@ public class WebApi {
             //L.debug("encURL",tempUrl.substring(x));
             try {
                 url += "?p="+Crypt.bytesToHex(new Crypt().encrypt(tempUrl.substring(x)));
-                url += App.VERSION;
+                url += VALUE_FIELD_VERSION+App.VERSION;
             } catch (Exception e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();

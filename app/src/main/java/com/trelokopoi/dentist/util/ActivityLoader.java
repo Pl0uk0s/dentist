@@ -8,9 +8,10 @@ import com.trelokopoi.dentist.R;
 
 public class ActivityLoader {
 
+	public static String act0  = "LoginActivity";
 	public static String act1  = "MainActivity";
 
-	private static String pkg = "";
+	private static String pkg = "com.trelokopoi.dentist.";
 	
 	public static String actionStart = "start";
 	public static String actionGoBack = "back";

@@ -6,13 +6,23 @@ import android.os.Handler;
 import android.os.Bundle;
 
 import com.google.android.gms.analytics.Tracker;
+import com.trelokopoi.dentist.util.ActivityLoader;
+import com.trelokopoi.dentist.util.AsyncApiCall;
+import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.Tools;
 import com.trelokopoi.dentist.util.LocalStorage;
+import com.trelokopoi.dentist.util.WebApi;
+import com.trelokopoi.dentist.util.WebInterface;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
-public class SplashScreen extends Activity {
+public class SplashScreen extends Activity implements AsyncApiCallOnTaskCompleted {
+
+    private int LOAD_CHILDREN = 0;
 
     private int SPLASH_TIME_OUT = 2000;
 
@@ -26,21 +36,11 @@ public class SplashScreen extends Activity {
 
         setContentView(R.layout.activity_splash_screen);
 
-        Calendar c = Calendar.getInstance();
-        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-        String currentDate = df.format(c.getTime());
-
-        LocalStorage.setDayForInfo(currentDate);
-
         new Handler().postDelayed(new Runnable() {
 
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
-                overridePendingTransition(R.anim.fadein,
-                        R.anim.fadeout);
+                checkForLogin();
             }
         }, SPLASH_TIME_OUT);
     }
@@ -60,5 +60,51 @@ public class SplashScreen extends Activity {
     {
         // TODO Auto-generated method stub
         super.onResume();
+    }
+
+    private void checkForLogin() {
+        if (LocalStorage.getUserLogin()) {
+            new AsyncApiCall(LOAD_CHILDREN, SplashScreen.this, false).execute(WebApi.getChidren());
+        }
+        else {
+            Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+            startActivity(intent);
+            finish();
+//            overridePendingTransition(R.anim.fadein, R.anim.fadeout);
+        }
+    }
+
+    @Override
+    public void onTaskCompleted(int thread, String result) {
+        JSONObject jsonResult = WebInterface.validateJSON(SplashScreen.this, result);
+
+        if (jsonResult != null) {
+            if (thread == LOAD_CHILDREN) {
+
+                String success = jsonResult.optString("success", "0");
+
+                if (success.equals("1")) {
+                    JSONArray children = jsonResult.optJSONArray("children");
+                    LocalStorage.setChildren(children);
+
+                    Calendar c = Calendar.getInstance();
+                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                    String currentDate = df.format(c.getTime());
+
+                    LocalStorage.setDayForInfo(currentDate);
+
+                    ActivityLoader.load(SplashScreen.this, ActivityLoader.act1);
+                }
+                else {
+                    Tools.toast(getApplicationContext(), "Sorry, an error occurred. Please reopen the app.");
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onTaskCompleted(int thread, Bundle vars, String result) {
+        // TODO Auto-generated method stub
+
     }
 }
