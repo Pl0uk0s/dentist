@@ -46,10 +46,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
     final Context ctx = this;
 
-
     String currentDate;
     TextView dateTxtView;
-
+    private Integer backButtonCount = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -309,9 +308,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         view1.setTextSize(16);
         view2.setTextSize(16);
         view3.setTextSize(16);
-        view1.setTextColor(0xFFFFFFFF);
-        view2.setTextColor(0xFFFFFFFF);
-        view3.setTextColor(0xFFFFFFFF);
+//        view1.setTextColor(0x000000);
+//        view2.setTextColor(0x000000);
+//        view3.setTextColor(0x000000);
         child1_detail.addView(view1, p);
         child1_detail.addView(view2, p);
         child1_detail.addView(view3, p);
@@ -383,5 +382,23 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     public void onTaskCompleted(int thread, Bundle vars, String result) {
         // TODO Auto-generated method stub
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        if(backButtonCount >= 1)
+        {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.addCategory(Intent.CATEGORY_HOME);
+            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+            this.finish();
+        }
+        else
+        {
+            Toast.makeText(this, "Press Back once again to exit the Application.", Toast.LENGTH_SHORT).show();
+            backButtonCount++;
+        }
     }
 }

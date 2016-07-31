@@ -64,6 +64,9 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
 
     private void checkForLogin() {
         if (LocalStorage.getUserLogin()) {
+            App.username = LocalStorage.getUsername();
+            App.password = LocalStorage.getUserPassword();
+            App.userId = LocalStorage.getUserId();
             new AsyncApiCall(LOAD_CHILDREN, SplashScreen.this, false).execute(WebApi.getChidren());
         }
         else {

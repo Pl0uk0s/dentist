@@ -79,9 +79,9 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDREN;
 
-        url += VALUE_USERNAME+LocalStorage.getUsername();
-        url += VALUE_USERPASSWORD+LocalStorage.getUserPassword();
-        url += VALUE_USERID+LocalStorage.getUserId();
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
 
         return url;
     }
@@ -91,9 +91,9 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDINFO;
 
-        url += VALUE_USERNAME+LocalStorage.getUsername();
-        url += VALUE_USERPASSWORD+LocalStorage.getUserPassword();
-        url += VALUE_USERID+LocalStorage.getUserId();
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
 
         url += VALUE_DATE+date;
         url += VALUE_CHILD_ID+childId;

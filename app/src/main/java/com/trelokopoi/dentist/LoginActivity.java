@@ -36,6 +36,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
         Tools.setupGoogleAnalytics(LoginActivity.this);
 
         if (LocalStorage.getUserLogin()) {
+            App.username = LocalStorage.getUsername();
+            App.password = LocalStorage.getUserPassword();
+            App.userId = LocalStorage.getUserId();
             getChildrenNames();
         }
         else {
@@ -90,6 +93,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                         LocalStorage.setLogin(username, WebApi.sha1Hash(password), userId);
                                         LocalStorage.setUserLogin(true);
                                     }
+                                    App.username = username;
+                                    App.password = WebApi.sha1Hash(password);
+                                    App.userId = userId;
                                     getChildrenNames();
                                 }
                             }
