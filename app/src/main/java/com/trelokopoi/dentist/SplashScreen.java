@@ -9,6 +9,7 @@ import com.google.android.gms.analytics.Tracker;
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.NoInternetDialog;
 import com.trelokopoi.dentist.util.Tools;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.WebApi;
@@ -67,7 +68,19 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
             App.username = LocalStorage.getUsername();
             App.password = LocalStorage.getUserPassword();
             App.userId = LocalStorage.getUserId();
-            new AsyncApiCall(LOAD_CHILDREN, SplashScreen.this, false).execute(WebApi.getChidren());
+            if (WebInterface.hasInternetConnection()) {
+                new AsyncApiCall(LOAD_CHILDREN, SplashScreen.this, false).execute(WebApi.getChidren());
+            }
+            else {
+                new NoInternetDialog(SplashScreen.this)
+                {
+                    public void run()
+                    {
+
+                        return;
+                    }
+                };
+            }
         }
         else {
             Intent intent = new Intent(SplashScreen.this, LoginActivity.class);

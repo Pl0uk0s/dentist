@@ -18,6 +18,7 @@ public class LocalStorage {
     public static final String PREFS_USER_ID = "prefs_user_id";
     public static final String PREFS_USER_LOGIN = "prefs_user_login";
     public static final String PREFS_USER_CHILDREN = "prefs_user_children";
+    public static final String PREFS_USER_PRODUCTS = "prefs_user_products";
 
     private static SharedPreferences getPreferences() {
         Context applicationContext = App.getContextOfApplication();
@@ -69,6 +70,16 @@ public class LocalStorage {
 
     public static JSONArray getChildren() {
         return retrieveJSONArray(PREFS_USER_CHILDREN);
+    }
+
+    public static void setProducts(JSONArray products) {
+        L.debug("setProducts" + products);
+
+        cacheJSONArray(products, PREFS_USER_PRODUCTS);
+    }
+
+    public static JSONArray getProducts() {
+        return  retrieveJSONArray(PREFS_USER_PRODUCTS);
     }
 
     public static void setDayForInfo(String day) {

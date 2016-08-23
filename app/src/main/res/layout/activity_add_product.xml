@@ -44,6 +44,12 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:nextFocusUp="@id/search_product"
             android:nextFocusLeft="@id/search_product"/>
 
+        <EditText
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            android:id="@+id/productId"/>
+
     </RelativeLayout>
 
     <ListView
@@ -204,7 +210,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:layout_height="100dp">
 
             <CheckBox
-                android:id="@+id/child2"
+                android:id="@+id/child2checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -214,7 +220,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
                 android:visibility="gone"/>
 
             <CheckBox
-                android:id="@+id/child1"
+                android:id="@+id/child1checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentTop="true"
@@ -224,19 +230,19 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
                 android:visibility="gone"/>
 
             <CheckBox
-                android:id="@+id/child4"
+                android:id="@+id/child4checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/child2"
-                android:layout_alignStart="@+id/child2"
+                android:layout_below="@+id/child2checkbox"
+                android:layout_alignStart="@+id/child2checkbox"
                 android:visibility="gone"/>
 
             <CheckBox
-                android:id="@+id/child3"
+                android:id="@+id/child3checkbox"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/child1"
-                android:layout_alignStart="@+id/child1"
+                android:layout_below="@+id/child1checkbox"
+                android:layout_alignStart="@+id/child1checkbox"
                 android:visibility="gone"/>
         </RelativeLayout>
 

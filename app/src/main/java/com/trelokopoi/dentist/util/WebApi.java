@@ -25,6 +25,9 @@ public class WebApi {
     private static final String ACTION_AUTHENTICATE = "?action=authenticate";
     private static final String ACTION_GETCHILDREN = "?action=getChildren";
     private static final String ACTION_GETCHILDINFO = "?action=getChildInfo";
+    private static final String ACTION_GETPRODUCTS = "?action=getProducts";
+    private static final String ACTION_ADDPRODUCTTOCHILD = "?action=addProductToChild";
+    private static final String ACTION_ADDPRODUCT = "?action=addProduct";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USERNAME = "&userName=";
@@ -38,6 +41,11 @@ public class WebApi {
     private static final String VALUE_USER_PHONE_NUMBER = "&userPhoneNumber=";
     private static final String VALUE_DATE = "&date=";
     private static final String VALUE_CHILD_ID = "&childId=";
+    private static final String VALUE_LETTERS = "&letters=";
+    private static final String VALUE_ITEMID = "&itemId=";
+    private static final String VALUE_AMOUNT = "&amount=";
+    private static final String VALUE_TIME = "&time=";
+    private static final String VALUE_NAME = "&name=";
 
     private static String returnURL() {
         if (!BuildConfig.DEBUG) {
@@ -97,6 +105,48 @@ public class WebApi {
 
         url += VALUE_DATE+date;
         url += VALUE_CHILD_ID+childId;
+
+        return url;
+    }
+
+    public static JSONObject getProducts(String letters) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETPRODUCTS;
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_LETTERS+letters;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static JSONObject addProductToChild(Integer prodId, Integer quantity, String date, String time, Integer belongs) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_ADDPRODUCTTOCHILD;
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_ITEMID+prodId;
+        url += VALUE_AMOUNT+quantity;
+        url += VALUE_DATE+date;
+        url += VALUE_TIME+time;
+        url += VALUE_CHILD_ID+belongs;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static String addProduct(String name) {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_ADDPRODUCT;
+
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_NAME+name;
 
         return url;
     }

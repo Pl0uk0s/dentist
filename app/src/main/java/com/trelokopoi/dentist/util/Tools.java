@@ -8,6 +8,7 @@ import android.os.Handler;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -125,6 +126,11 @@ public class Tools {
         activityFrom.startActivity(intent);
         activityFrom.overridePendingTransition(R.anim.slide_in_left, R.anim.fadeout2);
         activityFrom.finish();
+    }
+
+    public static void hideKeyboard(Activity act) {
+        InputMethodManager inputManager = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
+        inputManager.hideSoftInputFromWindow(act.getCurrentFocus().getWindowToken(),0);
     }
 
 }

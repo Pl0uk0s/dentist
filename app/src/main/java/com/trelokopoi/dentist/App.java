@@ -8,6 +8,8 @@ import android.content.pm.PackageManager;
 import com.google.android.gms.analytics.GoogleAnalytics;
 import com.google.android.gms.analytics.Tracker;
 import com.trelokopoi.dentist.util.L;
+import com.crashlytics.android.Crashlytics;
+import io.fabric.sdk.android.Fabric;
 
 import java.util.HashMap;
 
@@ -17,7 +19,7 @@ public class App extends Application{
     public static String VERSION = "";
     public static int VERSION_ID = 0;
     public static Context contextOfApplication;
-    private static final String PROPERTY_ID = "";
+    private static final String PROPERTY_ID = "UA-82120732-1";
     public static String username = "";
     public static String password = "";
     public static String userId = "";
@@ -72,6 +74,7 @@ public class App extends Application{
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+        Fabric.with(this, new Crashlytics());
     }
 
     public static Context getContextOfApplication(){

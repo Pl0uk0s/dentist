@@ -32,7 +32,8 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="io.fabric.ApiKey"
-            android:value="" />
+            android:value="ec673700f00d1a9f8f4554be715929bab77bda9a"
+            />
 
         <activity
             android:name=".SplashScreen"

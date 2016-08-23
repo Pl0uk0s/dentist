@@ -13,6 +13,8 @@ import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.trelokopoi.dentist.dbutil.diaryDataSource;
+import com.trelokopoi.dentist.dbutil.diaryObj;
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
@@ -29,6 +31,7 @@ import org.json.JSONObject;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -53,6 +56,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Tools.setupGoogleAnalytics(MainActivity.this);
+
+        sendDataToBackend();
 
         ScrollView children_scrollview = (ScrollView)findViewById(R.id.children_scrollview);
 
@@ -151,7 +158,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 else {
                     LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
 
-                    if ( child1_data.getVisibility() == View.VISIBLE)
+                    if (child1_data.getVisibility() == View.VISIBLE)
                     {
                         child1_data.setVisibility(View.GONE);
                     }
@@ -179,13 +186,69 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 else {
                     LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
 
-                    if ( child2_data.getVisibility() == View.VISIBLE)
+                    if (child2_data.getVisibility() == View.VISIBLE)
                     {
                         child2_data.setVisibility(View.GONE);
                     }
                     else
                     {
                         child2_data.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
+        child_name3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CHILD3_HAS_DATA == 0) {
+                    JSONArray children = LocalStorage.getChildren();
+                    try {
+                        JSONObject child3 = children.getJSONObject(2);
+                        new AsyncApiCall(LOAD_CHILD_DATA3, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child3.optInt("id", -1)));
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
+
+                    if (child3_data.getVisibility() == View.VISIBLE)
+                    {
+                        child3_data.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        child3_data.setVisibility(View.VISIBLE);
+                    }
+                }
+            }
+        });
+
+        child_name4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (CHILD4_HAS_DATA == 0) {
+                    JSONArray children = LocalStorage.getChildren();
+                    try {
+                        JSONObject child4 = children.getJSONObject(3);
+                        new AsyncApiCall(LOAD_CHILD_DATA4, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child4.optInt("id", -1)));
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                else {
+                    LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
+
+                    if (child4_data.getVisibility() == View.VISIBLE)
+                    {
+                        child4_data.setVisibility(View.GONE);
+                    }
+                    else
+                    {
+                        child4_data.setVisibility(View.VISIBLE);
                     }
                 }
             }
@@ -213,6 +276,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 
@@ -370,10 +434,50 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD2_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA3) {
+                LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout child3_detail;
 
+                JSONArray childData = jsonResult.optJSONArray("childData");
+
+                for(int i = 0; i < childData.length(); i++) {
+                    try {
+                        JSONObject oneFood = childData.getJSONObject(i);
+                        String time = oneFood.optString("time", "");
+                        String food = oneFood.optString("food", "");
+                        String amount = oneFood.optString("amount", "");
+                        child3_detail = getChildDetail(time, food, amount);
+                        child3_data.addView(child3_detail, p);
+                    }
+                    catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                CHILD3_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA4) {
+                LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout child4_detail;
 
+                JSONArray childData = jsonResult.optJSONArray("childData");
+
+                for(int i = 0; i < childData.length(); i++) {
+                    try {
+                        JSONObject oneFood = childData.getJSONObject(i);
+                        String time = oneFood.optString("time", "");
+                        String food = oneFood.optString("food", "");
+                        String amount = oneFood.optString("amount", "");
+                        child4_detail = getChildDetail(time, food, amount);
+                        child4_data.addView(child4_detail, p);
+                    }
+                    catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+                CHILD4_HAS_DATA = 1;
             }
         }
     }
@@ -399,6 +503,37 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         {
             Toast.makeText(this, "Press Back once again to exit the Application.", Toast.LENGTH_SHORT).show();
             backButtonCount++;
+        }
+    }
+
+    public void sendDataToBackend() {
+        if (WebInterface.hasInternetConnection()) {
+            ArrayList<diaryObj> aDiaryObjs = diaryDataSource.retrieveDiaryObj(this.getApplicationContext());
+            for (diaryObj obj : aDiaryObjs) {
+                Integer id = obj.getId();
+                Integer prodId = obj.getProdId();
+                Integer quantity = obj.getQuantity();
+                String date = obj.getDate();
+                String time = obj.getTime();
+                Integer belongs = obj.getBelongs();
+
+                //async call
+                JSONObject Response = WebApi.addProductToChild(prodId, quantity, date, time, belongs);
+                try {
+                    String success = (String) Response.getString("success");
+
+                    if (success.equals("1")) {
+                        diaryDataSource.deleteOld(this.getApplicationContext(), id);
+                    }
+                    else {
+                        L.debug(Response.toString());
+                    }
+
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
         }
     }
 }

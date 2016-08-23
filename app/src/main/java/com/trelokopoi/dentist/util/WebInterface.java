@@ -210,7 +210,8 @@ public class WebInterface {
 			try {
 				json = new JSONObject(result);
 				
-			} catch (JSONException e) {
+			}
+			catch (JSONException e) {
 				WebInterface.catchJSONException(applicationContext, result, msgShownAlready);
 				result = null;
 				json = null;
@@ -219,7 +220,8 @@ public class WebInterface {
 			if (result != null && !result.isEmpty()) {		
 				json = makeJSON(applicationContext, result, msgShownAlready);
 			}
-		} else {
+		}
+		else {
 			WebInterface.catchJSONException(applicationContext, result, msgShownAlready);
 		}
 				
@@ -243,9 +245,10 @@ public class WebInterface {
 		if (BuildConfig.DEBUG) {
 			Toast.makeText(applicationContext, result, Toast.LENGTH_LONG).show();
 			
-		} else if (!msgShownAlready) {			
+		}
+		else if (!msgShownAlready) {
 			//Toast.makeText(applicationContext, applicationContext.getResources().getString(R.string.error_backend), Toast.LENGTH_LONG).show();
-			Tools.toast(applicationContext, "");
+			Tools.toast(applicationContext, "No internet connection. Cannot connect to the server. Please reopen the app.");
 		}
 		
 	}
