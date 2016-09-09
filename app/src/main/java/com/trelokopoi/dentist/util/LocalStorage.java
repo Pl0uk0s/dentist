@@ -58,6 +58,12 @@ public class LocalStorage {
         editor.apply();
     }
 
+    public static void setUserLogout() {
+        SharedPreferences.Editor editor = getPreferences().edit();
+        editor.remove(PREFS_USER_LOGIN);
+        editor.apply();
+    }
+
     public static boolean getUserLogin() {
         return getPreferences().getBoolean(PREFS_USER_LOGIN, false);
     }

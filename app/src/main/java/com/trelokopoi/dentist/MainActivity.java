@@ -3,6 +3,8 @@ package com.trelokopoi.dentist;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
@@ -47,11 +49,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Integer CHILD3_HAS_DATA = 0;
     private Integer CHILD4_HAS_DATA = 0;
 
-    final Context ctx = this;
+    final private Context ctx = this;
 
-    String currentDate;
-    TextView dateTxtView;
+    private String currentDate;
+    private Date valid_date;
     private Integer backButtonCount = 0;
+    private ImageView edit, delete;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,9 +68,24 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         JSONArray children = LocalStorage.getChildren();
 
-        dateTxtView = (TextView) findViewById(R.id.date);
+        TextView dateTxtView = (TextView) findViewById(R.id.date);
         currentDate = LocalStorage.getDayForInfo();
         dateTxtView.setText(currentDate);
+
+        ImageView next = (ImageView) findViewById(R.id.next);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+            Date curr_date = df.parse(currentDate);
+            Calendar cal = Calendar.getInstance();
+            String validDateUntil = df.format(cal.getTime());
+            valid_date = df.parse(validDateUntil);
+            if (curr_date.equals((valid_date)))
+            {
+                next.setVisibility(View.INVISIBLE);
+            }
+        } catch (ParseException e) {
+            L.debug(e.toString());
+        }
 
         TextView child_name1 = (TextView) findViewById(R.id.child_name1);
         TextView child_name2 = (TextView) findViewById(R.id.child_name2);
@@ -100,6 +118,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 child_name2.setText(child2.optString("name", ""));
             }
             else if (i == 3) {
+
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child_name1.setVisibility(View.VISIBLE);
@@ -262,7 +281,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
         });
 
-        ImageView next = (ImageView) findViewById(R.id.next);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -277,6 +295,16 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
                 startActivity(intent);
                 finish();
+            }
+        });
+
+        ImageView settings = (ImageView) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+                startActivity(intent);
+//                finish();
             }
         });
 
@@ -340,16 +368,21 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private void swipeLeft() {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date date = (Date) df.parse(currentDate);
+            Date date = df.parse(currentDate);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
             cal.add(Calendar.DATE, 1);
             String dateToSave = df.format(cal.getTime());
-            LocalStorage.setDayForInfo(dateToSave);
+            Date newDate = df.parse(dateToSave);
+            if (!newDate.after(valid_date))
+            {
+                LocalStorage.setDayForInfo(dateToSave);
+                Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
+            }
+
         } catch (ParseException e) {
             L.debug(e.toString());
         }
-        Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
     }
 
     private LinearLayout getChildDetail(String time, String food, String amount) {
@@ -365,9 +398,29 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         view2.setPadding(25, 0, 0, 0);
         view3.setPadding(25, 0, 0, 0);
 
+        Integer length = food.length();
+        String food30chars;
+        if (length > 25)
+        {
+            String more = "...";
+            food30chars = food.substring(0, 25) + more;
+        }
+        else
+        {
+            food30chars = food;
+        }
+
+        if (Build.VERSION.SDK_INT < 23) {
+            view1.setTextAppearance(getApplicationContext(), R.style.boldText);
+            view2.setTextAppearance(getApplicationContext(), R.style.boldText);
+        } else {
+            view1.setTextAppearance(R.style.boldText);
+            view2.setTextAppearance(R.style.boldText);
+        }
+
         view1.setText(time);
-        view2.setText(food);
-        view3.setText(amount);
+        view2.setText(amount);
+        view3.setText(food30chars);
 
         view1.setTextSize(16);
         view2.setTextSize(16);

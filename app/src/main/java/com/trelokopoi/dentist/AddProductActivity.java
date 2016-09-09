@@ -42,8 +42,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 
@@ -388,7 +391,9 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                         e.printStackTrace();
                     }
 
-                    AddProductActivity.this.onBackPressed();
+                    Intent i = new Intent(AddProductActivity.this, MainActivity.class);
+                    startActivity(i);
+                    finish();
 
                 }
             }
@@ -401,9 +406,10 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             public void onClick(View arg0) {
 
                 // custom dialog
-                final Dialog new_prod_dialog = new Dialog(context);
+                final Dialog new_prod_dialog = new Dialog(context, R.style.DialogTheme);
                 new_prod_dialog.setContentView(R.layout.new_product_dialog);
-                new_prod_dialog.setTitle("Add New Product...");
+                new_prod_dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//                new_prod_dialog.setTitle("Add New Product...");
 
                 Button dialogButton = (Button) new_prod_dialog.findViewById(R.id.submit);
                 // if button is clicked, close the custom dialog
@@ -411,10 +417,11 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                     @Override
                     public void onClick(View v) {
                         EditText new_prod_name = (EditText) new_prod_dialog.findViewById(R.id.new_prod_ed);
+                        EditText sugar_per_100 = (EditText) new_prod_dialog.findViewById(R.id.sugar_per_100_ed);
 
-                        if(new_prod_name.getText().toString().trim().equals(""))
+                        if(new_prod_name.getText().toString().trim().equals("") || sugar_per_100.getText().toString().trim().equals(""))
                         {
-                            Toast.makeText(AddProductActivity.this, "Fill the name in order to Submit new product", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(AddProductActivity.this, "Fill the product name & sugar per 100 gr/ml in order to Submit new product", Toast.LENGTH_SHORT).show();
                         }
                         else
                         {
@@ -425,6 +432,15 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 });
 
                 new_prod_dialog.show();
+            }
+        });
+
+        ImageView settings = (ImageView) findViewById(R.id.settings);
+        settings.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(AddProductActivity.this, SettingsActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -461,6 +477,14 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 timeEditText.requestFocus();
             }
         }, mYear, mMonth, mDay);
+        SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        try {
+        String currDateStr = df.format(c.getTime());
+        Date currentDate = df.parse(currDateStr);
+        datePickerDialog.getDatePicker().setMaxDate(currentDate.getTime());
+        } catch (ParseException e) {
+            L.debug(e.toString());
+        }
         datePickerDialog.show();
     }
 

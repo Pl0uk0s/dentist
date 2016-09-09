@@ -17,57 +17,69 @@
         android:id="@+id/loginRelativeLayout">
 
         <Button
+            android:id="@+id/login"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:background="@color/white"
-            android:text="Login"
+            android:text="@string/button_login"
             android:textSize="20sp"
             android:textColor="@color/blue"
-            android:id="@+id/login"
             android:layout_below="@+id/checkRemember"
             android:layout_alignStart="@+id/checkRemember"
             android:layout_marginTop="30dp" />
 
         <CheckBox
-            android:text="Remember Me"
+            android:id="@+id/checkRemember"
+            android:text="@string/checkbox_remember"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:textColor="@color/white"
             android:buttonTint="@color/white"
-            android:id="@+id/checkRemember"
             android:layout_centerVertical="true"
             android:layout_alignStart="@+id/password" />
 
         <EditText
+            android:id="@+id/username"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:hint="Username"
+            android:hint="@string/username"
             android:textColorHint="@color/white"
             android:textColor="@color/white"
-            android:id="@+id/username"
             android:layout_above="@+id/password"
             android:layout_alignStart="@+id/password" />
 
         <EditText
+            android:id="@+id/password"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
-            android:hint="Password"
+            android:hint="@string/password"
             android:textColor="@color/white"
             android:textColorHint="@color/white"
             android:inputType="textPassword"
-            android:id="@+id/password"
             android:layout_above="@+id/checkRemember"
             android:layout_centerHorizontal="true" />
+
+        <TextView
+            android:id="@+id/forgot_password"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/forgot_password"
+            android:gravity="center"
+            android:textColor="@color/white"
+            android:layout_gravity="center"
+            android:layout_below="@+id/login"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp" />
 
     </RelativeLayout>
 

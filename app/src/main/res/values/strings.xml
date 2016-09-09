@@ -12,7 +12,32 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
+    <string name="dialog_button_no">No</string>
+    <string name="dialog_button_yes">Yes</string>
+    <string name="search_product">Search Product</string>
+    <string name="date_tv">Date:</string>
+    <string name="time_tv">Time:</string>
+    <string name="quantity_tv">Quantity:</string>
+    <string name="measurement_tv">gr/ml:</string>
+    <string name="button_save">Save</string>
+    <string name="button_login">Login</string>
+    <string name="checkbox_remember">Remember Me</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="settings_header">Settings</string>
+    <string name="new_prod_tv">New Product Name</string>
+    <string name="submit">Submit</string>
+    <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
+    <string name="forgot_password">Forgot Password?</string>
+
+
+
+
+
+    <string-array name="settings_array">
+        <item>About</item>
+        <item>Change Password</item>
+        <item>Log out</item>
+    </string-array>
 </resources>

@@ -23,15 +23,15 @@
             <!--android:layout_toRightOf="@+id/previous"-->
             <!--android:layout_toLeftOf="@+id/next"-->
             <!--android:id="@+id/date" />-->
-        <!--<ImageView-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_alignParentStart="true"-->
-            <!--android:layout_alignParentTop="true"-->
-            <!--android:layout_alignParentBottom="true"-->
-            <!--android:layout_marginStart="15dp"-->
-            <!--android:src="@drawable/ic_poll_white_24dp"-->
-            <!--android:id="@+id/statistics"/>-->
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/ic_settings_white_36dp"
+            android:id="@+id/settings"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -40,7 +40,7 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_add_circle_outline_white_24dp"
+            android:src="@drawable/ic_add_circle_outline_white_36dp"
             android:id="@+id/add_product"/>
 
     </RelativeLayout>

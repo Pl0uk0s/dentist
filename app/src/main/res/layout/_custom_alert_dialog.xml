@@ -12,7 +12,7 @@
         android:padding="10dp"
         android:text="text"
         android:textColor="@color/black"
-        android:textSize="@dimen/standard_textsize"
+        android:textSize="15sp"
         android:textStyle="bold" />
 
     <LinearLayout
@@ -28,9 +28,9 @@
          android:layout_height="wrap_content"
          android:layout_margin="5dp"
          android:layout_weight="1"
-         android:textSize="@dimen/standard_textsize"
+         android:textSize="15sp"
          android:background="@drawable/_custom_button_no"
-         android:text="No"
+         android:text="@string/dialog_button_no"
          android:textStyle="bold"
          android:visibility="gone" />
 
@@ -41,8 +41,8 @@
             android:layout_margin="5dp"
             android:layout_weight="1"
             android:background="@drawable/_custom_button_yes"
-            android:text="Yes"
-            android:textSize="@dimen/standard_textsize"
+            android:text="@string/dialog_button_yes"
+            android:textSize="15sp"
             android:textStyle="bold"
             android:visibility="gone" />
         

@@ -8,6 +8,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
@@ -28,6 +30,7 @@ import java.util.Calendar;
 public class LoginActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
     private int LOAD_CHILDREN = 0;
+    private EditText username_edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,12 +47,14 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
         else {
 
             setContentView(R.layout.activity_login);
+            username_edittext = (EditText) findViewById(R.id.username);
+            username_edittext.setText(LocalStorage.getUsername());
 
             Button login = (Button) findViewById(R.id.login);
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    EditText username_edittext = (EditText) findViewById(R.id.username);
+
                     EditText password_edittext = (EditText) findViewById(R.id.password);
 
                     String username = username_edittext.getText().toString();
@@ -103,6 +108,21 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
+                    }
+                }
+            });
+
+            TextView forgot_password = (TextView) findViewById(R.id.forgot_password);
+            forgot_password.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (username_edittext.getText().toString().trim().equals(""))
+                    {
+                        Toast.makeText(LoginActivity.this, "Fill the username in order to proceed with password recovery", Toast.LENGTH_SHORT).show();
+                    }
+                    else
+                    {
+                        Toast.makeText(LoginActivity.this, "Your request has been sent to the Administrator", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
