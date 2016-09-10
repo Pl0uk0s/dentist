@@ -293,6 +293,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
+                intent.putExtra("date", currentDate);
                 startActivity(intent);
                 finish();
             }

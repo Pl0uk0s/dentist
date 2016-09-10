@@ -58,11 +58,14 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
     private ProductAdapter adapter;
     private EditText inputSearch, dateEditText, timeEditText, quantityEditText, productId;
     private ImageView date_img, time_img;
+    private String add_product_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
+
+        add_product_date = getIntent().getStringExtra("date");
 
 //        String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE"};
         String products[] = {};
@@ -425,7 +428,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                         }
                         else
                         {
-                            new AsyncApiCall(ADD_PRODUCT, AddProductActivity.this, false).execute(WebApi.addProduct(new_prod_name.getText().toString()));
+                            new AsyncApiCall(ADD_PRODUCT, AddProductActivity.this, false).execute(WebApi.addProduct(new_prod_name.getText().toString(), sugar_per_100.getText().toString()));
                             new_prod_dialog.dismiss();
                         }
                     }
@@ -450,6 +453,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         LinearLayout prod_detail_layout = (LinearLayout) findViewById(R.id.prod_detail_layout);
         if (prod_detail_layout.isShown()) {
             Intent i = new Intent(AddProductActivity.this, AddProductActivity.class);
+            i.putExtra("date", add_product_date);
             startActivity(i);
             finish();
         }
@@ -462,9 +466,17 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
 
     public void showDateDialog() {
         final Calendar c = Calendar.getInstance();
-        int mYear = c.get(Calendar.YEAR);
-        int mMonth = c.get(Calendar.MONTH);
-        int mDay = c.get(Calendar.DAY_OF_MONTH);
+
+        String[] separatedDate = add_product_date.split("/");
+
+        int mYear = Integer.parseInt(separatedDate[2]);
+        int mMonth = Integer.parseInt(separatedDate[1]) - 1;
+        int mDay = Integer.parseInt(separatedDate[0]);
+
+//        int mYear = 2015;
+//        int mMonth = 9;
+//        int mDay = 9;
+
 
 
         DatePickerDialog datePickerDialog = new DatePickerDialog(AddProductActivity.this, new DatePickerDialog.OnDateSetListener() {

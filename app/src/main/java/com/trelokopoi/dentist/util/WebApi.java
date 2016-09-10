@@ -46,6 +46,7 @@ public class WebApi {
     private static final String VALUE_AMOUNT = "&amount=";
     private static final String VALUE_TIME = "&time=";
     private static final String VALUE_NAME = "&name=";
+    private static final String VALUE_SUGAR = "&sugar=";
 
     private static String returnURL() {
         if (!BuildConfig.DEBUG) {
@@ -137,7 +138,7 @@ public class WebApi {
         return WebInterface.executeWeb(url);
     }
 
-    public static String addProduct(String name) {
+    public static String addProduct(String name, String sugar) {
         String url = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_ADDPRODUCT;
@@ -147,6 +148,7 @@ public class WebApi {
         url += VALUE_USERID+App.userId;
 
         url += VALUE_NAME+name;
+        url += VALUE_SUGAR+sugar;
 
         return url;
     }
