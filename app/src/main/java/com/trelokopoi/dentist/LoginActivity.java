@@ -94,8 +94,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                     CheckBox checkRemember = (CheckBox) findViewById(R.id.checkRemember);
                                     Boolean remember = checkRemember.isChecked();
 
+                                    LocalStorage.setLogin(username, WebApi.sha1Hash(password), userId);
+
                                     if (remember) {
-                                        LocalStorage.setLogin(username, WebApi.sha1Hash(password), userId);
                                         LocalStorage.setUserLogin(true);
                                     }
                                     App.username = username;

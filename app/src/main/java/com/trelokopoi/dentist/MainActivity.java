@@ -161,6 +161,54 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             e.printStackTrace();
         }
 
+        for (int j=0; j<i; j++) {
+            try {
+                JSONObject child = children.getJSONObject(j);
+                JSONObject Response = WebApi.getChildInfo(MainActivity.this, LocalStorage.getDayForInfo(), child.optInt("id", -1));
+                LinearLayout child_data = null;
+                if (j == 0) {
+                    child_data = (LinearLayout) findViewById(R.id.child1_data);
+                    CHILD1_HAS_DATA = 1;
+                }
+                else if (j == 1) {
+                    child_data = (LinearLayout) findViewById(R.id.child2_data);
+                    CHILD2_HAS_DATA = 1;
+                }
+                else if (j == 2) {
+                    child_data = (LinearLayout) findViewById(R.id.child3_data);
+                    CHILD3_HAS_DATA = 1;
+                }
+                else if (j == 3) {
+                    child_data = (LinearLayout) findViewById(R.id.child4_data);
+                    CHILD4_HAS_DATA = 1;
+                }
+
+                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                LinearLayout child_detail;
+
+                JSONArray childData = Response.optJSONArray("childData");
+
+                for(int k = 0; k < childData.length(); k++) {
+                    try {
+                        JSONObject oneFood = childData.getJSONObject(k);
+                        String time = oneFood.optString("time", "");
+                        String food = oneFood.optString("food", "");
+                        String amount = oneFood.optString("amount", "");
+                        child_detail = getChildDetail(time, food, amount);
+                        child_data.addView(child_detail, p);
+                    }
+                    catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                }
+            }
+            catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
+
         child_name1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

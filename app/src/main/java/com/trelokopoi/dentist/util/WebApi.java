@@ -28,6 +28,7 @@ public class WebApi {
     private static final String ACTION_GETPRODUCTS = "?action=getProducts";
     private static final String ACTION_ADDPRODUCTTOCHILD = "?action=addProductToChild";
     private static final String ACTION_ADDPRODUCT = "?action=addProduct";
+    private static final String ACTION_CHANGEPASSWORD = "?action=changePassword";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USERNAME = "&userName=";
@@ -47,6 +48,7 @@ public class WebApi {
     private static final String VALUE_TIME = "&time=";
     private static final String VALUE_NAME = "&name=";
     private static final String VALUE_SUGAR = "&sugar=";
+    private static final String VALUE_NEWPASSWORD = "&newPassword=";
 
     private static String returnURL() {
         if (!BuildConfig.DEBUG) {
@@ -110,6 +112,21 @@ public class WebApi {
         return url;
     }
 
+    public static JSONObject getChildInfo(Context context, String date, int childId) {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETCHILDINFO;
+
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_DATE+date;
+        url += VALUE_CHILD_ID+childId;
+
+        return WebInterface.executeWeb(url);
+    }
+
     public static JSONObject getProducts(String letters) {
         String url  = returnURL();
         url += PLAYMAKER_URL;
@@ -149,6 +166,20 @@ public class WebApi {
 
         url += VALUE_NAME+name;
         url += VALUE_SUGAR+sugar;
+
+        return url;
+    }
+
+    public static String changePassword(String password) {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_CHANGEPASSWORD;
+
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_NEWPASSWORD+password;
 
         return url;
     }

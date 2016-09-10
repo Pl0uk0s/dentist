@@ -30,6 +30,9 @@
     <string name="submit">Submit</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
     <string name="forgot_password">Forgot Password?</string>
+    <string name="old_password">Old Password</string>
+    <string name="new_password">New Password</string>
+    <string name="new_password_again">Confirm new password</string>
 
 
 
