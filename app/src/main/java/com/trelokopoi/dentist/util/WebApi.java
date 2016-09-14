@@ -29,6 +29,8 @@ public class WebApi {
     private static final String ACTION_ADDPRODUCTTOCHILD = "?action=addProductToChild";
     private static final String ACTION_ADDPRODUCT = "?action=addProduct";
     private static final String ACTION_CHANGEPASSWORD = "?action=changePassword";
+    private static final String ACTION_DELETEPRODUCTFROMUSER = "?action=deleteProductFromUser";
+    private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USERNAME = "&userName=";
@@ -49,6 +51,7 @@ public class WebApi {
     private static final String VALUE_NAME = "&name=";
     private static final String VALUE_SUGAR = "&sugar=";
     private static final String VALUE_NEWPASSWORD = "&newPassword=";
+    private static final String VALUE_DIARYID = "&diaryId=";
 
     private static String returnURL() {
         if (!BuildConfig.DEBUG) {
@@ -180,6 +183,37 @@ public class WebApi {
         url += VALUE_USERID+App.userId;
 
         url += VALUE_NEWPASSWORD+password;
+
+        return url;
+    }
+
+    public static String deleteProductFromUser(String diaryId) {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_DELETEPRODUCTFROMUSER;
+
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_DIARYID+diaryId;
+
+        return url;
+    }
+
+    public static String changeProductForChild(String diaryId, Integer quantity, String date, String time) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_CHANGEPRODUCTFORCHILD;
+
+        url += VALUE_USERNAME+App.username;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_DIARYID+diaryId;
+        url += VALUE_AMOUNT+quantity;
+        url += VALUE_DATE+date;
+        url += VALUE_TIME+time;
 
         return url;
     }
