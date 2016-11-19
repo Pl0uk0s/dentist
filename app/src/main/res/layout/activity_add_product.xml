@@ -19,7 +19,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:id="@+id/add_top"
         android:layout_width="match_parent"
         android:layout_height="50dp"
-        android:background="@color/blue">
+        android:background="#0097A7">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -279,34 +279,34 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         <!--android:layout_alignParentBottom="true"-->
         <!--android:layout_alignParentStart="true" />-->
 
-    <RelativeLayout
-        android:id="@+id/botLayout"
-        android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/blue"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" >
+    <!--<RelativeLayout-->
+        <!--android:id="@+id/botLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="@color/blue"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentStart="true" >-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="15dp"
-            android:src="@drawable/ic_add_box_white_36dp"
-            android:id="@+id/add_product"/>
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginEnd="15dp"-->
+            <!--android:src="@drawable/ic_add_box_white_36dp"-->
+            <!--android:id="@+id/add_product"/>-->
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentTop="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="15dp"
-            android:src="@drawable/ic_settings_white_36dp"
-            android:id="@+id/settings"/>
+        <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="match_parent"-->
+            <!--android:layout_alignParentStart="true"-->
+            <!--android:layout_alignParentTop="true"-->
+            <!--android:layout_alignParentBottom="true"-->
+            <!--android:layout_marginStart="15dp"-->
+            <!--android:src="@drawable/ic_settings_white_36dp"-->
+            <!--android:id="@+id/settings"/>-->
 
-    </RelativeLayout>
+    <!--</RelativeLayout>-->
 
 </RelativeLayout>

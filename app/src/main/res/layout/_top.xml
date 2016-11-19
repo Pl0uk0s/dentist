@@ -5,8 +5,8 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="50dp"
-        android:background="@color/blue">
+        android:layout_height="60dp"
+        android:background="#0097A7">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -15,16 +15,23 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
             android:layout_marginStart="15dp"
+            android:src="@drawable/ic_menu_white_24dp"
+            android:id="@+id/settings"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentBottom="true"
+            android:layout_toStartOf="@+id/date"
+            android:layout_marginEnd="5dp"
             android:src="@drawable/ic_keyboard_arrow_left_white_36dp"
             android:id="@+id/previous"/>
 
         <TextView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_toEndOf="@+id/previous"
-            android:layout_toStartOf="@+id/next"
-            android:layout_marginLeft="15dp"
-            android:layout_marginRight="15dp"
+            android:layout_centerHorizontal="true"
             android:textColor="@color/white"
             android:gravity="center"
             android:textSize="25sp"
@@ -33,13 +40,14 @@
         <ImageView
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
-            android:layout_alignParentEnd="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="15dp"
+            android:layout_toEndOf="@+id/date"
+            android:layout_marginEnd="5dp"
             android:src="@drawable/ic_keyboard_arrow_right_white_36dp"
-
             android:id="@+id/next"/>
+
+
 
     </RelativeLayout>
 

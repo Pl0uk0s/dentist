@@ -43,9 +43,9 @@ public class WebInterface {
 		 
 		  HttpURLConnection con = (HttpURLConnection) url.openConnection();
 		  
-		  //'Connection Timeout' is only called at the beginning to test if the server is up or not. 
+		  //'Connection Timeout' is only called at the beginning to child_header if the server is up or not.
 		  con.setConnectTimeout(3000);
-		  // 'Read Timeout' is to test a bad network all along the transfer.
+		  // 'Read Timeout' is to child_header a bad network all along the transfer.
 		  con.setReadTimeout(10000);		  
 		  result = readStream(con.getInputStream());
 		  con.disconnect();

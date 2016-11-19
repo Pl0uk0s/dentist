@@ -66,7 +66,6 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
     private String add_product_date;
     MyCustomAdapter dataAdapter = null;
     ArrayList<AddProductToChild> AddProductToChildList;
-ArrayList<AddProductToChild> childrenChecked;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ ArrayList<AddProductToChild> childrenChecked;
 //        String products[] = {"Dell Inspiron", "HTC One X", "HTC Wildfire S", "HTC Sense", "HTC Sensation XE"};
         String products[] = {};
 
-        final RelativeLayout botLayout = (RelativeLayout) findViewById(R.id.botLayout);
+//        final RelativeLayout botLayout = (RelativeLayout) findViewById(R.id.botLayout);
         final LinearLayout prod_detail_layout = (LinearLayout) findViewById(R.id.prod_detail_layout);
         productsListView = (ListView) findViewById(R.id.products_list);
         inputSearch = (EditText) findViewById(R.id.search_product);
@@ -199,7 +198,7 @@ ArrayList<AddProductToChild> childrenChecked;
                 InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 productsListView.setVisibility(View.GONE);
-                botLayout.setVisibility(View.GONE);
+//                botLayout.setVisibility(View.GONE);
                 prod_detail_layout.setVisibility(View.VISIBLE);
 
 //                dateEditText = (EditText) findViewById(R.id.date_ed);
@@ -339,10 +338,15 @@ ArrayList<AddProductToChild> childrenChecked;
 //                CheckBox child3CheckBox = (CheckBox) findViewById(R.id.child3checkbox);
 //                CheckBox child4CheckBox = (CheckBox) findViewById(R.id.child4checkbox);
 
+                AddProductToChild AddProductToChildFinal;
                 Boolean aChildIsChecked = false;
 
-                if (!(childrenChecked.size() == 0)) {
-                    aChildIsChecked = true;
+                for (int i = 0; i < AddProductToChildList.size(); i++)
+                {
+                    AddProductToChildFinal = AddProductToChildList.get(i);
+                        if(AddProductToChildFinal.isSelected()) {
+                            aChildIsChecked = true;
+                        }
                 }
 
                 if(timeEditText.getText().toString().trim().equals("") || quantityEditText.getText().toString().trim().equals("") || !(aChildIsChecked))
@@ -356,13 +360,12 @@ ArrayList<AddProductToChild> childrenChecked;
 
                     diaryObj object = new diaryObj();
 
-                    String diaryDate = "16-11-2016";
+                    String diaryDate = add_product_date.replaceAll("/", "-");
 
                     for (int i = 0; i < AddProductToChildList.size(); i++)
                     {
                         try {
-                            CheckBox cb = (CheckBox)findViewById(R.id.childCheckBox);
-                            AddProductToChild AddProductToChildFinal = AddProductToChildList.get(i);
+                            AddProductToChildFinal = AddProductToChildList.get(i);
                             if(AddProductToChildFinal.isSelected()) {
                                 JSONObject child = children.getJSONObject(i);
                                 object.setProdId(Integer.parseInt(productId.getText().toString()));
@@ -579,7 +582,6 @@ ArrayList<AddProductToChild> childrenChecked;
 
         //Array list of countries
         AddProductToChildList = new ArrayList<AddProductToChild>();
-        childrenChecked = new ArrayList<AddProductToChild>();
         final JSONArray children = LocalStorage.getChildren();
         Integer chlength = children.length();
         try {
@@ -587,7 +589,6 @@ ArrayList<AddProductToChild> childrenChecked;
                 JSONObject child = children.getJSONObject(i);
                 AddProductToChild AddProductToChild = new AddProductToChild(child.optString("name", ""),false);
                 AddProductToChildList.add(AddProductToChild);
-                childrenChecked.add(AddProductToChild);
             }
         } catch (JSONException e) {
             e.printStackTrace();
@@ -620,7 +621,6 @@ ArrayList<AddProductToChild> childrenChecked;
                 // When clicked, show a toast with the TextView text
                 CheckBox cb = (CheckBox)view.findViewById(R.id.childCheckBox);
                 AddProductToChild AddProductToChild = (AddProductToChild) parent.getItemAtPosition(position);
-//                AddProductToChild = (AddProductToChild) parent.getItemAtPosition(position);
                 if (cb.isChecked())
                 {
                     cb.setChecked(false);
@@ -677,7 +677,14 @@ ArrayList<AddProductToChild> childrenChecked;
                     public void onClick(View v) {
                         CheckBox cb = (CheckBox) v ;
                         AddProductToChild AddProductToChild = (AddProductToChild) cb.getTag();
-                        AddProductToChild.setSelected(cb.isChecked());
+                        if (cb.isChecked())
+                        {
+                            AddProductToChild.setSelected(true);
+                        }
+                        else
+                        {
+                            AddProductToChild.setSelected(false);
+                        }
                     }
                 });
             }

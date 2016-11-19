@@ -6,6 +6,7 @@
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
     android:orientation="vertical"
+    android:background="#DADDDF"
     tools:context="com.trelokopoi.dentist.MainActivity">
 
     <include
@@ -30,14 +31,12 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/children_scrollview"
-        android:layout_below="@+id/topLayout"
-        android:layout_above="@+id/botLayout">
+        android:layout_below="@+id/topLayout">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/all_children"
-            android:layout_marginBottom="10dp"
             android:orientation="vertical">
 
             <LinearLayout
@@ -45,15 +44,54 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/child1"
                 android:orientation="vertical"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_marginBottom="5dp"
                 android:visibility="gone">
+
+                <RelativeLayout android:id="@+id/child1_relative"
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/child_image"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/child1Image"/>
+
+                    <CheckBox
+                        android:id="@+id/childCheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:layout_marginEnd="15dp"/>
 
                     <TextView android:id="@+id/child_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:padding="10dip"
-                        android:textSize="20sp"
-                        android:textColor="@color/black"
-                        android:visibility="gone"/>
+                        android:layout_toEndOf="@+id/child1Image"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView android:id="@+id/child1_last_entry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child1Image"
+                        android:layout_below="@+id/child_name1"
+                        android:layout_marginStart="5dp"
+                        android:text="Last entry at 11:08"
+                        android:textSize="15sp"
+                        android:textStyle="italic"/>
+
+                </RelativeLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -62,13 +100,13 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    android:id="@+id/childline1" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:id="@+id/childline1" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -76,28 +114,60 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/child2"
                 android:orientation="vertical"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_marginBottom="5dp"
                 android:visibility="gone">
-                <TextView android:id="@+id/child_name2"
+
+                <RelativeLayout android:id="@+id/child2_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:visibility="gone"/>
+                    android:layout_height="60dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/child_image"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/child2Image"/>
+
+                    <CheckBox
+                        android:id="@+id/child2CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:layout_marginEnd="15dp"/>
+
+                    <TextView android:id="@+id/child_name2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child2Image"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView android:id="@+id/child2_last_entry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child2Image"
+                        android:layout_below="@+id/child_name2"
+                        android:layout_marginStart="5dp"
+                        android:text="Last entry at 11:08"
+                        android:textSize="15sp"
+                        android:textStyle="italic"/>
+
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child2_data"
                     android:orientation="vertical">
                 </LinearLayout>
-
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    android:id="@+id/childline2" />
             </LinearLayout>
 
             <LinearLayout
@@ -105,14 +175,55 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/child3"
                 android:orientation="vertical"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_marginBottom="5dp"
                 android:visibility="gone">
-                <TextView android:id="@+id/child_name3"
+
+                <RelativeLayout android:id="@+id/child3_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:visibility="gone"/>
+                    android:layout_height="60dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/child_image"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/child3Image"/>
+
+                    <CheckBox
+                        android:id="@+id/child3CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:layout_marginEnd="15dp"/>
+
+                    <TextView android:id="@+id/child_name3"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child3Image"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView android:id="@+id/child3_last_entry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child3Image"
+                        android:layout_below="@+id/child_name3"
+                        android:layout_marginStart="5dp"
+                        android:text="Last entry at 11:08"
+                        android:textSize="15sp"
+                        android:textStyle="italic"/>
+
+                </RelativeLayout>
+
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -120,13 +231,13 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    android:id="@+id/childline3" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:id="@+id/childline3" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -134,14 +245,54 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/child4"
                 android:orientation="vertical"
+                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_marginBottom="5dp"
                 android:visibility="gone">
-                <TextView android:id="@+id/child_name4"
+
+                <RelativeLayout android:id="@+id/child4_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:padding="10dip"
-                    android:textSize="20sp"
-                    android:textColor="@color/black"
-                    android:visibility="gone"/>
+                    android:layout_height="60dp"
+                    android:visibility="gone">
+
+                    <ImageView
+                        android:layout_width="50dp"
+                        android:layout_height="50dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="10dp"
+                        android:src="@drawable/child_image"
+                        android:layout_centerVertical="true"
+                        android:id="@+id/child4Image"/>
+
+                    <CheckBox
+                        android:id="@+id/child4CheckBox"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:focusable="false"
+                        android:focusableInTouchMode="false"
+                        android:layout_marginEnd="15dp"/>
+
+                    <TextView android:id="@+id/child_name4"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child4Image"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginStart="5dp"
+                        android:textSize="15sp"
+                        android:textColor="@color/black"/>
+
+                    <TextView android:id="@+id/child4_last_entry"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toEndOf="@+id/child4Image"
+                        android:layout_below="@+id/child_name4"
+                        android:layout_marginStart="5dp"
+                        android:text="Last entry at 11:08"
+                        android:textSize="15sp"
+                        android:textStyle="italic"/>
+
+                </RelativeLayout>
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -149,13 +300,13 @@
                     android:orientation="vertical">
                 </LinearLayout>
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="1dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:background="@color/blue"
-                    android:id="@+id/childline4" />
+                <!--<View-->
+                    <!--android:layout_width="match_parent"-->
+                    <!--android:layout_height="1dp"-->
+                    <!--android:layout_marginLeft="10dp"-->
+                    <!--android:layout_marginRight="10dp"-->
+                    <!--android:background="@color/blue"-->
+                    <!--android:id="@+id/childline4" />-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
@@ -171,14 +322,12 @@
         <!--android:layout_centerHorizontal="true"-->
         <!--android:id="@+id/view2" />-->
 
-
-
-    <include
-        android:id="@+id/botLayout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        layout="@layout/_bottom"
-        android:layout_alignParentBottom="true"
-        android:layout_alignParentStart="true" />
+    <!--<include-->
+        <!--android:id="@+id/botLayout"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--layout="@layout/_bottom"-->
+        <!--android:layout_alignParentBottom="true"-->
+        <!--android:layout_alignParentStart="true" />-->
 
 </RelativeLayout>
