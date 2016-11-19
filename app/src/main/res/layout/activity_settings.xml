@@ -20,16 +20,27 @@
 
         <TextView
             android:id="@+id/settings_header"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="50dp"
-            android:gravity="center_vertical"
-            android:layout_toEndOf="@+id/settings_back"
+            android:gravity="center"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="15dp"
             android:textColor="@color/white"
-            android:textSize="25sp"
+            android:textSize="20sp"
             android:text="@string/settings_header"/>
 
     </RelativeLayout>
+
+    <TextView
+        android:id="@+id/settings_title"
+        android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:gravity="center_vertical"
+        android:layout_marginStart="15dp"
+        android:textColor="@android:color/darker_gray"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:text="@string/settings_title"/>
 
     <ListView
         android:id="@+id/settings_list"
@@ -38,5 +49,24 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp">
     </ListView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="10dp"
+        android:background="@android:color/darker_gray"/>
+
+    <Button
+        android:id="@+id/sign_out"
+        android:layout_width="80dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:adjustViewBounds="true"
+        android:scaleType="centerInside"
+        android:background="@color/blue"
+        android:text="@string/button_sign_out"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="30dp" />
 
 </LinearLayout>

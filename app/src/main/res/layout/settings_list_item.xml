@@ -6,10 +6,11 @@
     <TextView android:id="@+id/settings_item"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:textStyle="italic"
+        android:textSize="15sp"
+        android:textStyle="bold"
         android:paddingStart="5dip"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"/>
+        android:paddingEnd="5dip"
+        android:paddingTop="20dp"
+        android:paddingBottom="20dp"/>
 
 </LinearLayout>

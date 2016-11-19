@@ -1,6 +1,7 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -13,6 +14,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
@@ -47,46 +49,74 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                 }
                 else if (position == 1)
                 {
-                    final Dialog newPasswordDialog = new Dialog(context, R.style.DialogTheme);
-                    newPasswordDialog.setContentView(R.layout.change_password);
-                    newPasswordDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-                    Button dialogButton = (Button) newPasswordDialog.findViewById(R.id.submit);
-                    dialogButton.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View v) {
-                            EditText oldPassword = (EditText) newPasswordDialog.findViewById(R.id.oldPasswordEditText);
-                            EditText newPassword = (EditText) newPasswordDialog.findViewById(R.id.newPasswordEditText);
-                            EditText newPasswordAgain = (EditText) newPasswordDialog.findViewById(R.id.newPasswordAgainEditText);
-
-                            String sOldPassword = oldPassword.getText().toString();
-                            String sNewPassword = newPassword.getText().toString();
-                            String sNewPasswordAgain = newPasswordAgain.getText().toString();
-
-                            String existingPassword = LocalStorage.getUserPassword();
-
-                            if (!WebApi.sha1Hash(sOldPassword).equals(existingPassword)) {
-                                Toast.makeText(getApplicationContext(), "The old password is not correct", Toast.LENGTH_LONG).show();
-                            }
-                            else if (!sNewPassword.equals(sNewPasswordAgain)) {
-                                Toast.makeText(getApplicationContext(), "The new passwords do not match", Toast.LENGTH_LONG).show();
-                            }
-                            else {
-                                new AsyncApiCall(CHANGE_PASSWORD, SettingsActivity.this, false).execute(WebApi.changePassword(WebApi.sha1Hash(newPassword.getText().toString())));
-                                newPasswordDialog.dismiss();
-                            }
-                        }
-                    });
-
-                    newPasswordDialog.show();
+                    Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
+                    startActivity(intent);
+//                    final Dialog newPasswordDialog = new Dialog(context, R.style.DialogTheme);
+//                    newPasswordDialog.setContentView(R.layout.activity_change_password);
+//                    newPasswordDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
+//                    Button dialogButton = (Button) newPasswordDialog.findViewById(R.id.submit);
+//                    dialogButton.setOnClickListener(new View.OnClickListener() {
+//                        @Override
+//                        public void onClick(View v) {
+//                            EditText oldPassword = (EditText) newPasswordDialog.findViewById(R.id.oldPasswordEditText);
+//                            EditText newPassword = (EditText) newPasswordDialog.findViewById(R.id.newPasswordEditText);
+//                            EditText newPasswordAgain = (EditText) newPasswordDialog.findViewById(R.id.newPasswordAgainEditText);
+//
+//                            String sOldPassword = oldPassword.getText().toString();
+//                            String sNewPassword = newPassword.getText().toString();
+//                            String sNewPasswordAgain = newPasswordAgain.getText().toString();
+//
+//                            String existingPassword = LocalStorage.getUserPassword();
+//
+//                            if (!WebApi.sha1Hash(sOldPassword).equals(existingPassword)) {
+//                                Toast.makeText(getApplicationContext(), "The old password is not correct", Toast.LENGTH_LONG).show();
+//                            }
+//                            else if (!sNewPassword.equals(sNewPasswordAgain)) {
+//                                Toast.makeText(getApplicationContext(), "The new passwords do not match", Toast.LENGTH_LONG).show();
+//                            }
+//                            else {
+//                                new AsyncApiCall(CHANGE_PASSWORD, SettingsActivity.this, false).execute(WebApi.changePassword(WebApi.sha1Hash(newPassword.getText().toString())));
+//                                newPasswordDialog.dismiss();
+//                            }
+//                        }
+//                    });
+//
+//                    newPasswordDialog.show();
 
                 }
                 else if (position == 2)
                 {
-                    LocalStorage.setUserLogout();
-                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                    Intent intent = new Intent(SettingsActivity.this, TermsActivity.class);
                     startActivity(intent);
-                    finish();
                 }
+                else if (position == 3)
+                {
+                    // Inflate the about message contents
+                    View messageView = getLayoutInflater().inflate(R.layout.about_dialog, null, false);
+
+                    // When linking text, force to always use default color. This works
+                    // around a pressed color state bug.
+                    TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
+                    int defaultColor = textView.getTextColors().getDefaultColor();
+                    textView.setTextColor(defaultColor);
+
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+                    builder.setTitle(R.string.app_name);
+                    builder.setView(messageView);
+                    builder.create();
+                    builder.show();
+                }
+            }
+        });
+
+        Button signOut = (Button) findViewById(R.id.sign_out);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                LocalStorage.setUserLogout();
+                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
 

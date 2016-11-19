@@ -18,29 +18,48 @@
     <string name="search_product">Search Product</string>
     <string name="date_tv">Date:</string>
     <string name="time_tv">Time:</string>
-    <string name="quantity_tv">Quantity:</string>
-    <string name="measurement_tv">gr/ml:</string>
-    <string name="button_save">Save</string>
-    <string name="button_login">Login</string>
+    <string name="quantity_tv">Quan:</string>
+    <string name="measurement_tv">gr/ml</string>
+    <string name="button_save">Done</string>
+    <string name="button_login">Sign In</string>
+    <string name="button_sign_out">Sign Out</string>
     <string name="checkbox_remember">Remember Me</string>
     <string name="username">Username</string>
     <string name="password">Password</string>
     <string name="settings_header">Settings</string>
+    <string name="settings_title">General</string>
+    <string name="terms_title">Terms of Service and Privacy Policy</string>
+    <string name="time_title">When</string>
+    <string name="quantity_title">Quantity</string>
     <string name="new_prod_tv">New Product Name</string>
-    <string name="submit">Submit</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
-    <string name="new_password_again">Confirm new password</string>
+    <string name="new_password_again">Re-enter password</string>
+    <string name="terms">D/ViewRootImpl: #3 mView = null
+D/ViewRootImpl: ViewPostImeInputStage processKey 0
+D/ViewRootImpl: ViewPostImeInputStage processKey 1
+D/ViewRootImpl: #1 mView = android.widget.LinearLayout{205d5b1 V.E...... ......I. 0,0-0,0}
+D/mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000,  [1336x249]-format:1
+D/ViewRootImpl: MSG_RESIZED_REPORT: ci=Rect(0, 0 - 0, 0) vi=Rect(0, 0 - 0, 0) or=1
+W/DisplayListCanvas: DisplayListCanvas is started on unbinded RenderNode (without mOwningView)
+V/RenderScript: 0x7f7b176000 Launching thread(s), CPUs 8
+D/ViewRootImpl: ViewPostImeInputStage processKey 0
+D/ViewRootImpl: ViewPostImeInputStage processKey 1
+D/ViewRootImpl: #3 mView = null
+D/ViewRootImpl: #3 mView = null
+D/ViewRootImpl: #3 mView = null
+Application terminated.</string>
 
 
 
 
 
     <string-array name="settings_array">
-        <item>About</item>
+        <item>Email</item>
         <item>Change Password</item>
-        <item>Log out</item>
+        <item>Terms Of Service And Privacy Policy</item>
+        <item>About</item>
     </string-array>
 </resources>

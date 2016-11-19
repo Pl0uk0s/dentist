@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.ImageView;
@@ -48,6 +49,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Integer CHILD2_HAS_DATA = 0;
     private Integer CHILD3_HAS_DATA = 0;
     private Integer CHILD4_HAS_DATA = 0;
+
+    private int DELETE_PRODUCT = 0;
 
     final private Context ctx = this;
 
@@ -184,7 +187,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 }
 
                 LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                LinearLayout child_detail;
 
                 JSONArray childData = Response.optJSONArray("childData");
 
@@ -193,8 +195,40 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(k);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child_detail = getChildDetail(time, food, amount);
+                        final LinearLayout child_detail;
+                        child_detail = getChildDetail(time, food, diaryId, amount);
+
+                        child_detail.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+                            public void onSwipeTop() {
+                                //Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
+                            }
+                            public void onSwipeRight() {
+                                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
+                                swipeRight();
+                            }
+                            public void onSwipeLeft() {
+                                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
+                                swipeLeft();
+                            }
+                            public void onSwipeBottom() {
+                                //Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
+                            }
+                            public void onLongClick() {
+                                child_detail.setBackgroundColor(ContextCompat.getColor(ctx, R.color.blue));
+                                String[] bArray = new String[child_detail.getChildCount()];
+
+                                for (int i = 0; i < child_detail.getChildCount(); i++) {
+                                    TextView children = (TextView) child_detail.getChildAt(i);
+                                    String b = children.getText().toString();
+                                    bArray[i] = b;
+                                }
+                                new AsyncApiCall(DELETE_PRODUCT, MainActivity.this, false).execute(WebApi.deleteProductFromUser(bArray[3]));
+                            }
+
+                        });
+
                         child_data.addView(child_detail, p);
                     }
                     catch (JSONException e) {
@@ -434,7 +468,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         }
     }
 
-    private LinearLayout getChildDetail(String time, String food, String amount) {
+    private LinearLayout getChildDetail(String time, String food, String diaryId, String amount) {
         LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         LinearLayout child1_detail = new LinearLayout(ctx);
@@ -446,6 +480,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         TextView view3 = new TextView(ctx);
         view2.setPadding(25, 0, 0, 0);
         view3.setPadding(25, 0, 0, 0);
+
+        TextView view4 = new TextView(ctx);
+        view4.setVisibility(View.GONE);
 
         Integer length = food.length();
         String food30chars;
@@ -470,6 +507,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         view1.setText(time);
         view2.setText(amount);
         view3.setText(food30chars);
+        view4.setText(diaryId);
 
         view1.setTextSize(16);
         view2.setTextSize(16);
@@ -480,6 +518,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         child1_detail.addView(view1, p);
         child1_detail.addView(view2, p);
         child1_detail.addView(view3, p);
+        child1_detail.addView(view4, p);
 
         return child1_detail;
     }
@@ -501,8 +540,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child1_detail = getChildDetail(time, food, amount);
+                        child1_detail = getChildDetail(time, food, diaryId, amount);
                         child1_data.addView(child1_detail, p);
                     }
                     catch (JSONException e) {
@@ -524,8 +564,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child2_detail = getChildDetail(time, food, amount);
+                        child2_detail = getChildDetail(time, food, diaryId, amount);
                         child2_data.addView(child2_detail, p);
                     }
                     catch (JSONException e) {
@@ -547,8 +588,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child3_detail = getChildDetail(time, food, amount);
+                        child3_detail = getChildDetail(time, food, diaryId, amount);
                         child3_data.addView(child3_detail, p);
                     }
                     catch (JSONException e) {
@@ -570,8 +612,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child4_detail = getChildDetail(time, food, amount);
+                        child4_detail = getChildDetail(time, food, diaryId, amount);
                         child4_data.addView(child4_detail, p);
                     }
                     catch (JSONException e) {
@@ -580,6 +623,15 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 CHILD4_HAS_DATA = 1;
+            }
+            else if (thread == DELETE_PRODUCT) {
+                String success = jsonResult.optString("success", "0");
+                if (success.equals("1")) {
+                    Toast.makeText(getApplicationContext(), "The product has been deleted.", Toast.LENGTH_LONG).show();
+                }
+                else if (success.equals("0")) {
+                    Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_LONG).show();
+                }
             }
         }
     }
