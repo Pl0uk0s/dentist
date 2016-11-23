@@ -43,7 +43,7 @@
             android:layout_alignStart="@+id/password" />
 
         <EditText
-            android:id="@+id/username"
+            android:id="@+id/useremail"
             android:layout_width="200dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center"

@@ -30,7 +30,7 @@ import java.util.Calendar;
 public class LoginActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
     private int LOAD_CHILDREN = 0;
-    private EditText username_edittext;
+    private EditText useremail_edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,7 +39,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
         Tools.setupGoogleAnalytics(LoginActivity.this);
 
         if (LocalStorage.getUserLogin()) {
-            App.username = LocalStorage.getUsername();
+            App.userEmail = LocalStorage.getUserEmail();
             App.password = LocalStorage.getUserPassword();
             App.userId = LocalStorage.getUserId();
             getChildrenNames();
@@ -47,8 +47,8 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
         else {
 
             setContentView(R.layout.activity_login);
-            username_edittext = (EditText) findViewById(R.id.username);
-            username_edittext.setText(LocalStorage.getUsername());
+            useremail_edittext = (EditText) findViewById(R.id.useremail);
+            useremail_edittext.setText(LocalStorage.getUserEmail());
 
             Button login = (Button) findViewById(R.id.login);
             login.setOnClickListener(new View.OnClickListener() {
@@ -57,15 +57,15 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
 
                     EditText password_edittext = (EditText) findViewById(R.id.password);
 
-                    String username = username_edittext.getText().toString();
+                    String useremail = useremail_edittext.getText().toString();
                     String password = password_edittext.getText().toString();
 
-                    if (username.length() == 0) {
+                    if (useremail.length() == 0) {
                         Tools.toast(getApplicationContext(), "Please enter a username");
                     } else if (password.length() == 0) {
                         Tools.toast(getApplicationContext(), "Please enter a password");
                     } else {
-                        JSONObject Response = WebApi.authenticate(LoginActivity.this, username, password);
+                        JSONObject Response = WebApi.authenticate(LoginActivity.this, useremail, password);
                         try {
 
                             String exists = (String) Response.getString("exists");
@@ -94,12 +94,12 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                     CheckBox checkRemember = (CheckBox) findViewById(R.id.checkRemember);
                                     Boolean remember = checkRemember.isChecked();
 
-                                    LocalStorage.setLogin(username, WebApi.sha1Hash(password), userId);
+                                    LocalStorage.setLogin(useremail, WebApi.sha1Hash(password), userId);
 
                                     if (remember) {
                                         LocalStorage.setUserLogin(true);
                                     }
-                                    App.username = username;
+                                    App.userEmail = useremail;
                                     App.password = WebApi.sha1Hash(password);
                                     App.userId = userId;
                                     getChildrenNames();
@@ -117,7 +117,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             forgot_password.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (username_edittext.getText().toString().trim().equals(""))
+                    if (useremail_edittext.getText().toString().trim().equals(""))
                     {
                         Toast.makeText(LoginActivity.this, "Fill the username in order to proceed with password recovery", Toast.LENGTH_SHORT).show();
                     }
@@ -177,9 +177,6 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                 }
             }
         }
-
-
-
     }
 
     @Override

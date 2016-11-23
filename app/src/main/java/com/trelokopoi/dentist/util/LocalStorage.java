@@ -13,7 +13,7 @@ public class LocalStorage {
 
     public static final String PREFS_USER = "prefs_user";
     public static final String PREFS_DAY_FOR_INFO = "prefs_day_for_info";
-    public static final String PREFS_USER_NAME = "prefs_user_name";
+    public static final String PREFS_USER_EMAIL = "prefs_user_email";
     public static final String PREFS_USER_PASSWORD = "prefs_user_password";
     public static final String PREFS_USER_ID = "prefs_user_id";
     public static final String PREFS_USER_LOGIN = "prefs_user_login";
@@ -25,21 +25,21 @@ public class LocalStorage {
         return applicationContext.getSharedPreferences(PREFS_USER, Context.MODE_PRIVATE);
     }
 
-    public static void setLogin(String username, String password, String userId) {
-        L.debug("setLogin " + username + " " +password + " " +userId);
+    public static void setLogin(String userEmail, String password, String userId) {
+        L.debug("setLogin " + userEmail + " " +password + " " +userId);
 
         SharedPreferences.Editor editor = getPreferences().edit();
         editor.clear().apply();
         editor = getPreferences().edit();
 
-        editor.putString(PREFS_USER_NAME, username);
+        editor.putString(PREFS_USER_EMAIL, userEmail);
         editor.putString(PREFS_USER_PASSWORD, password);
         editor.putString(PREFS_USER_ID, userId);
         editor.apply();
     }
 
-    public static String getUsername() {
-        return getPreferences().getString(PREFS_USER_NAME, "");
+    public static String getUserEmail() {
+        return getPreferences().getString(PREFS_USER_EMAIL, "");
     }
 
     public static String getUserPassword() {

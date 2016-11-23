@@ -20,7 +20,7 @@ public class App extends Application{
     public static int VERSION_ID = 0;
     public static Context contextOfApplication;
     private static final String PROPERTY_ID = "UA-82120732-1";
-    public static String username = "";
+    public static String userEmail = "";
     public static String password = "";
     public static String userId = "";
 

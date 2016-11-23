@@ -24,7 +24,7 @@
     <string name="button_login">Sign In</string>
     <string name="button_sign_out">Sign Out</string>
     <string name="checkbox_remember">Remember Me</string>
-    <string name="username">Username</string>
+    <string name="username">User Email</string>
     <string name="password">Password</string>
     <string name="settings_header">Settings</string>
     <string name="settings_title">General</string>

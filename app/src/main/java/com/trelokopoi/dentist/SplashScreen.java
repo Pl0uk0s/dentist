@@ -65,7 +65,7 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
 
     private void checkForLogin() {
         if (LocalStorage.getUserLogin()) {
-            App.username = LocalStorage.getUsername();
+            App.userEmail = LocalStorage.getUserEmail();
             App.password = LocalStorage.getUserPassword();
             App.userId = LocalStorage.getUserId();
             if (WebInterface.hasInternetConnection()) {
@@ -83,7 +83,7 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
             }
         }
         else {
-            Intent intent = new Intent(SplashScreen.this, LoginActivity.class);
+            Intent intent = new Intent(SplashScreen.this, PreLoginActivity.class);
             startActivity(intent);
             finish();
 //            overridePendingTransition(R.anim.fadein, R.anim.fadeout);

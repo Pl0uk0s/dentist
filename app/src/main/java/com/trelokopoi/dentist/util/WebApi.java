@@ -23,6 +23,7 @@ public class WebApi {
     private static final String PLAYMAKER_URL = "playmaker.php";
 
     private static final String ACTION_AUTHENTICATE = "?action=authenticate";
+    private static final String ACTION_NEWUSER = "?action=newUser";
     private static final String ACTION_GETCHILDREN = "?action=getChildren";
     private static final String ACTION_GETCHILDINFO = "?action=getChildInfo";
     private static final String ACTION_GETPRODUCTS = "?action=getProducts";
@@ -33,7 +34,8 @@ public class WebApi {
     private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
-    private static final String VALUE_USERNAME = "&userName=";
+    private static final String VALUE_USEREMAIL = "&userEmail=";
+    private static final String VALUE_ACCESSCODE = "&accessCode=";
     private static final String VALUE_USERPASSWORD = "&userPassword=";
     private static final String VALUE_USERID = "&userId=";
     private static final String VALUE_USER_DEVICE_OS = "&userDeviceOs=";
@@ -71,7 +73,7 @@ public class WebApi {
         return url;
     }
 
-    public static JSONObject authenticate(Context context, String username, String password) {
+    public static JSONObject authenticate(Context context, String userEmail, String password) {
 
         String uniqueId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
 
@@ -80,7 +82,24 @@ public class WebApi {
         String url  = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_AUTHENTICATE;
-        url += VALUE_USERNAME+username;
+        url += VALUE_USEREMAIL+userEmail;
+        url += VALUE_USERPASSWORD+sha1Hash(password);
+        url += deviceDataUrl();
+
+        url += VALUE_FIELD_VERSION+App.VERSION;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static JSONObject newUser(Context context, String userEmail, String accessCode, String password) {
+        String uniqueId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
+
+        L.debug(App.TAG, "uniqueId: "+uniqueId);
+
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_NEWUSER;
+        url += VALUE_USEREMAIL+userEmail;
+        url += VALUE_ACCESSCODE+accessCode;
         url += VALUE_USERPASSWORD+sha1Hash(password);
         url += deviceDataUrl();
 
@@ -93,7 +112,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDREN;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -105,7 +124,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDINFO;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -120,7 +139,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDINFO;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -134,7 +153,7 @@ public class WebApi {
         String url  = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_GETPRODUCTS;
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -146,7 +165,7 @@ public class WebApi {
         String url  = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_ADDPRODUCTTOCHILD;
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -163,7 +182,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_ADDPRODUCT;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -178,7 +197,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_CHANGEPASSWORD;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -192,7 +211,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_DELETEPRODUCTFROMUSER;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
@@ -206,7 +225,7 @@ public class WebApi {
         url += PLAYMAKER_URL;
         url += ACTION_CHANGEPRODUCTFORCHILD;
 
-        url += VALUE_USERNAME+App.username;
+        url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
 
