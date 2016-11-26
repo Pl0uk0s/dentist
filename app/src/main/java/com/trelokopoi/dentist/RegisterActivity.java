@@ -199,14 +199,8 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                                 L.debug(App.TAG, "login successful");
                                 String userId = (String) Response.getString("userId");
 
-                                CheckBox checkRemember = (CheckBox) findViewById(R.id.checkRemember);
-                                Boolean remember = checkRemember.isChecked();
-
                                 LocalStorage.setLogin(edit_email.getText().toString(), WebApi.sha1Hash(edit_password.getText().toString()), userId);
 
-                                if (remember) {
-                                    LocalStorage.setUserLogin(true);
-                                }
                                 App.userEmail = edit_email.getText().toString();
                                 App.password = WebApi.sha1Hash(edit_password.getText().toString());
                                 App.userId = userId;

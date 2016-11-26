@@ -3,11 +3,15 @@ package com.trelokopoi.dentist;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
 import android.text.TextUtils;
+import android.text.TextWatcher;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -31,6 +35,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
 
     private int LOAD_CHILDREN = 0;
     private EditText useremail_edittext;
+    private EditText password_edittext;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,21 +52,84 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
         else {
 
             setContentView(R.layout.activity_login);
-            useremail_edittext = (EditText) findViewById(R.id.useremail);
-            useremail_edittext.setText(LocalStorage.getUserEmail());
 
-            Button login = (Button) findViewById(R.id.login);
+            this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+            ImageView btn_back = (ImageView) findViewById(R.id.btn_back);
+            btn_back.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
+            });
+
+            useremail_edittext = (EditText) findViewById(R.id.edit_email);
+            useremail_edittext.setText(LocalStorage.getUserEmail());
+            if (!useremail_edittext.getText().toString().equals("")) {
+                ImageView img_checkEmail = (ImageView) findViewById(R.id.img_checkEmail);
+                img_checkEmail.setVisibility(ImageView.VISIBLE);
+            }
+            useremail_edittext.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (isValidEmail(s)) {
+                        ImageView img_checkEmail = (ImageView) findViewById(R.id.img_checkEmail);
+                        img_checkEmail.setVisibility(ImageView.VISIBLE);
+                    }
+                    else {
+                        ImageView img_checkEmail = (ImageView) findViewById(R.id.img_checkEmail);
+                        img_checkEmail.setVisibility(ImageView.INVISIBLE);
+                    }
+                }
+            });
+
+            password_edittext = (EditText) findViewById(R.id.edit_password);
+            password_edittext.addTextChangedListener(new TextWatcher() {
+                @Override
+                public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+                }
+
+                @Override
+                public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+                }
+
+                @Override
+                public void afterTextChanged(Editable s) {
+                    if (isValidPassword(s)) {
+                        ImageView img_checkPassword = (ImageView) findViewById(R.id.img_checkPassword);
+                        img_checkPassword.setVisibility(ImageView.VISIBLE);
+                    }
+                    else {
+                        ImageView img_checkPassword = (ImageView) findViewById(R.id.img_checkPassword);
+                        img_checkPassword.setVisibility(ImageView.INVISIBLE);
+                    }
+                }
+            });
+
+            Button login = (Button) findViewById(R.id.btn_done);
             login.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-
-                    EditText password_edittext = (EditText) findViewById(R.id.password);
 
                     String useremail = useremail_edittext.getText().toString();
                     String password = password_edittext.getText().toString();
 
                     if (useremail.length() == 0) {
-                        Tools.toast(getApplicationContext(), "Please enter a username");
+                        Tools.toast(getApplicationContext(), "Please enter an email");
                     } else if (password.length() == 0) {
                         Tools.toast(getApplicationContext(), "Please enter a password");
                     } else {
@@ -91,7 +159,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                     L.debug(App.TAG, "login successful");
                                     String userId = (String) Response.getString("userId");
 
-                                    CheckBox checkRemember = (CheckBox) findViewById(R.id.checkRemember);
+                                    CheckBox checkRemember = (CheckBox) findViewById(R.id.chk_rememberme);
                                     Boolean remember = checkRemember.isChecked();
 
                                     LocalStorage.setLogin(useremail, WebApi.sha1Hash(password), userId);
@@ -113,13 +181,13 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                 }
             });
 
-            TextView forgot_password = (TextView) findViewById(R.id.forgot_password);
+            TextView forgot_password = (TextView) findViewById(R.id.txt_forgotPassword);
             forgot_password.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (useremail_edittext.getText().toString().trim().equals(""))
                     {
-                        Toast.makeText(LoginActivity.this, "Fill the username in order to proceed with password recovery", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "Fill the email in order to proceed with password recovery", Toast.LENGTH_SHORT).show();
                     }
                     else
                     {
@@ -149,6 +217,29 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
     {
         // TODO Auto-generated method stub
         super.onResume();
+    }
+
+    public final static boolean isValidEmail(CharSequence target) {
+        if (target == null) {
+            return false;
+        }
+        else {
+            return android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
+        }
+    }
+
+    public final static boolean isValidPassword(CharSequence target) {
+        if (target == null) {
+            return false;
+        }
+        else {
+            if (target.length() >= 6) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
     @Override
