@@ -82,5 +82,11 @@
         <activity
             android:name=".TermsActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProductToChildrenActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".NewProductActivity"
+            android:screenOrientation="portrait" />
     </application>
 </manifest>
