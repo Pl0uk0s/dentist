@@ -46,9 +46,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(RegisterActivity.this, PreLoginActivity.class);
-                startActivity(intent);
-                finish();
+                RegisterActivity.this.onBackPressed();
             }
         });
 

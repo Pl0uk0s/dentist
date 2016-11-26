@@ -42,36 +42,42 @@
         android:layout_marginTop="5dp"
         android:id="@+id/terms_scrollview">
 
-    <LinearLayout
-        android:id="@+id/terms_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="5dp"
-        android:layout_marginTop="5dp"
-        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/terms_layout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/terms_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:gravity="center"
-            android:textSize="25sp"
-            android:textStyle="bold"
-            android:layout_marginBottom="20dp"
-            android:text="@string/terms_title"/>
+            <WebView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:id="@+id/web_terms"/>
 
-        <TextView
-            android:id="@+id/terms"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:textColor="@color/black"
-            android:textSize="20sp"
-            android:text="@string/terms"/>
-    </LinearLayout>
+            <!--<TextView-->
+                <!--android:id="@+id/terms_title"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:gravity="center"-->
+                <!--android:textSize="25sp"-->
+                <!--android:textStyle="bold"-->
+                <!--android:layout_marginBottom="20dp"-->
+                <!--android:text="@string/terms_title"/>-->
+
+            <!--<TextView-->
+                <!--android:id="@+id/terms"-->
+                <!--android:layout_width="wrap_content"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_gravity="center_horizontal"-->
+                <!--android:textColor="@color/black"-->
+                <!--android:textSize="20sp"-->
+                <!--android:text="@string/terms"/>-->
+            <!---->
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>

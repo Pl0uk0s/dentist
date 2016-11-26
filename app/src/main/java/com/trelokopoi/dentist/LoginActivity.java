@@ -59,6 +59,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
+                    LoginActivity.this.onBackPressed();
                     Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
                     startActivity(intent);
                     finish();
