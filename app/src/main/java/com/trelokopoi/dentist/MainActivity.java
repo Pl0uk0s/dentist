@@ -1,7 +1,9 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.media.Image;
@@ -45,6 +47,7 @@ import java.util.Date;
 
 public class MainActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
+    private Integer DELETE_PRODUCT = 0;
     private Integer LOAD_CHILD_DATA1 = 1;
     private Integer LOAD_CHILD_DATA2 = 2;
     private Integer LOAD_CHILD_DATA3 = 3;
@@ -54,8 +57,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Integer CHILD2_HAS_DATA = 0;
     private Integer CHILD3_HAS_DATA = 0;
     private Integer CHILD4_HAS_DATA = 0;
-
-    private int DELETE_PRODUCT = 0;
 
     final private Context ctx = this;
 
@@ -344,26 +345,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 finish();
             }
         });
-//        ImageView add_product = (ImageView) findViewById(R.id.add_product);
-//        add_product.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, AddProductActivity.class);
-//                intent.putExtra("date", currentDate);
-//                startActivity(intent);
-//                finish();
-//            }
-//        });
-//
-//        ImageView settings = (ImageView) findViewById(R.id.settings);
-//        settings.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-//                startActivity(intent);
-////                finish();
-//            }
-//        });
 
         children_scrollview.setOnTouchListener(new View.OnTouchListener() {
             @Override
@@ -374,18 +355,14 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         children_scrollview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
-                //Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
             }
             public void onSwipeRight() {
-                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
                 swipeRight();
             }
             public void onSwipeLeft() {
-                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
                 swipeLeft();
             }
             public void onSwipeBottom() {
-                //Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
             }
 
         });
@@ -442,20 +419,14 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         }
     }
 
-    private RelativeLayout getChildDetail(String time, String food, String diaryId, String amount) {
-//        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
+    private RelativeLayout getChildDetail(String time, String food, final String diaryId, String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.layout1);
-//        child1_detail.setOrientation(LinearLayout.HORIZONTAL);
-//        child1_detail.setPadding(50, 10, 10, 20);
 
         TextView view1 = (TextView)view.findViewById(R.id.txt1);
         TextView view2 = (TextView)view.findViewById(R.id.txt2);
         TextView view3 = (TextView)view.findViewById(R.id.txt3);
-//        view2.setPadding(25, 0, 0, 0);
-//        view3.setPadding(25, 0, 0, 0);
 
         TextView view4 = (TextView)view.findViewById(R.id.txt4);
         view4.setVisibility(View.GONE);
@@ -471,100 +442,37 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         {
             food30chars = food;
         }
-
-//        if (Build.VERSION.SDK_INT < 23) {
-//            view1.setTextAppearance(getApplicationContext(), R.style.boldText);
-//            view2.setTextAppearance(getApplicationContext(), R.style.boldText);
-//        } else {
-//            view1.setTextAppearance(R.style.boldText);
-//            view2.setTextAppearance(R.style.boldText);
-//        }
-
         view1.setText(time);
         view2.setText(food30chars);
         view3.setText(amount);
         view4.setText(diaryId);
 
-//        view1.setTextSize(16);
-//        view2.setTextSize(16);
-//        view3.setTextSize(16);
-//        view1.setTextColor(0x000000);
-//        view2.setTextColor(0x000000);
-//        view3.setTextColor(0x000000);
-//        child1_detail.addView(view1, p);
-//        child1_detail.addView(view2, p);
-//        child1_detail.addView(view3, p);
-//        child1_detail.addView(view4, p);
+        ImageView edit = (ImageView) view.findViewById(R.id.editImageView);
+
+        ImageView delete = (ImageView) view.findViewById(R.id.deleteImageView);
+        delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
+                builder.setTitle("Delete item");
+                builder.setMessage("Are you sure you want to delete this item? The portion and time of consume will be deleted from the daily log of your child.")
+                        .setPositiveButton("DELETE", new DialogInterface.OnClickListener()
+                        {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                Bundle data = new Bundle();
+                                data.putInt("child", child);
+                                new AsyncApiCall(DELETE_PRODUCT, data, MainActivity.this, false).execute(WebApi.deleteProductFromChild(diaryId));
+                            }
+
+                        })
+                        .setNegativeButton("CANCEL", null)
+                        .show();
+            }
+        });
 
         return child1_detail;
     }
-
-//    private TableLayout getChildDetail(String time, String food, String diaryId, String amount) {
-//        final float scale = this.getResources().getDisplayMetrics().density;
-//        int pixels = (int) (60 * scale + 0.5f);
-//        TableLayout.LayoutParams p = new TableLayout.LayoutParams(TableLayout.LayoutParams.WRAP_CONTENT, TableLayout.LayoutParams.WRAP_CONTENT);
-//
-//        TableLayout child1_detail = new TableLayout(ctx);
-//        TableRow child1_detailTr = new TableRow(this);
-//        child1_detailTr.setBackgroundColor((Color.parseColor("#E1F5FE")));
-////        child1_detail.setOrientation(LinearLayout.HORIZONTAL);
-//        child1_detailTr.setPadding(50, 10, 10, 20);
-//
-//        TextView view1 = new TextView(ctx);
-//        TextView view2 = new TextView(ctx);
-//        TextView view3 = new TextView(ctx);
-//        view2.setPadding(25, 0, 0, 0);
-//        view3.setPadding(25, 0, 0, 0);
-//
-//        TextView view4 = new TextView(ctx);
-//        view4.setVisibility(View.GONE);
-//
-//        Integer length = food.length();
-//        String food30chars;
-//        if (length > 25)
-//        {
-//            String more = "...";
-//            food30chars = food.substring(0, 25) + more;
-//        }
-//        else
-//        {
-//            food30chars = food;
-//        }
-//
-//        if (Build.VERSION.SDK_INT < 23) {
-//            view1.setTextAppearance(getApplicationContext(), R.style.boldText);
-//            view2.setTextAppearance(getApplicationContext(), R.style.boldText);
-//        } else {
-//            view1.setTextAppearance(R.style.boldText);
-//            view2.setTextAppearance(R.style.boldText);
-//        }
-//
-//        view1.setText(time);
-//        view2.setText(amount);
-//        view3.setText(food30chars);
-//        view4.setText(diaryId);
-//
-//        view1.setTextSize(16);
-//        view2.setTextSize(16);
-//        view3.setTextSize(16);
-//
-////        view1.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-////        view2.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-////        view3.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-////        view4.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT));
-////        view1.setTextColor(0x000000);
-////        view2.setTextColor(0x000000);
-////        view3.setTextColor(0x000000);
-//
-//        child1_detailTr.addView(view1, p);
-//        child1_detailTr.addView(view2, p);
-//        child1_detailTr.addView(view3, p);
-//        child1_detailTr.addView(view4, p);
-//
-//        child1_detail.addView(child1_detailTr, p);
-//
-//        return child1_detail;
-//    }
 
     @Override
     public void onTaskCompleted(int thread, String result) {
@@ -573,6 +481,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         if (jsonResult != null) {
             if (thread == LOAD_CHILD_DATA1) {
                 LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
+                child1_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child1_detail;
 
@@ -585,7 +494,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         String food = oneFood.optString("food", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child1_detail = getChildDetail(time, food, diaryId, amount);
+                        child1_detail = getChildDetail(time, food, diaryId, amount, 1);
                         child1_data.addView(child1_detail, p);
                     }
                     catch (JSONException e) {
@@ -597,6 +506,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA2) {
                 LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
+                child2_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child2_detail;
 
@@ -609,7 +519,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         String food = oneFood.optString("food", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child2_detail = getChildDetail(time, food, diaryId, amount);
+                        child2_detail = getChildDetail(time, food, diaryId, amount, 2);
                         child2_data.addView(child2_detail, p);
                     }
                     catch (JSONException e) {
@@ -621,6 +531,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA3) {
                 LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
+                child3_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child3_detail;
 
@@ -633,7 +544,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         String food = oneFood.optString("food", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child3_detail = getChildDetail(time, food, diaryId, amount);
+                        child3_detail = getChildDetail(time, food, diaryId, amount, 3);
                         child3_data.addView(child3_detail, p);
                     }
                     catch (JSONException e) {
@@ -645,6 +556,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA4) {
                 LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
+                child4_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child4_detail;
 
@@ -657,7 +569,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         String food = oneFood.optString("food", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child4_detail = getChildDetail(time, food, diaryId, amount);
+                        child4_detail = getChildDetail(time, food, diaryId, amount, 4);
                         child4_data.addView(child4_detail, p);
                     }
                     catch (JSONException e) {
@@ -667,22 +579,44 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 }
                 CHILD4_HAS_DATA = 1;
             }
-            else if (thread == DELETE_PRODUCT) {
-                String success = jsonResult.optString("success", "0");
-                if (success.equals("1")) {
-                    Toast.makeText(getApplicationContext(), "The product has been deleted.", Toast.LENGTH_LONG).show();
-                }
-                else if (success.equals("0")) {
-                    Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_LONG).show();
-                }
-            }
         }
     }
 
     @Override
     public void onTaskCompleted(int thread, Bundle vars, String result) {
         // TODO Auto-generated method stub
+        JSONObject jsonResult = WebInterface.validateJSON(MainActivity.this, result);
 
+        if (jsonResult != null) {
+            if (thread == DELETE_PRODUCT) {
+                String success = jsonResult.optString("success", "0");
+                if (success.equals("1")) {
+                    int child = vars.getInt("child");
+                    JSONArray children = LocalStorage.getChildren();
+                    try {
+                        if (child == 1) {
+                            JSONObject child1 = children.getJSONObject(0);
+                            new AsyncApiCall(LOAD_CHILD_DATA1, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child1.optInt("id", -1)));
+                        } else if (child == 2) {
+                            JSONObject child2 = children.getJSONObject(1);
+                            new AsyncApiCall(LOAD_CHILD_DATA2, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child2.optInt("id", -1)));
+                        } else if (child == 3) {
+                            JSONObject child3 = children.getJSONObject(2);
+                            new AsyncApiCall(LOAD_CHILD_DATA3, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child3.optInt("id", -1)));
+                        } else if (child == 4) {
+                            JSONObject child4 = children.getJSONObject(3);
+                            new AsyncApiCall(LOAD_CHILD_DATA4, MainActivity.this, true, "Loading...").execute(WebApi.getChildInfo(LocalStorage.getDayForInfo(), child4.optInt("id", -1)));
+                        }
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    Toast.makeText(getApplicationContext(), "The product has been deleted.", Toast.LENGTH_LONG).show();
+                } else if (success.equals("0")) {
+                    Toast.makeText(getApplicationContext(), "An error occurred.", Toast.LENGTH_LONG).show();
+                }
+            }
+        }
     }
 
     @Override

@@ -379,7 +379,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
-                        }
+                    }
 
 
 //                    try {

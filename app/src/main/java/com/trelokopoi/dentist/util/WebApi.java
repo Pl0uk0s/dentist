@@ -31,8 +31,8 @@ public class WebApi {
     private static final String ACTION_ADDPRODUCT = "?action=addProduct";
     private static final String ACTION_CHANGEPASSWORD = "?action=changePassword";
     private static final String ACTION_CHANGEEMAIL = "?action=changeEmail";
-    private static final String ACTION_DELETEPRODUCTFROMUSER = "?action=deleteProductFromUser";
     private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
+    private static final String ACTION_DELETEPRODUCTFROMCHILD = "?action=deleteProductFromChild";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USEREMAIL = "&userEmail=";
@@ -222,10 +222,10 @@ public class WebApi {
         return url;
     }
 
-    public static String deleteProductFromUser(String diaryId) {
+    public static String deleteProductFromChild(String diaryId) {
         String url = returnURL();
         url += PLAYMAKER_URL;
-        url += ACTION_DELETEPRODUCTFROMUSER;
+        url += ACTION_DELETEPRODUCTFROMCHILD;
 
         url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
