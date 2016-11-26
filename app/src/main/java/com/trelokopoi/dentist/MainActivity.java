@@ -457,7 +457,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 extras.putString("productName", food);
                 extras.putString("productId", "");
                 extras.putString("amount", amount);
-                extras.putString("diaryId", "diaryId");
+                extras.putString("diaryId", diaryId);
                 intent.putExtras(extras);
                 startActivity(intent);
             }
