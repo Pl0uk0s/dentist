@@ -77,6 +77,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         JSONArray children = LocalStorage.getChildren();
 
         TextView dateTxtView = (TextView) findViewById(R.id.date);
+        TextView todayTxtView = (TextView) findViewById(R.id.today);
         currentDate = LocalStorage.getDayForInfo();
         dateTxtView.setText(currentDate);
 
@@ -90,6 +91,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             if (curr_date.equals((valid_date)))
             {
                 next.setVisibility(View.INVISIBLE);
+                dateTxtView.setVisibility(View.INVISIBLE);
+                todayTxtView.setVisibility(View.VISIBLE);
             }
         } catch (ParseException e) {
             L.debug(e.toString());
@@ -207,7 +210,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         String food = oneFood.optString("food", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        final TableLayout child_detail;
+                        final RelativeLayout child_detail;
                         child_detail = getChildDetail(time, food, diaryId, amount);
 
                         child_detail.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
@@ -497,12 +500,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         }
     }
 
-    private TableLayout getChildDetail(String time, String food, String diaryId, String amount) {
+    private RelativeLayout getChildDetail(String time, String food, String diaryId, String amount) {
 //        LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
-        TableLayout child1_detail = (TableLayout)view.findViewById(R.id.layout1);
+        RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.layout1);
 //        child1_detail.setOrientation(LinearLayout.HORIZONTAL);
 //        child1_detail.setPadding(50, 10, 10, 20);
 
@@ -517,10 +520,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Integer length = food.length();
         String food30chars;
-        if (length > 25)
+        if (length > 20)
         {
             String more = "...";
-            food30chars = food.substring(0, 25) + more;
+            food30chars = food.substring(0, 20) + more;
         }
         else
         {
@@ -628,8 +631,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         if (jsonResult != null) {
             if (thread == LOAD_CHILD_DATA1) {
                 LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                LinearLayout child1_detail;
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout child1_detail;
 
                 JSONArray childData = jsonResult.optJSONArray("childData");
 
@@ -652,8 +655,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA2) {
                 LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                LinearLayout child2_detail;
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout child2_detail;
 
                 JSONArray childData = jsonResult.optJSONArray("childData");
 
@@ -676,8 +679,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA3) {
                 LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                LinearLayout child3_detail;
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout child3_detail;
 
                 JSONArray childData = jsonResult.optJSONArray("childData");
 
@@ -700,8 +703,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
             else if (thread == LOAD_CHILD_DATA4) {
                 LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                LinearLayout child4_detail;
+                RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+                RelativeLayout child4_detail;
 
                 JSONArray childData = jsonResult.optJSONArray("childData");
 

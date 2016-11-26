@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -13,6 +14,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,11 +31,53 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
 
     final Context context = this;
     private int CHANGE_PASSWORD = 0;
+    String button_txt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
+
+        final TextView emailTextView = (TextView)findViewById(R.id.emailTextView);
+        final TextView emailTextView2 = (TextView)findViewById(R.id.emailTextView2);
+        final EditText emailEditText = (EditText)findViewById(R.id.emailEditText);
+        final Button signOut = (Button) findViewById(R.id.sign_out);
+        button_txt = signOut.getText().toString();
+        emailTextView2.setText("z.kotsanidou@gmail.com");
+        emailEditText.setText("z.kotsanidou@gmail.com");
+
+        emailTextView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                emailTextView2.setVisibility(View.GONE);
+                emailEditText.setVisibility(View.VISIBLE);
+                emailEditText.requestFocus();
+                signOut.setText(R.string.button_save);
+                button_txt = signOut.getText().toString();
+            }
+        });
+
+        emailTextView2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v){
+                emailTextView2.setVisibility(View.GONE);
+                emailEditText.setVisibility(View.VISIBLE);
+                emailEditText.requestFocus();
+                signOut.setText(R.string.button_save);
+                button_txt = signOut.getText().toString();
+            }
+        });
+
+//        emailEditText.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v){
+//                if(!(emailEditText.isFocused())) {
+//                    emailEditText.requestFocus();
+//                    signOut.setText(R.string.button_save);
+//                    button_txt = signOut.getText().toString();
+//                }
+//            }
+//        });
 
         String[] values = getResources().getStringArray(R.array.settings_array);
         ListView listView = (ListView) findViewById(R.id.settings_list);
@@ -44,10 +88,6 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 if (position == 0)
-                {
-                    Toast.makeText(getApplicationContext(), "Position :"+position, Toast.LENGTH_LONG).show();
-                }
-                else if (position == 1)
                 {
                     Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
                     startActivity(intent);
@@ -84,12 +124,12 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
 //                    newPasswordDialog.show();
 
                 }
-                else if (position == 2)
+                else if (position == 1)
                 {
                     Intent intent = new Intent(SettingsActivity.this, TermsActivity.class);
                     startActivity(intent);
                 }
-                else if (position == 3)
+                else if (position == 2)
                 {
                     // Inflate the about message contents
                     View messageView = getLayoutInflater().inflate(R.layout.about_dialog, null, false);
@@ -109,14 +149,32 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        Button signOut = (Button) findViewById(R.id.sign_out);
         signOut.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v){
-                LocalStorage.setUserLogout();
-                Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
-                startActivity(intent);
-                finish();
+                if (button_txt.equals("Done")) {
+                    emailEditText.setVisibility(View.GONE);
+                    emailTextView2.setText(emailEditText.getText().toString());
+                    emailTextView2.setVisibility(View.VISIBLE);
+                    signOut.setText(R.string.button_sign_out);
+                    button_txt = signOut.getText().toString();
+                } else {
+                    AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
+                            builder.setMessage("Are you sure you want to sign out?")
+                            .setPositiveButton("SIGN OUT", new DialogInterface.OnClickListener()
+                            {
+                                @Override
+                                public void onClick(DialogInterface dialog, int which) {
+                                    LocalStorage.setUserLogout();
+                                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                                    startActivity(intent);
+                                    finish();
+                                }
+
+                            })
+                            .setNegativeButton("CANCEL", null)
+                            .show();
+                }
             }
         });
 

@@ -40,17 +40,33 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:id="@+id/title_layout"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginBottom="5dp">
+                <TextView
+                    android:id="@+id/main_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:textSize="15sp"
+                    android:textStyle="bold"
+                    android:text="@string/main_title"/>
+            </LinearLayout>
+
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/child1"
                 android:orientation="vertical"
                 android:background="@android:drawable/dialog_holo_light_frame"
-                android:layout_marginBottom="5dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child1_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:visibility="gone">
 
                     <ImageView
@@ -62,21 +78,20 @@
                         android:layout_centerVertical="true"
                         android:id="@+id/child1Image"/>
 
-                    <CheckBox
-                        android:id="@+id/childCheckBox"
+                    <ImageView
+                        android:id="@+id/child1DownArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:layout_marginEnd="15dp"/>
+                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                        android:layout_marginEnd="10dp"/>
 
                     <TextView android:id="@+id/child_name1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/child1Image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"
                         android:textColor="@color/black"/>
@@ -115,12 +130,11 @@
                 android:id="@+id/child2"
                 android:orientation="vertical"
                 android:background="@android:drawable/dialog_holo_light_frame"
-                android:layout_marginBottom="5dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child2_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:visibility="gone">
 
                     <ImageView
@@ -132,21 +146,20 @@
                         android:layout_centerVertical="true"
                         android:id="@+id/child2Image"/>
 
-                    <CheckBox
-                        android:id="@+id/child2CheckBox"
+                    <ImageView
+                        android:id="@+id/child2DownArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:layout_marginEnd="15dp"/>
+                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                        android:layout_marginEnd="10dp"/>
 
                     <TextView android:id="@+id/child_name2"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/child2Image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"
                         android:textColor="@color/black"/>
@@ -176,12 +189,11 @@
                 android:id="@+id/child3"
                 android:orientation="vertical"
                 android:background="@android:drawable/dialog_holo_light_frame"
-                android:layout_marginBottom="5dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child3_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:visibility="gone">
 
                     <ImageView
@@ -193,21 +205,20 @@
                         android:layout_centerVertical="true"
                         android:id="@+id/child3Image"/>
 
-                    <CheckBox
-                        android:id="@+id/child3CheckBox"
+                    <ImageView
+                        android:id="@+id/child3DownArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:layout_marginEnd="15dp"/>
+                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                        android:layout_marginEnd="10dp"/>
 
                     <TextView android:id="@+id/child_name3"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/child3Image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"
                         android:textColor="@color/black"/>
@@ -246,12 +257,11 @@
                 android:id="@+id/child4"
                 android:orientation="vertical"
                 android:background="@android:drawable/dialog_holo_light_frame"
-                android:layout_marginBottom="5dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child4_relative"
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="80dp"
                     android:visibility="gone">
 
                     <ImageView
@@ -263,21 +273,20 @@
                         android:layout_centerVertical="true"
                         android:id="@+id/child4Image"/>
 
-                    <CheckBox
-                        android:id="@+id/child4CheckBox"
+                    <ImageView
+                        android:id="@+id/child4DownArrow"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
-                        android:focusable="false"
-                        android:focusableInTouchMode="false"
-                        android:layout_marginEnd="15dp"/>
+                        android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
+                        android:layout_marginEnd="10dp"/>
 
                     <TextView android:id="@+id/child_name4"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toEndOf="@+id/child4Image"
-                        android:layout_marginTop="10dp"
+                        android:layout_marginTop="20dp"
                         android:layout_marginStart="5dp"
                         android:textSize="15sp"
                         android:textColor="@color/black"/>

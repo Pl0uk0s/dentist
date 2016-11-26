@@ -28,11 +28,25 @@
     <string name="password">Password</string>
     <string name="settings_header">Settings</string>
     <string name="settings_title">General</string>
+    <string name="today">Today</string>
+    <string name="main_title">Daily log</string>
+    <string name="settings_email">Email</string>
     <string name="terms_title">Terms of Service and Privacy Policy</string>
     <string name="time_title">When</string>
     <string name="quantity_title">Quantity</string>
     <string name="new_prod_tv">New Product Name</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
+    <string name="btn_signin">Sign in as an existing user</string>
+    <string name="btn_register">Register as a new user</string>
+    <string name="txt_register">Register</string>
+    <string name="txt_email">EMAIL ADDRESS</string>
+    <string name="txt_access_code">ACCESS CODE</string>
+    <string name="txt_password">PASSWORD</string>
+    <string name="txt_repassword">RE-ENTER PASSWORD</string>
+    <string name="txt_terms">By registering I agree to Kieslog\'s \nTerms of Service and Privacy Policy.</string>
+    <string name="img_info">Info</string>
+    <string name="img_back">Back</string>
+    <string name="img_valid">Valid</string>
     <string name="forgot_password">Forgot Password?</string>
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
@@ -57,7 +71,6 @@ Application terminated.</string>
 
 
     <string-array name="settings_array">
-        <item>Email</item>
         <item>Change Password</item>
         <item>Terms Of Service And Privacy Policy</item>
         <item>About</item>

@@ -5,25 +5,25 @@
     android:background="#4EA991">
 
     <TextView
-        android:text="Sign in as an existing user"
+        android:id="@+id/btn_signin"
+        android:text="@string/btn_signin"
         android:layout_width="match_parent"
         android:layout_height="55dp"
-        android:id="@+id/btn_signin"
         android:layout_alignParentBottom="true"
         android:fontFamily="sans-serif-medium"
-        android:textSize="19dp"
+        android:textSize="19sp"
         android:textColor="@color/white"
         android:gravity="center"
         android:layout_marginBottom="7dp"/>
 
     <Button
-        android:text="Register as a new user"
+        android:id="@+id/btn_register"
+        android:text="@string/btn_register"
         android:layout_width="match_parent"
         android:layout_height="55dp"
         android:layout_above="@id/btn_signin"
-        android:id="@+id/btn_register"
         android:fontFamily="sans-serif-medium"
-        android:textSize="19dp"
+        android:textSize="19sp"
         android:textColor="#439EAA"
         android:background="@color/white"
         android:layout_margin="9dp"
