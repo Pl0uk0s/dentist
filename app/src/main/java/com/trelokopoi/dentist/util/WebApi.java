@@ -33,6 +33,7 @@ public class WebApi {
     private static final String ACTION_CHANGEEMAIL = "?action=changeEmail";
     private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
     private static final String ACTION_DELETEPRODUCTFROMCHILD = "?action=deleteProductFromChild";
+    private static final String ACTION_GETOTHERCHILDRENFORSAMEENTRY = "?action=getOtherChildrenForSameEntry";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USEREMAIL = "&userEmail=";
@@ -104,6 +105,20 @@ public class WebApi {
         url += VALUE_ACCESSCODE+accessCode;
         url += VALUE_USERPASSWORD+sha1Hash(password);
         url += deviceDataUrl();
+
+        url += VALUE_FIELD_VERSION+App.VERSION;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static JSONObject getOtherChildrenForSameEntry(Context context, String diaryId) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETOTHERCHILDRENFORSAMEENTRY;
+        url += VALUE_USEREMAIL+App.userEmail;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_DIARYID+diaryId;
 
         url += VALUE_FIELD_VERSION+App.VERSION;
         return WebInterface.executeWeb(url);

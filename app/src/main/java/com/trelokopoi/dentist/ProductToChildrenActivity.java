@@ -26,10 +26,13 @@ import com.trelokopoi.dentist.dbutil.diaryObj;
 import com.trelokopoi.dentist.util.AddProductToChild;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.LocalStorage;
+import com.trelokopoi.dentist.util.WebApi;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
 
 public class ProductToChildrenActivity extends Activity implements AsyncApiCallOnTaskCompleted {
@@ -37,6 +40,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
     final Context context = this;
     private EditText timeEditText, quantityEditText;
     private String add_product_date, productId, diaryId, amount, productName;
+    private JSONArray childrenIds;
     MyCustomAdapter dataAdapter = null;
     ArrayList<AddProductToChild> AddProductToChildList;
 
@@ -91,6 +95,20 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
                 }
             }
         });
+
+        if (diaryId != null && !diaryId.equals("")) {
+            JSONObject Response = WebApi.getOtherChildrenForSameEntry(ProductToChildrenActivity.this, diaryId);
+            try {
+                String success = (String) Response.getString("success");
+                if (success.equals("1")) {
+                    childrenIds = Response.optJSONArray("childrenIds");
+                }
+
+            } catch (JSONException e) {
+                // TODO Auto-generated catch block
+                e.printStackTrace();
+            }
+        }
 
         displayListView();
 
@@ -159,6 +177,10 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
                 }
             }
         });
+    }
+
+    private boolean userexists(JSONArray jsonArray, int useridToFind){
+        return jsonArray.toString().contains("\""+useridToFind+"\"");
     }
 
     @Override
@@ -299,6 +321,28 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             holder.childName.setText(AddProductToChild.getChildName());
             holder.checkBox.setChecked(AddProductToChild.isSelected());
             holder.checkBox.setTag(AddProductToChild);
+
+            if (diaryId != null && !diaryId.equals("")) {
+                try {
+                    JSONArray children = LocalStorage.getChildren();
+                    for(int i = 0; i < children.length(); i++) {
+                        JSONObject child = children.getJSONObject(i);
+                        String childname = child.optString("name", "");
+                        int childid = child.optInt("id", 0);
+                        if (childname.equals(AddProductToChild.getChildName()) && userexists(childrenIds, childid)) {
+                            AddProductToChild.setSelected(true);
+                            holder.checkBox.setChecked(true);
+                            holder.checkBox.setEnabled(false);
+                        }
+                        else {
+                            holder.checkBox.setEnabled(false);
+                        }
+                    }
+                } catch (JSONException e) {
+                    // TODO Auto-generated catch block
+                    e.printStackTrace();
+                }
+            }
 
             return convertView;
 
