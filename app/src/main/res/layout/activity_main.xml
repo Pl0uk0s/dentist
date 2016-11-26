@@ -17,16 +17,6 @@
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:layout_alignBottom="@+id/topLayout"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:id="@+id/view" />-->
-
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -102,7 +92,7 @@
                         android:layout_toEndOf="@+id/child1Image"
                         android:layout_below="@+id/child_name1"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -114,14 +104,6 @@
                     android:id="@+id/child1_data"
                     android:orientation="vertical">
                 </LinearLayout>
-
-                <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="1dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:background="@color/blue"-->
-                    <!--android:id="@+id/childline1" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -170,7 +152,7 @@
                         android:layout_toEndOf="@+id/child2Image"
                         android:layout_below="@+id/child_name2"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -229,7 +211,7 @@
                         android:layout_toEndOf="@+id/child3Image"
                         android:layout_below="@+id/child_name3"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -241,14 +223,6 @@
                     android:id="@+id/child3_data"
                     android:orientation="vertical">
                 </LinearLayout>
-
-                <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="1dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:background="@color/blue"-->
-                    <!--android:id="@+id/childline3" />-->
             </LinearLayout>
 
             <LinearLayout
@@ -297,7 +271,7 @@
                         android:layout_toEndOf="@+id/child4Image"
                         android:layout_below="@+id/child_name4"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -308,35 +282,8 @@
                     android:id="@+id/child4_data"
                     android:orientation="vertical">
                 </LinearLayout>
-
-                <!--<View-->
-                    <!--android:layout_width="match_parent"-->
-                    <!--android:layout_height="1dp"-->
-                    <!--android:layout_marginLeft="10dp"-->
-                    <!--android:layout_marginRight="10dp"-->
-                    <!--android:background="@color/blue"-->
-                    <!--android:id="@+id/childline4" />-->
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
-
-
-    <!--<View-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="1dp"-->
-        <!--android:layout_marginLeft="10dp"-->
-        <!--android:layout_marginRight="10dp"-->
-        <!--android:background="@color/white"-->
-        <!--android:layout_above="@+id/botLayout"-->
-        <!--android:layout_centerHorizontal="true"-->
-        <!--android:id="@+id/view2" />-->
-
-    <!--<include-->
-        <!--android:id="@+id/botLayout"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--layout="@layout/_bottom"-->
-        <!--android:layout_alignParentBottom="true"-->
-        <!--android:layout_alignParentStart="true" />-->
 
 </RelativeLayout>

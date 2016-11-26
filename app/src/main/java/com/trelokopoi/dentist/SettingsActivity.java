@@ -30,7 +30,7 @@ import org.json.JSONObject;
 public class SettingsActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
     final Context context = this;
-    private int CHANGE_PASSWORD = 0;
+    private int CHANGE_EMAIL = 0;
     String button_txt;
 
     @Override
@@ -43,8 +43,8 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         final EditText emailEditText = (EditText)findViewById(R.id.emailEditText);
         final Button signOut = (Button) findViewById(R.id.sign_out);
         button_txt = signOut.getText().toString();
-        emailTextView2.setText("z.kotsanidou@gmail.com");
-        emailEditText.setText("z.kotsanidou@gmail.com");
+        emailTextView2.setText(LocalStorage.getUserEmail());
+        emailEditText.setText(LocalStorage.getUserEmail());
 
         emailTextView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -68,17 +68,6 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-//        emailEditText.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v){
-//                if(!(emailEditText.isFocused())) {
-//                    emailEditText.requestFocus();
-//                    signOut.setText(R.string.button_save);
-//                    button_txt = signOut.getText().toString();
-//                }
-//            }
-//        });
-
         String[] values = getResources().getStringArray(R.array.settings_array);
         ListView listView = (ListView) findViewById(R.id.settings_list);
         ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.settings_list_item, R.id.settings_item, values);
@@ -91,38 +80,6 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                 {
                     Intent intent = new Intent(SettingsActivity.this, ChangePasswordActivity.class);
                     startActivity(intent);
-//                    final Dialog newPasswordDialog = new Dialog(context, R.style.DialogTheme);
-//                    newPasswordDialog.setContentView(R.layout.activity_change_password);
-//                    newPasswordDialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//                    Button dialogButton = (Button) newPasswordDialog.findViewById(R.id.submit);
-//                    dialogButton.setOnClickListener(new View.OnClickListener() {
-//                        @Override
-//                        public void onClick(View v) {
-//                            EditText oldPassword = (EditText) newPasswordDialog.findViewById(R.id.oldPasswordEditText);
-//                            EditText newPassword = (EditText) newPasswordDialog.findViewById(R.id.newPasswordEditText);
-//                            EditText newPasswordAgain = (EditText) newPasswordDialog.findViewById(R.id.newPasswordAgainEditText);
-//
-//                            String sOldPassword = oldPassword.getText().toString();
-//                            String sNewPassword = newPassword.getText().toString();
-//                            String sNewPasswordAgain = newPasswordAgain.getText().toString();
-//
-//                            String existingPassword = LocalStorage.getUserPassword();
-//
-//                            if (!WebApi.sha1Hash(sOldPassword).equals(existingPassword)) {
-//                                Toast.makeText(getApplicationContext(), "The old password is not correct", Toast.LENGTH_LONG).show();
-//                            }
-//                            else if (!sNewPassword.equals(sNewPasswordAgain)) {
-//                                Toast.makeText(getApplicationContext(), "The new passwords do not match", Toast.LENGTH_LONG).show();
-//                            }
-//                            else {
-//                                new AsyncApiCall(CHANGE_PASSWORD, SettingsActivity.this, false).execute(WebApi.changePassword(WebApi.sha1Hash(newPassword.getText().toString())));
-//                                newPasswordDialog.dismiss();
-//                            }
-//                        }
-//                    });
-//
-//                    newPasswordDialog.show();
-
                 }
                 else if (position == 1)
                 {
@@ -153,12 +110,14 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
             @Override
             public void onClick(View v){
                 if (button_txt.equals("Done")) {
+                    new AsyncApiCall(CHANGE_EMAIL, SettingsActivity.this, false).execute(WebApi.changeEmail(emailEditText.getText().toString()));
                     emailEditText.setVisibility(View.GONE);
                     emailTextView2.setText(emailEditText.getText().toString());
                     emailTextView2.setVisibility(View.VISIBLE);
                     signOut.setText(R.string.button_sign_out);
                     button_txt = signOut.getText().toString();
-                } else {
+                }
+                else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
                             builder.setMessage("Are you sure you want to sign out?")
                             .setPositiveButton("SIGN OUT", new DialogInterface.OnClickListener()
@@ -183,9 +142,6 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
             @Override
             public void onClick(View v) {
                 SettingsActivity.this.onBackPressed();
-//                Intent i = new Intent(SettingsActivity.this, MainActivity.class);
-//                startActivity(i);
-//                finish();
             }
         });
     }
@@ -195,15 +151,15 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         JSONObject jsonResult = WebInterface.validateJSON(SettingsActivity.this, result);
 
         if (jsonResult != null) {
-            if (thread == CHANGE_PASSWORD) {
+            if (thread == CHANGE_EMAIL) {
                 String success = jsonResult.optString("success", "0");
                 if (success.equals("1")) {
-                    String pass = jsonResult.optString("pass", "");
-                    LocalStorage.setUserPassword(pass);
-                    Toast.makeText(getApplicationContext(), "The password has been changed.", Toast.LENGTH_LONG).show();
+                    String email = jsonResult.optString("email", "");
+                    LocalStorage.setUserEmail(email);
+                    Toast.makeText(getApplicationContext(), "The email has been changed.", Toast.LENGTH_LONG).show();
                 }
                 else if (success.equals("0")) {
-                    Toast.makeText(getApplicationContext(), "An error occurred. The password was not changed.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), "An error occurred. The email was not changed.", Toast.LENGTH_LONG).show();
                 }
             }
         }

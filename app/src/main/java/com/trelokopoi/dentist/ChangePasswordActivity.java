@@ -4,6 +4,8 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,6 +29,81 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
+
+        EditText oldPassword = (EditText) findViewById(R.id.oldPasswordEditText);
+        oldPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isValidPassword(s)) {
+                    ImageView img_checkOldPass = (ImageView) findViewById(R.id.img_checkOldPass);
+                    img_checkOldPass.setVisibility(ImageView.VISIBLE);
+                }
+                else {
+                    ImageView img_checkOldPass = (ImageView) findViewById(R.id.img_checkOldPass);
+                    img_checkOldPass.setVisibility(ImageView.INVISIBLE);
+                }
+            }
+        });
+
+        EditText newPassword = (EditText) findViewById(R.id.newPasswordEditText);
+        newPassword.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isValidPassword(s)) {
+                    ImageView img_checkNewPass = (ImageView) findViewById(R.id.img_checkNewPass);
+                    img_checkNewPass.setVisibility(ImageView.VISIBLE);
+                }
+                else {
+                    ImageView img_checkNewPass = (ImageView) findViewById(R.id.img_checkNewPass);
+                    img_checkNewPass.setVisibility(ImageView.INVISIBLE);
+                }
+            }
+        });
+
+        EditText newPasswordAgain = (EditText) findViewById(R.id.newPasswordAgainEditText);
+        newPasswordAgain.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+                if (isValidPassword(s)) {
+                    ImageView img_checkNewPassAgain = (ImageView) findViewById(R.id.img_checkNewPassAgain);
+                    img_checkNewPassAgain.setVisibility(ImageView.VISIBLE);
+                }
+                else {
+                    ImageView img_checkNewPassAgain = (ImageView) findViewById(R.id.img_checkNewPassAgain);
+                    img_checkNewPassAgain.setVisibility(ImageView.INVISIBLE);
+                }
+            }
+        });
 
         Button done = (Button) findViewById(R.id.submit);
         done.setOnClickListener(new View.OnClickListener(){
@@ -63,6 +140,20 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
                 ChangePasswordActivity.this.onBackPressed();
             }
         });
+    }
+
+    public final static boolean isValidPassword(CharSequence target) {
+        if (target == null) {
+            return false;
+        }
+        else {
+            if (target.length() >= 6) {
+                return true;
+            }
+            else {
+                return false;
+            }
+        }
     }
 
 

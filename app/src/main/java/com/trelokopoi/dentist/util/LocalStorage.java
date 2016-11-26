@@ -57,6 +57,13 @@ public class LocalStorage {
         editor.putString(PREFS_USER_PASSWORD, password);
         editor.apply();
     }
+    public static void setUserEmail(String email) {
+        L.debug("setUserEmail " + email);
+
+        SharedPreferences.Editor editor = getPreferences().edit();
+        editor.putString(PREFS_USER_EMAIL, email);
+        editor.apply();
+    }
 
     public static void setUserLogin(boolean login) {
         L.debug("setUserLogin " + login);
