@@ -33,7 +33,9 @@
     <string name="add_new_product_tv">Add new product</string>
     <string name="main_title">Daily log</string>
     <string name="name_title">Product name</string>
+    <string name="name_hint">Product name</string>
     <string name="unit_title">Portion unit</string>
+    <string name="unit_hint">Portion unit</string>
     <string name="who">Who</string>
     <string name="settings_email">Email</string>
     <string name="terms_title">Terms of Service and Privacy Policy</string>

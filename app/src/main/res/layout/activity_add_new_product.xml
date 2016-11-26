@@ -49,7 +49,7 @@
         android:textStyle="bold"
         android:gravity="center"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="20dp"/>
 
     <RelativeLayout
         android:id="@+id/name_layout"
@@ -67,9 +67,12 @@
             android:id="@+id/name_ed"
             android:inputType="text"
             android:maxLines="1"
-            android:textAlignment="center"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true" />
+            android:background="@android:color/transparent"
+            android:textColorHint="@android:color/darker_gray"
+            android:hint="@string/name_hint"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp" />
     </RelativeLayout>
         <TextView
             android:id="@+id/unit_title"
@@ -79,7 +82,7 @@
             android:textStyle="bold"
             android:gravity="center"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="10dp"/>
+            android:layout_marginTop="5dp"/>
 
         <RelativeLayout
             android:id="@+id/unit_layout"
@@ -97,10 +100,26 @@
                 android:id="@+id/unit_ed"
                 android:inputType="text"
                 android:maxLines="1"
-                android:textAlignment="center"
-                android:layout_alignParentTop="true"
-                android:layout_centerHorizontal="true" />
+                android:background="@android:color/transparent"
+                android:hint="@string/unit_hint"
+                android:textColorHint="@android:color/darker_gray"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"/>
         </RelativeLayout>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:adjustViewBounds="true"
+            android:scaleType="centerInside"
+            android:background="#0097A7"
+            android:text="@string/button_save"
+            android:textSize="15sp"
+            android:textColor="@color/white"
+            android:layout_marginTop="30dp" />
     </LinearLayout>
 
 </RelativeLayout>

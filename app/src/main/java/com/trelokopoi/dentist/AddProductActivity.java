@@ -10,50 +10,24 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.view.WindowManager;
-import android.view.inputmethod.EditorInfo;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
-import android.widget.BaseAdapter;
-import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
-import android.widget.TextView;
-import android.widget.TimePicker;
-import android.widget.Toast;
-
-import com.trelokopoi.dentist.dbutil.diaryDataSource;
-import com.trelokopoi.dentist.dbutil.diaryObj;
-import com.trelokopoi.dentist.util.AddProductToChild;
-import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.ProductAdapter;
 import com.trelokopoi.dentist.util.Tools;
 import com.trelokopoi.dentist.util.WebApi;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.HashMap;
-import java.util.List;
 
 public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
@@ -69,6 +43,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
 
         add_product_date = getIntent().getStringExtra("date");
 
+        final RelativeLayout new_product = (RelativeLayout) findViewById(R.id.add_new_product);
         final LinearLayout prod_detail_layout = (LinearLayout) findViewById(R.id.prod_detail_layout);
         productsListView = (ListView) findViewById(R.id.products_list);
         inputSearch = (EditText) findViewById(R.id.search_product);
@@ -135,6 +110,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 // When user changed the Text
                 RelativeLayout.LayoutParams p;
                 if (adapter.getCount() > 5) {
+                    new_product.setVisibility(View.GONE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
                     productsListView.setVisibility(View.VISIBLE);
@@ -143,6 +119,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                     p.addRule(RelativeLayout.BELOW, R.id.add_top);
                     productsListView.setLayoutParams(p);
                 } else if (adapter.getCount() != 0) {
+                    new_product.setVisibility(View.GONE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
                     productsListView.setVisibility(View.VISIBLE);
@@ -151,6 +128,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                     p.addRule(RelativeLayout.BELOW, R.id.add_top);
                     productsListView.setLayoutParams(p);
                 } else {
+                    new_product.setVisibility(View.VISIBLE);
                     productsListView.setVisibility(View.GONE);
                 }
             }
@@ -201,34 +179,10 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             }
         });
 
-        RelativeLayout new_product = (RelativeLayout) findViewById(R.id.add_new_product);
         new_product.setOnClickListener(new View.OnClickListener() {
 
             @Override
             public void onClick(View arg0) {
-
-//                final Dialog new_prod_dialog = new Dialog(context, R.style.DialogTheme);
-//                new_prod_dialog.setContentView(R.layout.new_product_dialog);
-//                new_prod_dialog.getWindow().setLayout(WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT);
-//
-//                Button dialogButton = (Button) new_prod_dialog.findViewById(R.id.submit);
-//                // if button is clicked, close the custom dialog
-//                dialogButton.setOnClickListener(new View.OnClickListener() {
-//                    @Override
-//                    public void onClick(View v) {
-//                        EditText new_prod_name = (EditText) new_prod_dialog.findViewById(R.id.new_prod_ed);
-//                        EditText sugar_per_100 = (EditText) new_prod_dialog.findViewById(R.id.sugar_per_100_ed);
-//
-//                        if (new_prod_name.getText().toString().trim().equals("") || sugar_per_100.getText().toString().trim().equals("")) {
-//                            Toast.makeText(AddProductActivity.this, "Fill the product name & sugar per 100 gr/ml in order to Submit new product", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            new AsyncApiCall(ADD_PRODUCT, AddProductActivity.this, false).execute(WebApi.addProduct(new_prod_name.getText().toString(), sugar_per_100.getText().toString()));
-//                            new_prod_dialog.dismiss();
-//                        }
-//                    }
-//                });
-//
-//                new_prod_dialog.show();
                 Intent i = new Intent(AddProductActivity.this, NewProductActivity.class);
                 startActivity(i);
             }

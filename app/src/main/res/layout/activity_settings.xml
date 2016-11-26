@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#DADDDF">
 
     <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
     <LinearLayout
@@ -13,7 +14,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="60dp"
-        android:background="@color/blue">
+        android:background="#0097A7">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -110,7 +111,7 @@
         android:layout_marginStart="10dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:background="@color/blue"
+        android:background="#0097A7"
         android:text="@string/button_sign_out"
         android:textSize="15sp"
         android:textColor="@color/white"
