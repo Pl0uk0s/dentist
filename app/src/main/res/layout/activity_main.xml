@@ -102,7 +102,7 @@
                         android:layout_toEndOf="@+id/child1Image"
                         android:layout_below="@+id/child_name1"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -170,7 +170,7 @@
                         android:layout_toEndOf="@+id/child2Image"
                         android:layout_below="@+id/child_name2"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -229,7 +229,7 @@
                         android:layout_toEndOf="@+id/child3Image"
                         android:layout_below="@+id/child_name3"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 
@@ -297,7 +297,7 @@
                         android:layout_toEndOf="@+id/child4Image"
                         android:layout_below="@+id/child_name4"
                         android:layout_marginStart="5dp"
-                        android:text="Last entry at 11:08"
+                        android:text="Last entry at "
                         android:textSize="15sp"
                         android:textStyle="italic"/>
 

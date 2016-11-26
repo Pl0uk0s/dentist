@@ -108,6 +108,11 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         TextView child_name3 = (TextView) findViewById(R.id.child_name3);
         TextView child_name4 = (TextView) findViewById(R.id.child_name4);
 
+        TextView child_lastentry1 = (TextView) findViewById(R.id.child1_last_entry);
+        TextView child_lastentry2 = (TextView) findViewById(R.id.child2_last_entry);
+        TextView child_lastentry3 = (TextView) findViewById(R.id.child3_last_entry);
+        TextView child_lastentry4 = (TextView) findViewById(R.id.child4_last_entry);
+
         LinearLayout llchild1 = (LinearLayout) findViewById(R.id.child1);
         LinearLayout llchild2 = (LinearLayout) findViewById(R.id.child2);
         LinearLayout llchild3 = (LinearLayout) findViewById(R.id.child3);
@@ -121,17 +126,22 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
+                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+
             }
             else if (i == 2) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
+                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
+                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
             }
             else if (i == 3) {
 
@@ -139,121 +149,53 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
+                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
+                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
+
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
+                child_lastentry3.setText("Last entry at "+child3.optString("lastEntry", ""));
             }
             else if (i == 4) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
+                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
+                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
+
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
+                child_lastentry3.setText("Last entry at "+child3.optString("lastEntry", ""));
 
                 JSONObject child4 = children.getJSONObject(3);
                 llchild4.setVisibility(View.VISIBLE);
                 child4_relative.setVisibility(View.VISIBLE);
                 child_name4.setText(child4.optString("name", ""));
+                child_lastentry4.setText("Last entry at "+child4.optString("lastEntry", ""));
             }
         }
         catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
-        }
-
-        for (int j=0; j<i; j++) {
-            try {
-                JSONObject child = children.getJSONObject(j);
-                JSONObject Response = WebApi.getChildInfo(MainActivity.this, LocalStorage.getDayForInfo(), child.optInt("id", -1));
-                LinearLayout child_data = null;
-                if (j == 0) {
-                    child_data = (LinearLayout) findViewById(R.id.child1_data);
-                    CHILD1_HAS_DATA = 1;
-                }
-                else if (j == 1) {
-                    child_data = (LinearLayout) findViewById(R.id.child2_data);
-                    CHILD2_HAS_DATA = 1;
-                }
-                else if (j == 2) {
-                    child_data = (LinearLayout) findViewById(R.id.child3_data);
-                    CHILD3_HAS_DATA = 1;
-                }
-                else if (j == 3) {
-                    child_data = (LinearLayout) findViewById(R.id.child4_data);
-                    CHILD4_HAS_DATA = 1;
-                }
-
-                LinearLayout.LayoutParams p = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-
-                JSONArray childData = Response.optJSONArray("childData");
-
-                for(int k = 0; k < childData.length(); k++) {
-                    try {
-                        JSONObject oneFood = childData.getJSONObject(k);
-                        String time = oneFood.optString("time", "");
-                        String food = oneFood.optString("food", "");
-                        String diaryId = oneFood.optString("diaryId", "");
-                        String amount = oneFood.optString("amount", "");
-                        final RelativeLayout child_detail;
-                        child_detail = getChildDetail(time, food, diaryId, amount);
-
-                        child_detail.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
-                            public void onSwipeTop() {
-                                //Toast.makeText(MainActivity.this, "top", Toast.LENGTH_SHORT).show();
-                            }
-                            public void onSwipeRight() {
-                                //Toast.makeText(MainActivity.this, "right", Toast.LENGTH_SHORT).show();
-                                swipeRight();
-                            }
-                            public void onSwipeLeft() {
-                                //Toast.makeText(MainActivity.this, "left", Toast.LENGTH_SHORT).show();
-                                swipeLeft();
-                            }
-                            public void onSwipeBottom() {
-                                //Toast.makeText(MainActivity.this, "bottom", Toast.LENGTH_SHORT).show();
-                            }
-                            public void onLongClick() {
-                                child_detail.setBackgroundColor(ContextCompat.getColor(ctx, R.color.blue));
-                                String[] bArray = new String[child_detail.getChildCount()];
-
-                                for (int i = 0; i < child_detail.getChildCount(); i++) {
-                                    TextView children = (TextView) child_detail.getChildAt(i);
-                                    String b = children.getText().toString();
-                                    bArray[i] = b;
-                                }
-                                new AsyncApiCall(DELETE_PRODUCT, MainActivity.this, false).execute(WebApi.deleteProductFromUser(bArray[3]));
-                            }
-
-                        });
-
-                        child_data.addView(child_detail, p);
-                    }
-                    catch (JSONException e) {
-                        // TODO Auto-generated catch block
-                        e.printStackTrace();
-                    }
-                }
-            }
-            catch (JSONException e) {
-                // TODO Auto-generated catch block
-                e.printStackTrace();
-            }
         }
 
         child1_relative.setOnClickListener(new View.OnClickListener() {
