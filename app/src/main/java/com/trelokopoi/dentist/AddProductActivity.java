@@ -83,6 +83,11 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 }
             }
         });
+        Bundle extras = getIntent().getExtras();
+        String productName = extras.getString("productName");
+        if (productName != null && !productName.equals("")) {
+            inputSearch.setText(productName);
+        }
 
         /**
          * Enabling Search Filter

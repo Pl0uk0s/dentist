@@ -52,7 +52,7 @@ public class WebApi {
     private static final String VALUE_AMOUNT = "&amount=";
     private static final String VALUE_TIME = "&time=";
     private static final String VALUE_NAME = "&name=";
-    private static final String VALUE_SUGAR = "&sugar=";
+    private static final String VALUE_UNIT = "&unit=";
     private static final String VALUE_NEWPASSWORD = "&newPassword=";
     private static final String VALUE_NEWEMAIL = "&newEmail=";
     private static final String VALUE_DIARYID = "&diaryId=";
@@ -179,7 +179,7 @@ public class WebApi {
         return WebInterface.executeWeb(url);
     }
 
-    public static String addProduct(String name, String sugar) {
+    public static String addProduct(String name, String unit) {
         String url = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_ADDPRODUCT;
@@ -189,7 +189,7 @@ public class WebApi {
         url += VALUE_USERID+App.userId;
 
         url += VALUE_NAME+name;
-        url += VALUE_SUGAR+sugar;
+        url += VALUE_UNIT+unit;
 
         return url;
     }
@@ -247,7 +247,6 @@ public class WebApi {
 
         url += VALUE_DIARYID+diaryId;
         url += VALUE_AMOUNT+quantity;
-        url += VALUE_DATE+date;
         url += VALUE_TIME+time;
 
         return url;

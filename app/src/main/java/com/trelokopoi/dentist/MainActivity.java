@@ -419,7 +419,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         }
     }
 
-    private RelativeLayout getChildDetail(String time, String food, final String diaryId, String amount, final int child) {
+    private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.layout1);
@@ -448,6 +448,20 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         view4.setText(diaryId);
 
         ImageView edit = (ImageView) view.findViewById(R.id.editImageView);
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, ProductToChildrenActivity.class);
+                Bundle extras = new Bundle();
+                extras.putString("date", time);
+                extras.putString("productName", food);
+                extras.putString("productId", "");
+                extras.putString("amount", amount);
+                extras.putString("diaryId", "diaryId");
+                intent.putExtras(extras);
+                startActivity(intent);
+            }
+        });
 
         ImageView delete = (ImageView) view.findViewById(R.id.deleteImageView);
         delete.setOnClickListener(new View.OnClickListener() {

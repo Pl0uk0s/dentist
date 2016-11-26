@@ -36,7 +36,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
     final Context context = this;
     private EditText timeEditText, quantityEditText;
-    private String add_product_date, productId;
+    private String add_product_date, productId, diaryId, amount, productName;
     MyCustomAdapter dataAdapter = null;
     ArrayList<AddProductToChild> AddProductToChildList;
 
@@ -45,11 +45,12 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_to_children);
 
-        String productName;
         Bundle extras = getIntent().getExtras();
         add_product_date = extras.getString("date");
         productName = extras.getString("productName");
         productId = extras.getString("productId");
+        diaryId = extras.getString("diaryId");
+        amount = extras.getString("amount");
 
         Integer length = productName.length();
         String food30chars;
@@ -65,7 +66,16 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
         TextView titleTextView = (TextView) findViewById(R.id.product_to_children_header);
         titleTextView.setText(food30chars);
+
+        quantityEditText = (EditText) findViewById(R.id.quantity_ed);
+        if (diaryId != null && !diaryId.equals("")) {
+            quantityEditText.setText(amount);
+        }
+
         timeEditText = (EditText) findViewById(R.id.time_ed);
+        if (diaryId != null && !diaryId.equals("")) {
+            timeEditText.setText(add_product_date);
+        }
         timeEditText.setInputType(EditorInfo.TYPE_NULL);
         timeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -153,22 +163,35 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
     @Override
     public void onBackPressed() {
-            Intent i = new Intent(ProductToChildrenActivity.this, AddProductActivity.class);
-//            i.putExtra("date", add_product_date);
-            startActivity(i);
-            finish();
+        Intent i;
+        if (diaryId != null && !diaryId.equals("")) {
+            i = new Intent(ProductToChildrenActivity.this, MainActivity.class);
         }
+        else {
+            i = new Intent(ProductToChildrenActivity.this, AddProductActivity.class);
+            i.putExtra("productName", productName);
+        }
+        startActivity(i);
+        finish();
+    }
 
     public void showTimeDialog() {
-        Calendar mcurrentTime = Calendar.getInstance();
-        int hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
-        int minute = mcurrentTime.get(Calendar.MINUTE);
+        int hour, minute;
+        if (timeEditText.getText().toString().equals("")) {
+            Calendar mcurrentTime = Calendar.getInstance();
+            hour = mcurrentTime.get(Calendar.HOUR_OF_DAY);
+            minute = mcurrentTime.get(Calendar.MINUTE);
+        }
+        else {
+            String[] time = timeEditText.getText().toString().split(":");
+            hour = Integer.parseInt(time[0]);
+            minute = Integer.parseInt(time[1]);
+        }
         TimePickerDialog mTimePicker;
         mTimePicker = new TimePickerDialog(ProductToChildrenActivity.this, new TimePickerDialog.OnTimeSetListener() {
             @Override
             public void onTimeSet(TimePicker timePicker, int selectedHour, int selectedMinute) {
-                timeEditText = (EditText) findViewById(R.id.time_ed);
-                timeEditText.setText(String.valueOf(selectedHour) + " : " + String.valueOf(selectedMinute));
+                timeEditText.setText(String.format("%02d:%02d", selectedHour, selectedMinute));
                 if (ProductToChildrenActivity.this.getCurrentFocus() != null)
                 {
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
@@ -182,7 +205,6 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
     private void displayListView() {
 
-        //Array list of countries
         AddProductToChildList = new ArrayList<AddProductToChild>();
         final JSONArray children = LocalStorage.getChildren();
         Integer chlength = children.length();
