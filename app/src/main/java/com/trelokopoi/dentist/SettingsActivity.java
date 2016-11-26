@@ -43,8 +43,8 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         final EditText emailEditText = (EditText)findViewById(R.id.emailEditText);
         final Button signOut = (Button) findViewById(R.id.sign_out);
         button_txt = signOut.getText().toString();
-        emailTextView2.setText("z.kotsanidou@gmail.com");
-        emailEditText.setText("z.kotsanidou@gmail.com");
+        emailTextView2.setText(LocalStorage.getUserEmail());
+        emailEditText.setText(LocalStorage.getUserEmail());
 
         emailTextView.setOnClickListener(new View.OnClickListener() {
             @Override
