@@ -22,7 +22,7 @@
             android:layout_height="80dp"
             android:id="@+id/txt1"
             android:gravity="center"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:textColor="@color/black"
             />
 
@@ -42,7 +42,8 @@
                     android:layout_height="40dp"
                     android:gravity="bottom"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="2sp"
                     />
 
                 <TextView
@@ -51,7 +52,8 @@
                     android:layout_height="40dp"
                     android:gravity="top"
                     android:textColor="@color/black"
-                    android:textSize="15sp"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4sp"
                     />
                 <TextView
                     android:id="@+id/txt4"

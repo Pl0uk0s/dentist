@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 public class Fonts {
 	public final static String LATO_REGULAR = "fonts/Lato-Regular.ttf";
 	public final static String LATO_BOLD = "fonts/Lato-Bold.ttf";
+	public final static String LATO_ITALIC = "fonts/Lato-Italic.ttf";
 
 	public static Typeface returnFont(Context context, String font) {
 		 try {

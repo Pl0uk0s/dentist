@@ -21,7 +21,7 @@
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_title1"
         android:text="@string/txt_title1"
-        android:textSize="36dp"
+        android:textSize="36sp"
         android:textColor="@color/white"
         android:layout_marginTop="30dp" />
 
@@ -31,7 +31,7 @@
         android:layout_below="@id/txt_title1"
         android:id="@+id/txt_title2"
         android:text="@string/txt_title2"
-        android:textSize="26dp"
+        android:textSize="26sp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="30dp" />

@@ -32,9 +32,10 @@
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_header"
         android:text="@string/txt_header"
-        android:textSize="36dp"
+        android:textSize="36sp"
         android:textColor="@color/white"
-        android:layout_marginTop="30dp" />
+        android:layout_marginTop="30dp"
+        android:lineSpacingExtra="2sp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -42,7 +43,7 @@
         android:layout_below="@id/txt_header"
         android:id="@+id/txt_text1"
         android:text="@string/txt_text1"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="@color/white"
         android:layout_marginTop="18dp" />
 
@@ -52,7 +53,7 @@
         android:layout_below="@id/txt_text1"
         android:id="@+id/txt_email"
         android:text="@string/txt_email"
-        android:textSize="14dp"
+        android:textSize="14sp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
 
@@ -62,7 +63,7 @@
         android:id="@+id/edit_email"
         android:inputType="textEmailAddress"
         android:layout_below="@id/txt_email"
-        android:textSize="18dp"
+        android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
@@ -85,7 +86,7 @@
         android:layout_height="48dp"
         android:layout_below="@id/edit_email"
         android:id="@+id/btn_done"
-        android:textSize="16dp"
+        android:textSize="16sp"
         android:textColor="#439EAA"
         android:background="@color/white"
         android:text="@string/btn_done"

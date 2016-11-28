@@ -6,6 +6,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -28,6 +29,7 @@ import com.trelokopoi.dentist.dbutil.diaryObj;
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.OnSwipeTouchListener;
@@ -38,6 +40,7 @@ import com.trelokopoi.dentist.util.WebInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -71,6 +74,42 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Tools.setupGoogleAnalytics(MainActivity.this);
 
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+        Typeface latoItalic = Fonts.returnFont(this, Fonts.LATO_ITALIC);
+
+        TextView main_title = (TextView) findViewById(R.id.main_title);
+        main_title.setTypeface(latoRegular);
+
+        TextView today = (TextView) findViewById(R.id.today);
+        today.setTypeface(latoBold);
+
+        TextView child_name1 = (TextView) findViewById(R.id.child_name1);
+        child_name1.setTypeface(latoBold);
+
+        TextView child1_last_entry = (TextView) findViewById(R.id.child1_last_entry);
+        child1_last_entry.setTypeface(latoItalic);
+
+        TextView child_name2 = (TextView) findViewById(R.id.child_name2);
+        child_name2.setTypeface(latoBold);
+
+        TextView child2_last_entry = (TextView) findViewById(R.id.child2_last_entry);
+        child2_last_entry.setTypeface(latoItalic);
+
+        TextView child_name3 = (TextView) findViewById(R.id.child_name3);
+        child_name3.setTypeface(latoBold);
+
+        TextView child3_last_entry = (TextView) findViewById(R.id.child3_last_entry);
+        child3_last_entry.setTypeface(latoItalic);
+
+        TextView child_name4 = (TextView) findViewById(R.id.child_name4);
+        child_name4.setTypeface(latoBold);
+
+        TextView child4_last_entry = (TextView) findViewById(R.id.child4_last_entry);
+        child4_last_entry.setTypeface(latoItalic);
+
+
+
         sendDataToBackend();
 
         ScrollView children_scrollview = (ScrollView)findViewById(R.id.children_scrollview);
@@ -103,11 +142,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         RelativeLayout child2_relative = (RelativeLayout) findViewById(R.id.child2_relative);
         RelativeLayout child3_relative = (RelativeLayout) findViewById(R.id.child3_relative);
         RelativeLayout child4_relative = (RelativeLayout) findViewById(R.id.child4_relative);
-
-        TextView child_name1 = (TextView) findViewById(R.id.child_name1);
-        TextView child_name2 = (TextView) findViewById(R.id.child_name2);
-        TextView child_name3 = (TextView) findViewById(R.id.child_name3);
-        TextView child_name4 = (TextView) findViewById(R.id.child_name4);
 
         TextView child_lastentry1 = (TextView) findViewById(R.id.child1_last_entry);
         TextView child_lastentry2 = (TextView) findViewById(R.id.child2_last_entry);
@@ -422,13 +456,20 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.layout1);
 
         TextView view1 = (TextView)view.findViewById(R.id.txt1);
         TextView view2 = (TextView)view.findViewById(R.id.txt2);
         TextView view3 = (TextView)view.findViewById(R.id.txt3);
-
         TextView view4 = (TextView)view.findViewById(R.id.txt4);
+
+        view1.setTypeface(latoRegular);
+        view2.setTypeface(latoRegular);
+        view3.setTypeface(latoRegular);
+        view4.setTypeface(latoRegular);
+
         view4.setVisibility(View.GONE);
 
         Integer length = food.length();
