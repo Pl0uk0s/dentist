@@ -2,6 +2,7 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,9 +11,11 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.Tools;
 import com.trelokopoi.dentist.util.WebApi;
@@ -34,6 +37,24 @@ public class ForgotPassActivity extends Activity implements AsyncApiCallOnTaskCo
         setContentView(R.layout.activity_forgot_pass);
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView txt_header = (TextView) findViewById(R.id.txt_header);
+        txt_header.setTypeface(latoBold);
+
+        TextView txt_text1 = (TextView) findViewById(R.id.txt_text1);
+        txt_text1.setTypeface(latoBold);
+
+        TextView txt_email = (TextView) findViewById(R.id.txt_email);
+        txt_email.setTypeface(latoRegular);
+
+        EditText edit_email = (EditText) findViewById(R.id.edit_email);
+        edit_email.setTypeface(latoRegular);
+
+        Button btn_done = (Button) findViewById(R.id.btn_done);
+        btn_done.setTypeface(latoBold);
 
         ImageView btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {

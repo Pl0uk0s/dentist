@@ -14,6 +14,7 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
@@ -245,7 +246,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                     }
                 }
                 else {
-                    Tools.toast(getApplicationContext(), "Please fill all fields");
+                    Toast.makeText(getApplicationContext(), getString(R.string.str_fillAllFields), Toast.LENGTH_LONG);
                 }
             }
         });
@@ -330,6 +331,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                     ActivityLoader.load(RegisterActivity.this, ActivityLoader.act1);
                 }
                 else {
+                    Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
                     Tools.toast(getApplicationContext(), "Sorry, an error occurred. Please reopen the app.");
                 }
             }

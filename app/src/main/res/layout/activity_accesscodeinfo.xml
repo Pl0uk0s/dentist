@@ -20,10 +20,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_title1"
-        android:text="Don't have \nan access code?"
-        android:textSize="35dp"
+        android:text="@string/txt_title1"
+        android:textSize="36dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_marginTop="30dp" />
 
     <TextView
@@ -31,8 +30,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_title1"
         android:id="@+id/txt_title2"
-        android:text="Contact your dentist \nto receive an access code. \nKieslog is a tool \nthat helps you collaborate \nwith your dentist and \nsupports your effort to \nimprove your kids' daily \nroutines."
-        android:textSize="25dp"
+        android:text="@string/txt_title2"
+        android:textSize="26dp"
         android:textColor="@color/white"
         android:textStyle="bold"
         android:layout_marginTop="30dp" />

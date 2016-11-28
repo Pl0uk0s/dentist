@@ -2,11 +2,14 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.Tools;
 
 public class AccessCodeInfoActivity extends Activity implements AsyncApiCallOnTaskCompleted {
@@ -17,6 +20,14 @@ public class AccessCodeInfoActivity extends Activity implements AsyncApiCallOnTa
 
         Tools.setupGoogleAnalytics(AccessCodeInfoActivity.this);
         setContentView(R.layout.activity_accesscodeinfo);
+
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+
+        TextView txt_title1 = (TextView) findViewById(R.id.txt_title1);
+        txt_title1.setTypeface(latoBold);
+
+        TextView txt_title2 = (TextView) findViewById(R.id.txt_title2);
+        txt_title2.setTypeface(latoBold);
 
         ImageView btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
