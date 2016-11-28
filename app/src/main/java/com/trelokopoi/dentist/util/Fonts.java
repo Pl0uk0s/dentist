@@ -4,12 +4,9 @@ import android.content.Context;
 import android.graphics.Typeface;
 
 public class Fonts {
-	public final static String ROBOTO_MEDIUM = "fonts/roboto_medium.ttf";
-	public final static String ROBOTO_BOLD = "fonts/roboto_bold.ttf";
-	public final static String ROBOTO_BLACK =  "fonts/roboto_black.ttf";
-	public final static String BP_REPLAY_BOLD_ITALICS = "fonts/bp_replay_bold_italics.otf";
-	public final static String SEGUI_BOLD = "fonts/segoeuib.ttf";
-	
+	public final static String LATO_REGULAR = "fonts/Lato-Regular.ttf";
+	public final static String LATO_BOLD = "fonts/Lato-Bold.ttf";
+
 	public static Typeface returnFont(Context context, String font) {
 		 try {
 			 

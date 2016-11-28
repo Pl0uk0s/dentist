@@ -2,6 +2,7 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -12,10 +13,12 @@ import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.Tools;
@@ -42,6 +45,42 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView txt_register = (TextView) findViewById(R.id.txt_register);
+        txt_register.setTypeface(latoBold);
+
+        TextView txt_email = (TextView) findViewById(R.id.txt_email);
+        txt_email.setTypeface(latoRegular);
+
+        EditText edit_email = (EditText) findViewById(R.id.edit_email);
+        edit_email.setTypeface(latoRegular);
+
+        TextView txt_access_code = (TextView) findViewById(R.id.txt_accessCode);
+        txt_access_code.setTypeface(latoRegular);
+
+        EditText edit_accessCode = (EditText) findViewById(R.id.edit_accessCode);
+        edit_accessCode.setTypeface(latoRegular);
+
+        TextView txt_password = (TextView) findViewById(R.id.txt_password);
+        txt_password.setTypeface(latoRegular);
+
+        EditText edit_password = (EditText) findViewById(R.id.edit_password);
+        edit_password.setTypeface(latoRegular);
+
+        TextView txt_repassword = (TextView) findViewById(R.id.txt_repassword);
+        txt_repassword.setTypeface(latoRegular);
+
+        EditText edit_repassword = (EditText) findViewById(R.id.edit_repassword);
+        edit_repassword.setTypeface(latoRegular);
+
+        Button btn_done = (Button) findViewById(R.id.btn_done);
+        btn_done.setTypeface(latoBold);
+
+        TextView txt_terms = (TextView) findViewById(R.id.txt_terms);
+        txt_terms.setTypeface(latoRegular);
+
         ImageView btn_back = (ImageView) findViewById(R.id.btn_back);
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -50,7 +89,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        EditText edit_email = (EditText) findViewById(R.id.edit_email);
         edit_email.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -75,7 +113,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        EditText edit_accessCode = (EditText) findViewById(R.id.edit_accessCode);
         edit_accessCode.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -100,7 +137,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        EditText edit_password = (EditText) findViewById(R.id.edit_password);
         edit_password.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -125,7 +161,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        EditText edit_repassword = (EditText) findViewById(R.id.edit_repassword);
         edit_repassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -161,7 +196,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        Button btn_done = (Button) findViewById(R.id.btn_done);
         btn_done.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

@@ -16,16 +16,6 @@
         android:id="@+id/linearLayout"
         android:clipToPadding="false"/>
 
-    <!--<ScrollView-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:clipToPadding="false">-->
-
-        <!--<RelativeLayout-->
-            <!--android:layout_width="wrap_content"-->
-            <!--android:layout_height="wrap_content"-->
-            <!--android:clipToPadding="false" >-->
-
             <ImageView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -40,8 +30,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_back"
                 android:id="@+id/txt_register"
-                android:text="Register"
-                android:textSize="45dp"
+                android:text="@string/txt_register"
+                android:textSize="36dp"
                 android:textColor="@color/white"
                 android:textStyle="bold"
                 android:layout_marginTop="30dp" />
@@ -51,8 +41,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_register"
                 android:id="@+id/txt_email"
-                android:text="EMAIL ADDRESS"
-                android:textSize="17dp"
+                android:text="@string/txt_email"
+                android:textSize="14dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp" />
 
@@ -62,7 +52,7 @@
                 android:id="@+id/edit_email"
                 android:inputType="textEmailAddress"
                 android:layout_below="@id/txt_email"
-                android:textSize="17dp"
+                android:textSize="18dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
@@ -84,8 +74,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/txt_accessCode"
-                android:text="ACCESS CODE"
-                android:textSize="17dp"
+                android:text="@string/txt_access_code"
+                android:textSize="14dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp"
                 android:layout_below="@+id/edit_email" />
@@ -104,7 +94,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/edit_accessCode"
                 android:layout_below="@id/txt_accessCode"
-                android:textSize="17dp"
+                android:textSize="18dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
@@ -127,8 +117,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/edit_accessCode"
                 android:id="@+id/txt_password"
-                android:text="PASSWORD"
-                android:textSize="17dp"
+                android:text="@string/txt_password"
+                android:textSize="14dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp" />
 
@@ -138,7 +128,7 @@
                 android:id="@+id/edit_password"
                 android:inputType="textPassword"
                 android:layout_below="@id/txt_password"
-                android:textSize="17dp"
+                android:textSize="18dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
@@ -161,8 +151,8 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/edit_password"
                 android:id="@+id/txt_repassword"
-                android:text="RE-ENTER PASSWORD"
-                android:textSize="17dp"
+                android:text="@string/txt_repassword"
+                android:textSize="14dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp" />
 
@@ -172,7 +162,7 @@
                 android:id="@+id/edit_repassword"
                 android:inputType="textPassword"
                 android:layout_below="@id/txt_repassword"
-                android:textSize="17dp"
+                android:textSize="18dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_marginRight="60dp"
@@ -192,10 +182,10 @@
 
             <Button
                 android:layout_width="wrap_content"
-                android:layout_height="60dp"
+                android:layout_height="48dp"
                 android:layout_below="@id/edit_repassword"
                 android:id="@+id/btn_done"
-                android:textSize="19dp"
+                android:textSize="16dp"
                 android:textColor="#439EAA"
                 android:background="@color/white"
                 android:text="Done"
@@ -204,16 +194,13 @@
                 android:layout_marginTop="30dp"/>
 
             <TextView
+                android:id="@+id/txt_terms"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_done"
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
-                android:textSize="19dp"
-                android:text="By registering I agree to kieslog's \nTerms of Service and Privacy Policy."/>
-
-        <!--</RelativeLayout>-->
-
-    <!--</ScrollView>-->
+                android:textSize="14dp"
+                android:text="@string/txt_terms"/>
 
 </RelativeLayout>

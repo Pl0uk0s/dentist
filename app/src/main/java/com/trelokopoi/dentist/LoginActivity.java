@@ -2,6 +2,7 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextUtils;
@@ -18,6 +19,7 @@ import android.widget.Toast;
 import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.Tools;
@@ -28,6 +30,7 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.lang.reflect.Type;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -54,6 +57,33 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             setContentView(R.layout.activity_login);
 
             this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
+
+            Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+            Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+            TextView txt_login = (TextView) findViewById(R.id.txt_login);
+            txt_login.setTypeface(latoBold);
+
+            TextView txt_email = (TextView) findViewById(R.id.txt_email);
+            txt_email.setTypeface(latoRegular);
+
+            EditText edit_email = (EditText) findViewById(R.id.edit_email);
+            edit_email.setTypeface(latoRegular);
+
+            TextView txt_password = (TextView) findViewById(R.id.txt_password);
+            txt_password.setTypeface(latoRegular);
+
+            EditText edit_password = (EditText) findViewById(R.id.edit_password);
+            edit_password.setTypeface(latoRegular);
+
+            CheckBox chk_rememberme = (CheckBox) findViewById(R.id.chk_rememberme);
+            chk_rememberme.setTypeface(latoRegular);
+
+            TextView txt_forgotPassword = (TextView) findViewById(R.id.txt_forgotPassword);
+            txt_forgotPassword.setTypeface(latoRegular);
+
+            Button btn_done = (Button) findViewById(R.id.btn_done);
+            btn_done.setTypeface(latoBold);
 
             ImageView btn_back = (ImageView) findViewById(R.id.btn_back);
             btn_back.setOnClickListener(new View.OnClickListener() {
@@ -127,9 +157,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                     String password = password_edittext.getText().toString();
 
                     if (useremail.length() == 0) {
-                        Tools.toast(getApplicationContext(), "Please enter an email");
+                        Tools.toast(getApplicationContext(), getString(R.string.str_noEmail));
                     } else if (password.length() == 0) {
-                        Tools.toast(getApplicationContext(), "Please enter a password");
+                        Tools.toast(getApplicationContext(), getString(R.string.str_noPass));
                     } else if (isValidPassword(password) && isValidEmail(useremail)) {
                         JSONObject Response = WebApi.authenticate(LoginActivity.this, useremail, password);
                         try {
@@ -257,7 +287,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                     ActivityLoader.load(LoginActivity.this, ActivityLoader.act1);
                 }
                 else {
-                    Tools.toast(getApplicationContext(), "Sorry, an error occurred. Please reopen the app.");
+                    Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
                 }
             }
         }

@@ -2,12 +2,14 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.Tools;
 
 
@@ -20,7 +22,20 @@ public class PreLoginActivity extends Activity implements AsyncApiCallOnTaskComp
         Tools.setupGoogleAnalytics(PreLoginActivity.this);
         setContentView(R.layout.activity_prelogin);
 
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+
+        TextView txt_welcome = (TextView) findViewById(R.id.txt_welcome);
+        txt_welcome.setTypeface(latoBold);
+
+        TextView txt_welcome2 = (TextView) findViewById(R.id.txt_welcome2);
+        txt_welcome2.setTypeface(latoBold);
+
+        TextView btn_signin = (TextView) findViewById(R.id.btn_signin);
+        btn_signin.setTypeface(latoBold);
+
         Button btn_register = (Button) findViewById(R.id.btn_register);
+        btn_register.setTypeface(latoBold);
+
         btn_register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -29,7 +44,6 @@ public class PreLoginActivity extends Activity implements AsyncApiCallOnTaskComp
             }
         });
 
-        TextView btn_signin = (TextView) findViewById(R.id.btn_signin);
         btn_signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

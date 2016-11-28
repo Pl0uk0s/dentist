@@ -1,9 +1,28 @@
 <resources>
-    <string name="app_name">dentist</string>
+    <string name="app_name">kieslog</string>
     <string name="versionBackend">a-m-</string>
-    <string name="title_activity_login">Sign in</string>
 
     <!-- Strings related to login -->
+    <string name="txt_welcome">Welcome to \nkieslog.</string>
+    <string name="txt_welcome2">Let\'s work together \nto improve our kids\' \ndental hygiene.</string>
+    <string name="btn_signin">Sign in as an existing user</string>
+    <string name="btn_register">Register as a new user</string>
+
+    <string name="txt_login">Sign in</string>
+    <string name="txt_email">EMAIL ADDRESS</string>
+    <string name="txt_password">PASSWORD</string>
+    <string name="chk_rememberme">Remember Me</string>
+    <string name="txt_forgotPassword">Forgot Password?</string>
+    <string name="btn_done">Done</string>
+    <string name="str_noEmail">Please enter an email</string>
+    <string name="str_noPass">Please enter a password</string>
+    <string name="str_error">Sorry, an error occurred. Please reopen the app.</string>
+
+    <string name="txt_register">Register</string>
+    <string name="txt_access_code">ACCESS CODE</string>
+    <string name="txt_repassword">RE-ENTER PASSWORD</string>
+    <string name="txt_terms">By registering I agree to Kieslog\'s \nTerms of Service and Privacy Policy.</string>
+
     <string name="prompt_email">Email</string>
     <string name="prompt_password">Password (optional)</string>
     <string name="action_sign_in">Sign in or register</string>
@@ -43,14 +62,10 @@
     <string name="quantity_title">Quantity</string>
     <string name="new_prod_tv">New Product Name</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
-    <string name="btn_signin">Sign in as an existing user</string>
-    <string name="btn_register">Register as a new user</string>
-    <string name="txt_register">Register</string>
-    <string name="txt_email">EMAIL ADDRESS</string>
-    <string name="txt_access_code">ACCESS CODE</string>
-    <string name="txt_password">PASSWORD</string>
-    <string name="txt_repassword">RE-ENTER PASSWORD</string>
-    <string name="txt_terms">By registering I agree to Kieslog\'s \nTerms of Service and Privacy Policy.</string>
+
+
+
+
     <string name="img_info">Info</string>
     <string name="img_back">Back</string>
     <string name="img_valid">Valid</string>
@@ -58,20 +73,6 @@
     <string name="old_password">Old Password</string>
     <string name="new_password">New Password</string>
     <string name="new_password_again">Re-enter password</string>
-    <string name="terms">D/ViewRootImpl: #3 mView = null
-D/ViewRootImpl: ViewPostImeInputStage processKey 0
-D/ViewRootImpl: ViewPostImeInputStage processKey 1
-D/ViewRootImpl: #1 mView = android.widget.LinearLayout{205d5b1 V.E...... ......I. 0,0-0,0}
-D/mali_winsys: EGLint new_window_surface(egl_winsys_display*, void*, EGLSurface, EGLConfig, egl_winsys_surface**, egl_color_buffer_format*, EGLBoolean) returns 0x3000,  [1336x249]-format:1
-D/ViewRootImpl: MSG_RESIZED_REPORT: ci=Rect(0, 0 - 0, 0) vi=Rect(0, 0 - 0, 0) or=1
-W/DisplayListCanvas: DisplayListCanvas is started on unbinded RenderNode (without mOwningView)
-V/RenderScript: 0x7f7b176000 Launching thread(s), CPUs 8
-D/ViewRootImpl: ViewPostImeInputStage processKey 0
-D/ViewRootImpl: ViewPostImeInputStage processKey 1
-D/ViewRootImpl: #3 mView = null
-D/ViewRootImpl: #3 mView = null
-D/ViewRootImpl: #3 mView = null
-Application terminated.</string>
 
 
 

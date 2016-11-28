@@ -6,36 +6,33 @@
 
     <TextView
         android:id="@+id/txt_welcome"
-        android:text="Welcome to kieslog."
+        android:text="@string/txt_welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="50sp"
+        android:textSize="36dp"
         android:textColor="@color/white"
-        android:layout_marginBottom="7dp"
+        android:layout_marginTop="42pt"
         android:layout_marginLeft="20dp"/>
 
     <TextView
         android:id="@+id/txt_welcome2"
         android:layout_below="@id/txt_welcome"
-        android:text="Let's work together to improve our kids' dental hygiene."
+        android:text="@string/txt_welcome2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="30sp"
+        android:textSize="26dp"
         android:textColor="@color/white"
         android:layout_marginBottom="7dp"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="28pt"/>
 
     <TextView
         android:id="@+id/btn_signin"
         android:text="@string/btn_signin"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="48dp"
         android:layout_alignParentBottom="true"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="19sp"
+        android:textSize="16dp"
         android:textColor="@color/white"
         android:gravity="center"
         android:layout_marginBottom="7dp"/>
@@ -44,11 +41,10 @@
         android:id="@+id/btn_register"
         android:text="@string/btn_register"
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="48dp"
         android:layout_above="@id/btn_signin"
-        android:fontFamily="sans-serif-medium"
-        android:textSize="19sp"
-        android:textColor="#439EAA"
+        android:textSize="16dp"
+        android:textColor="#0097A7"
         android:background="@color/white"
         android:layout_margin="9dp"
         android:elevation="10dp"
