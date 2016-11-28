@@ -7,12 +7,14 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -35,6 +37,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
     private ProductAdapter adapter;
     private EditText inputSearch;
     private String add_product_date;
+    private View line;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +49,8 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         final RelativeLayout new_product = (RelativeLayout) findViewById(R.id.add_new_product);
         final LinearLayout prod_detail_layout = (LinearLayout) findViewById(R.id.prod_detail_layout);
         productsListView = (ListView) findViewById(R.id.products_list);
-        inputSearch = (EditText) findViewById(R.id.search_product);
+        inputSearch = (EditText) findViewById(R.id.search_ed);
+        line = findViewById(R.id.view1);
 
         inputSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
@@ -106,28 +110,37 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                     productsListView.setAdapter(adapter);
                 }
 
-
+                final float scale = getResources().getDisplayMetrics().density;
+                final int pixels = (int) (50 * scale + 0.5f);
+                final int pixels2 = (int) (10 * scale + 0.5f);
                 // When user changed the Text
                 RelativeLayout.LayoutParams p;
                 if (adapter.getCount() > 5) {
                     new_product.setVisibility(View.GONE);
+                    line.setVisibility(View.VISIBLE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
                     productsListView.setVisibility(View.VISIBLE);
-                    p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, (5 * item.getMeasuredHeight()));
-                    p.setMargins(60, 0, 60, 0);
-                    p.addRule(RelativeLayout.BELOW, R.id.add_top);
+                    p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, (5 * item.getMeasuredHeight()));
+                    p.setMargins(pixels2, 0, pixels2, 0);
+                    p.addRule(RelativeLayout.BELOW, R.id.view1);
                     productsListView.setLayoutParams(p);
+                    productsListView.setDivider(null);
+                    productsListView.setDividerHeight(0);
                 } else if (adapter.getCount() != 0) {
                     new_product.setVisibility(View.GONE);
+                    line.setVisibility(View.VISIBLE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
                     productsListView.setVisibility(View.VISIBLE);
-                    p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                    p.setMargins(60, 0, 60, 0);
-                    p.addRule(RelativeLayout.BELOW, R.id.add_top);
+                    p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, pixels);
+                    p.setMargins(pixels2, 0, pixels2, 0);
+                    p.addRule(RelativeLayout.BELOW, R.id.view1);
                     productsListView.setLayoutParams(p);
+                    productsListView.setDivider(null);
+                    productsListView.setDividerHeight(0);
                 } else {
+                    line.setVisibility(View.GONE);
                     new_product.setVisibility(View.VISIBLE);
                     productsListView.setVisibility(View.GONE);
                 }
@@ -188,6 +201,16 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             }
         });
 
+        String[] values = getResources().getStringArray(R.array.settings_array);
+        ListView listView = (ListView) findViewById(R.id.recent_list);
+        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.settings_list_item, R.id.settings_item, values);
+        listView.setAdapter(settingsAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                }
+            });
         }
 
     @Override

@@ -34,7 +34,6 @@
     <string name="permission_rationale">"Contacts permissions are needed for providing email completions."</string>
     <string name="dialog_button_no">No</string>
     <string name="dialog_button_yes">Yes</string>
-    <string name="search_product">Search Product</string>
     <string name="date_tv">Date:</string>
     <string name="time_tv">Time:</string>
     <string name="quantity_tv">Quan:</string>
@@ -50,6 +49,7 @@
     <string name="settings_title_changePassword">Change password</string>
     <string name="today">Today</string>
     <string name="add_new_product_tv">Add new product</string>
+    <string name="recent_title">Recent Products</string>
     <string name="main_title">Daily log</string>
     <string name="name_title">Product name</string>
     <string name="name_hint">Product name</string>
