@@ -34,7 +34,6 @@
         android:text="@string/txt_login"
         android:textSize="36dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_marginTop="30dp" />
 
     <TextView

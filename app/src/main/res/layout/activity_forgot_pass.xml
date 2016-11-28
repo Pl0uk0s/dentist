@@ -31,10 +31,9 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_header"
-        android:text="Forgot password?"
-        android:textSize="40dp"
+        android:text="@string/txt_header"
+        android:textSize="36dp"
         android:textColor="@color/white"
-        android:textStyle="bold"
         android:layout_marginTop="30dp" />
 
     <TextView
@@ -42,18 +41,18 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_header"
         android:id="@+id/txt_text1"
-        android:text="We'll send you a link to create a new password."
-        android:textSize="17dp"
+        android:text="@string/txt_text1"
+        android:textSize="16dp"
         android:textColor="@color/white"
-        android:layout_marginTop="20dp" />
+        android:layout_marginTop="18dp" />
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_text1"
         android:id="@+id/txt_email"
-        android:text="EMAIL ADDRESS"
-        android:textSize="17dp"
+        android:text="@string/txt_email"
+        android:textSize="14dp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
 
@@ -63,7 +62,7 @@
         android:id="@+id/edit_email"
         android:inputType="textEmailAddress"
         android:layout_below="@id/txt_email"
-        android:textSize="17dp"
+        android:textSize="18dp"
         android:textColor="@color/white"
         android:layout_marginTop="20dp"
         android:layout_marginRight="60dp"
@@ -83,13 +82,13 @@
 
     <Button
         android:layout_width="wrap_content"
-        android:layout_height="60dp"
+        android:layout_height="48dp"
         android:layout_below="@id/edit_email"
         android:id="@+id/btn_done"
-        android:textSize="19dp"
+        android:textSize="16dp"
         android:textColor="#439EAA"
         android:background="@color/white"
-        android:text="Done"
+        android:text="@string/btn_done"
         android:elevation="20dp"
         android:textAllCaps="false"
         android:layout_marginTop="30dp"/>
