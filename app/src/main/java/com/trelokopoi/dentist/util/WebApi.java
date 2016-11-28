@@ -34,6 +34,7 @@ public class WebApi {
     private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
     private static final String ACTION_DELETEPRODUCTFROMCHILD = "?action=deleteProductFromChild";
     private static final String ACTION_GETOTHERCHILDRENFORSAMEENTRY = "?action=getOtherChildrenForSameEntry";
+    private static final String ACTION_FORGOTPASSWORD = "?action=forgotPassword";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USEREMAIL = "&userEmail=";
@@ -96,17 +97,17 @@ public class WebApi {
     public static JSONObject newUser(Context context, String userEmail, String accessCode, String password) {
         String uniqueId = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID);
 
-        L.debug(App.TAG, "uniqueId: "+uniqueId);
+        L.debug(App.TAG, "uniqueId: " + uniqueId);
 
-        String url  = returnURL();
+        String url = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_NEWUSER;
-        url += VALUE_USEREMAIL+userEmail;
-        url += VALUE_ACCESSCODE+accessCode;
-        url += VALUE_USERPASSWORD+sha1Hash(password);
+        url += VALUE_USEREMAIL + userEmail;
+        url += VALUE_ACCESSCODE + accessCode;
+        url += VALUE_USERPASSWORD + sha1Hash(password);
         url += deviceDataUrl();
 
-        url += VALUE_FIELD_VERSION+App.VERSION;
+        url += VALUE_FIELD_VERSION + App.VERSION;
         return WebInterface.executeWeb(url);
     }
 
@@ -151,19 +152,14 @@ public class WebApi {
         return url;
     }
 
-    public static JSONObject getChildInfo(Context context, String date, int childId) {
+    public static String forgotPassword(String email) {
         String url = returnURL();
         url += PLAYMAKER_URL;
-        url += ACTION_GETCHILDINFO;
+        url += ACTION_FORGOTPASSWORD;
 
-        url += VALUE_USEREMAIL+App.userEmail;
-        url += VALUE_USERPASSWORD+App.password;
-        url += VALUE_USERID+App.userId;
+        url += VALUE_USEREMAIL+email;
 
-        url += VALUE_DATE+date;
-        url += VALUE_CHILD_ID+childId;
-
-        return WebInterface.executeWeb(url);
+        return url;
     }
 
     public static JSONObject getProducts(String letters) {

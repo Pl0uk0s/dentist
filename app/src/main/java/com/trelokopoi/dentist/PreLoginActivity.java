@@ -26,7 +26,6 @@ public class PreLoginActivity extends Activity implements AsyncApiCallOnTaskComp
             public void onClick(View v) {
                 Intent intent = new Intent(PreLoginActivity.this, RegisterActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 
@@ -36,7 +35,6 @@ public class PreLoginActivity extends Activity implements AsyncApiCallOnTaskComp
             public void onClick(View v) {
                 Intent intent = new Intent(PreLoginActivity.this, LoginActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
     }

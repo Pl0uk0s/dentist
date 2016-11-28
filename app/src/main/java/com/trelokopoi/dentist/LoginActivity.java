@@ -60,9 +60,6 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                 @Override
                 public void onClick(View v) {
                     LoginActivity.this.onBackPressed();
-                    Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
-                    startActivity(intent);
-                    finish();
                 }
             });
 
@@ -133,7 +130,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                         Tools.toast(getApplicationContext(), "Please enter an email");
                     } else if (password.length() == 0) {
                         Tools.toast(getApplicationContext(), "Please enter a password");
-                    } else {
+                    } else if (isValidPassword(password) && isValidEmail(useremail)) {
                         JSONObject Response = WebApi.authenticate(LoginActivity.this, useremail, password);
                         try {
 
@@ -186,14 +183,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             forgot_password.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    if (useremail_edittext.getText().toString().trim().equals(""))
-                    {
-                        Toast.makeText(LoginActivity.this, "Fill the email in order to proceed with password recovery", Toast.LENGTH_SHORT).show();
-                    }
-                    else
-                    {
-                        Toast.makeText(LoginActivity.this, "Your request has been sent to the Administrator", Toast.LENGTH_SHORT).show();
-                    }
+                    Intent intent = new Intent(LoginActivity.this, ForgotPassActivity.class);
+                    intent.putExtra("email", useremail_edittext.getText().toString());
+                    startActivity(intent);
                 }
             });
         }
