@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
-android:layout_height="match_parent" android:background="#DADDDF"
+android:layout_height="match_parent" android:background="#ECEFF1"
 tools:context="com.trelokopoi.dentist.AddProductActivity">
 
     <!--android:background="#EEEEEE"-->
@@ -54,7 +54,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:background="@color/white"
-        android:elevation="5dp"
+        android:elevation="6dp"
         android:layout_below="@+id/add_top">
 
         <ImageView
@@ -127,7 +127,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:textSize="15sp"
             android:textColor="@color/white"
             android:text="@string/add_new_product_tv"/>
-        </RelativeLayout>
+    </RelativeLayout>
 
     <!--<android.support.v7.widget.SearchView-->
         <!--android:id="@+id/search"-->
@@ -153,6 +153,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_width="match_parent"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
+        android:layout_marginBottom="10dp"
         android:background="@color/white"
         android:elevation="3dp"
         android:layout_below="@+id/recent_title"
@@ -169,10 +170,11 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:text="@string/recent_title"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
+            android:layout_marginEnd="10dp"
             android:paddingTop="20dp"
             android:elevation="3dp"
-        android:paddingBottom="20dp"
-        android:layout_below="@+id/add_new_product"
-        android:layout_alignStart="@+id/recent_list" />
+            android:paddingBottom="20dp"
+            android:layout_below="@+id/add_new_product"
+            android:layout_alignStart="@+id/recent_list" />
 
 </RelativeLayout>

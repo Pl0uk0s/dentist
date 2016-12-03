@@ -108,19 +108,6 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
 
     }
 
-    private void dialog() {
-        final Dialog thedialog = new Dialog(NewProductActivity.this);
-        thedialog.requestWindowFeature(1);
-        thedialog.setContentView(R.layout.lock_app_dialog);
-        thedialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-//        thedialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        thedialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
-        thedialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-        thedialog.show();
-//        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia);
-//        Button btn = (Button) thedialog.findViewById(R.id.btn_yes);
-    }
-
     @Override
     public void onTaskCompleted(int thread, String result) {
 

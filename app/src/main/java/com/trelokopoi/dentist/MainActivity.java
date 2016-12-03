@@ -2,11 +2,13 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.support.v4.content.ContextCompat;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
@@ -132,24 +135,21 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
             if (hasPreviousDate.equals("1")) {
                 previous.setVisibility(ImageView.VISIBLE);
-            }
-            else {
+            } else {
                 previous.setVisibility(ImageView.INVISIBLE);
             }
 
             if (hasNextDate.equals("1")) {
                 next.setVisibility(ImageView.VISIBLE);
-            }
-            else {
+            } else {
                 next.setVisibility(ImageView.INVISIBLE);
             }
 
-        }
-        else {
+        } else {
             Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
         }
 
-        ScrollView children_scrollview = (ScrollView)findViewById(R.id.children_scrollview);
+        ScrollView children_scrollview = (ScrollView) findViewById(R.id.children_scrollview);
 
         JSONArray children = LocalStorage.getChildren();
 
@@ -164,8 +164,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             Calendar cal = Calendar.getInstance();
             String validDateUntil = df.format(cal.getTime());
             valid_date = df.parse(validDateUntil);
-            if (curr_date.equals((valid_date)))
-            {
+            if (curr_date.equals((valid_date))) {
                 next.setVisibility(View.INVISIBLE);
                 dateTxtView.setVisibility(View.INVISIBLE);
                 todayTxtView.setVisibility(View.VISIBLE);
@@ -197,74 +196,70 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
 
-            }
-            else if (i == 2) {
+            } else if (i == 2) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
-            }
-            else if (i == 3) {
+                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
+            } else if (i == 3) {
 
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
+                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
 
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
-                child_lastentry3.setText("Last entry at "+child3.optString("lastEntry", ""));
-            }
-            else if (i == 4) {
+                child_lastentry3.setText("Last entry at " + child3.optString("lastEntry", ""));
+            } else if (i == 4) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at "+child1.optString("lastEntry", ""));
+                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at "+child2.optString("lastEntry", ""));
+                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
 
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
-                child_lastentry3.setText("Last entry at "+child3.optString("lastEntry", ""));
+                child_lastentry3.setText("Last entry at " + child3.optString("lastEntry", ""));
 
                 JSONObject child4 = children.getJSONObject(3);
                 llchild4.setVisibility(View.VISIBLE);
                 child4_relative.setVisibility(View.VISIBLE);
                 child_name4.setText(child4.optString("name", ""));
-                child_lastentry4.setText("Last entry at "+child4.optString("lastEntry", ""));
+                child_lastentry4.setText("Last entry at " + child4.optString("lastEntry", ""));
             }
-        }
-        catch (JSONException e) {
+        } catch (JSONException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
@@ -281,16 +276,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
 
-                    if (child1_data.getVisibility() == View.VISIBLE)
-                    {
+                    if (child1_data.getVisibility() == View.VISIBLE) {
                         child1_data.setVisibility(View.GONE);
-                    }
-                    else
-                    {
+                    } else {
                         child1_data.setVisibility(View.VISIBLE);
                     }
                 }
@@ -309,16 +300,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
 
-                    if (child2_data.getVisibility() == View.VISIBLE)
-                    {
+                    if (child2_data.getVisibility() == View.VISIBLE) {
                         child2_data.setVisibility(View.GONE);
-                    }
-                    else
-                    {
+                    } else {
                         child2_data.setVisibility(View.VISIBLE);
                     }
                 }
@@ -337,16 +324,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
 
-                    if (child3_data.getVisibility() == View.VISIBLE)
-                    {
+                    if (child3_data.getVisibility() == View.VISIBLE) {
                         child3_data.setVisibility(View.GONE);
-                    }
-                    else
-                    {
+                    } else {
                         child3_data.setVisibility(View.VISIBLE);
                     }
                 }
@@ -365,16 +348,12 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                }
-                else {
+                } else {
                     LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
 
-                    if (child4_data.getVisibility() == View.VISIBLE)
-                    {
+                    if (child4_data.getVisibility() == View.VISIBLE) {
                         child4_data.setVisibility(View.GONE);
-                    }
-                    else
-                    {
+                    } else {
                         child4_data.setVisibility(View.VISIBLE);
                     }
                 }
@@ -425,16 +404,32 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         children_scrollview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
             public void onSwipeTop() {
             }
+
             public void onSwipeRight() {
                 swipeRight();
             }
+
             public void onSwipeLeft() {
                 swipeLeft();
             }
+
             public void onSwipeBottom() {
             }
 
         });
+    }
+
+    private void dialog() {
+        final Dialog thedialog = new Dialog(MainActivity.this);
+        thedialog.requestWindowFeature(1);
+        thedialog.setContentView(R.layout.lock_app_dialog);
+        thedialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        thedialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        thedialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        thedialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        thedialog.show();
+//        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia);
+//        Button btn = (Button) thedialog.findViewById(R.id.btn_yes);
     }
 
     @Override
@@ -490,7 +485,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
-        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+        final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.child_item);
 
@@ -544,7 +539,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setTitle("Delete item");
                 builder.setMessage("Are you sure you want to delete this item? The portion and time of consume will be deleted from the daily log of your child.")
                         .setPositiveButton("DELETE", new DialogInterface.OnClickListener()
                         {

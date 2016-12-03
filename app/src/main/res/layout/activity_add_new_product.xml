@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#DADDDF">
+    android:background="#ECEFF1">
 
     <RelativeLayout
         android:id="@+id/header"
@@ -65,6 +65,7 @@
             android:textSize="15sp"
             android:background="@android:color/transparent"
             android:textColor="#54000000"
+            android:textColorHint="#54000000"
             android:hint="@string/name_hint"
             android:layout_centerVertical="true"
             android:layout_marginStart="10dp"
@@ -122,7 +123,7 @@
     <Button
         android:id="@+id/save"
         android:layout_width="80dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_below="@+id/unit_list"
         android:layout_marginStart="10dp"
         android:adjustViewBounds="true"
