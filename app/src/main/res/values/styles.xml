@@ -6,7 +6,7 @@
         <!--<item name="colorPrimary">@color/colorPrimary</item>-->
         <!--<item name="colorPrimaryDark">@color/colorPrimaryDark</item>-->
         <!--<item name="colorAccent">@color/colorAccent</item>-->
-        <item name="colorPrimaryDark">#0097A7</item>
+        <item name="android:colorPrimaryDark">#0097A7</item>
     </style>
 
     <style name="DialogTheme" parent="@android:style/Theme.Dialog">

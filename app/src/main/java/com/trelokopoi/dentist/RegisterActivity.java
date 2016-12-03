@@ -217,7 +217,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                         if (showMsgBox.equals("1")) {
                             L.debug(App.TAG, "show msgbox");
                             String msg = (String) Response.getString("msg");
-                            Tools.toast(getApplicationContext(), msg);
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                         }
 
                         if (exists.equals("0")) {
@@ -253,7 +253,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                     }
                 }
                 else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.str_fillAllFields), Toast.LENGTH_LONG);
+                    Toast.makeText(getApplicationContext(), getString(R.string.str_fillAllFields), Toast.LENGTH_LONG).show();
                 }
             }
         });

@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Intent;
 import android.os.Handler;
 import android.os.Bundle;
+import android.widget.Toast;
 
 import com.google.android.gms.analytics.Tracker;
 import com.trelokopoi.dentist.util.ActivityLoader;
@@ -78,14 +79,7 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
                 ActivityLoader.load(SplashScreen.this, ActivityLoader.act1);
             }
             else {
-                new NoInternetDialog(SplashScreen.this)
-                {
-                    public void run()
-                    {
-
-                        return;
-                    }
-                };
+                Toast.makeText(getApplicationContext(), getString(R.string.noInternet), Toast.LENGTH_LONG).show();
             }
         }
         else {

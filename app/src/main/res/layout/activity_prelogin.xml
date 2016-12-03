@@ -50,7 +50,7 @@
         android:textColor="#0097A7"
         android:background="@color/white"
         android:layout_margin="9dp"
-        android:elevation="10dp"
+        android:elevation="3dp"
         android:textAllCaps="false"
         android:lineSpacingExtra="2sp"/>
 

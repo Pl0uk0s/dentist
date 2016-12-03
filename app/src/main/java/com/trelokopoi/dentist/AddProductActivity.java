@@ -22,6 +22,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.Fonts;
@@ -98,7 +99,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                         if (showMsgBox.equals("1")) {
                             L.debug(App.TAG, "show msgbox");
                             String msg = (String) Response.getString("msg");
-                            Tools.toast(getApplicationContext(), msg);
+                            Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                         }
 
                         //put the products in the list view
