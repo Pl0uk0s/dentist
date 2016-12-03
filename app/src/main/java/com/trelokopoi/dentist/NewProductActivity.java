@@ -1,11 +1,18 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
@@ -40,7 +47,33 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                 }
             }
         });
+
+        ImageView back = (ImageView) findViewById(R.id.back);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Intent i = new Intent(NewProductActivity.this, AddProductActivity.class);
+//                startActivity(i);
+//                finish();
+                dialog();
+            }
+        });
+
     }
+
+    private void dialog() {
+        final Dialog thedialog = new Dialog(NewProductActivity.this);
+        thedialog.requestWindowFeature(1);
+        thedialog.setContentView(R.layout.lock_app_dialog);
+        thedialog.getWindow().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+//        thedialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        thedialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
+        thedialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        thedialog.show();
+//        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia);
+//        Button btn = (Button) thedialog.findViewById(R.id.btn_yes);
+    }
+
     @Override
     public void onTaskCompleted(int thread, String result) {
 

@@ -62,11 +62,11 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 }
             }
         });
-        Bundle extras = getIntent().getExtras();
-        String productName = extras.getString("productName");
-        if (productName != null && !productName.equals("")) {
-            inputSearch.setText(productName);
-        }
+//        Bundle extras = getIntent().getExtras();
+//        String productName = extras.getString("productName");
+//        if (productName != null && !productName.equals("")) {
+//            inputSearch.setText(productName);
+//        }
 
         /**
          * Enabling Search Filter
@@ -116,19 +116,20 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 // When user changed the Text
                 RelativeLayout.LayoutParams p;
                 if (adapter.getCount() > 5) {
-                    new_product.setVisibility(View.GONE);
+                    new_product.setVisibility(View.INVISIBLE);
                     line.setVisibility(View.VISIBLE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
                     productsListView.setVisibility(View.VISIBLE);
+//                    p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, (5 * pixels));
                     p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, (5 * item.getMeasuredHeight()));
                     p.setMargins(pixels2, 0, pixels2, 0);
                     p.addRule(RelativeLayout.BELOW, R.id.view1);
                     productsListView.setLayoutParams(p);
                     productsListView.setDivider(null);
                     productsListView.setDividerHeight(0);
-                } else if (adapter.getCount() != 0) {
-                    new_product.setVisibility(View.GONE);
+                } else if (adapter.getCount() != 0 && adapter.getCount() <= 5) {
+                    new_product.setVisibility(View.INVISIBLE);
                     line.setVisibility(View.VISIBLE);
                     View item = adapter.getView(0, null, productsListView);
                     item.measure(0, 0);
@@ -198,6 +199,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             public void onClick(View arg0) {
                 Intent i = new Intent(AddProductActivity.this, NewProductActivity.class);
                 startActivity(i);
+                finish();
             }
         });
 

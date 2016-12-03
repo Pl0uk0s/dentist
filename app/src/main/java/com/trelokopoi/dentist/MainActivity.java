@@ -74,6 +74,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Tools.setupGoogleAnalytics(MainActivity.this);
 
+        float density = getResources().getDisplayMetrics().density;
+
         Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
         Typeface latoItalic = Fonts.returnFont(this, Fonts.LATO_ITALIC);
