@@ -157,7 +157,9 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         back_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                SettingsActivity.this.onBackPressed();
+                Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+                startActivity(intent);
+                finish();
             }
         });
     }
