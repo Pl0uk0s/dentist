@@ -1,5 +1,6 @@
 package com.trelokopoi.dentist.util;
 
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -49,6 +50,9 @@ public class RecentProductAdapter extends BaseAdapter {
         // TODO replace findViewById by ViewHolder
         ((TextView) result.findViewById(R.id.id)).setText(item.getKey());
         ((TextView) result.findViewById(R.id.product)).setText(item.getValue());
+
+        Typeface latoRegular = Fonts.returnFont(parent.getContext(), Fonts.LATO_REGULAR);
+        ((TextView) result.findViewById(R.id.product)).setTypeface(latoRegular);
 
         return result;
     }

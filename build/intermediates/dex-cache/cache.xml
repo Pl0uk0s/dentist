@@ -115,7 +115,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="cc2ab8d09d38cbcc82ac90448d626db1e368a4e7">
+        sha1="1f8e966463c4d6c10668a0ceb809087253fd1de7">
         <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run-bootstrap_a4c1c23206ae17d6dc70a433e2e7cd2880673176/classes.dex" />
     </item>
     <item
@@ -124,7 +124,7 @@
         jumboMode="true"
         optimize="true"
         revision="23.0.3"
-        sha1="0d5d561a656c29e4789de51d3a14666a11571fbc">
+        sha1="8ec2bafa9d3a26e1a0cf71921fcbe1dcf9b33c82">
         <dex dex="/Users/kostasploumidakis/dentist/app/build/intermediates/transforms/dex/debug/folders/1000/10/instant-run_925bf47f02ab5ca4deb8e1d79a9658ae8092c355/classes.dex" />
     </item>
     <item

@@ -24,6 +24,7 @@ import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.LocalStorage;
+import com.trelokopoi.dentist.util.SettingsAdapter;
 import com.trelokopoi.dentist.util.WebApi;
 import com.trelokopoi.dentist.util.WebInterface;
 
@@ -85,9 +86,7 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
 
         String[] values = getResources().getStringArray(R.array.settings_array);
         ListView listView = (ListView) findViewById(R.id.settings_list);
-        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.settings_list_item, R.id.settings_item, values);
-        TextView listItem = (TextView)findViewById(R.id.settings_item);
-        listItem.setTypeface(latoBold);
+        SettingsAdapter settingsAdapter = new SettingsAdapter(this, R.id.settings_item, R.layout.settings_list_item, values);
         listView.setAdapter(settingsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

@@ -58,8 +58,8 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         TextView quanTitleTextView = (TextView)findViewById(R.id.quantity_title);
         quanTitleTextView.setTypeface(latoBold);
 
-        TextView quanTextView = (TextView)findViewById(R.id.quantity_tv);
-        quanTextView.setTypeface(latoRegular);
+        quantityEditText = (EditText)findViewById(R.id.quantity_ed);
+        quantityEditText.setTypeface(latoRegular);
 
         TextView measureTextView = (TextView)findViewById(R.id.measurement_tv);
         measureTextView.setTypeface(latoRegular);
@@ -101,8 +101,6 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         titleTextView.setTypeface(latoRegular);
         titleTextView.setText(food30chars);
 
-        quantityEditText = (EditText) findViewById(R.id.quantity_ed);
-        quantityEditText.setTypeface(latoRegular);
         if (diaryId != null && !diaryId.equals("0")) {
             quantityEditText.setText(amount);
         }

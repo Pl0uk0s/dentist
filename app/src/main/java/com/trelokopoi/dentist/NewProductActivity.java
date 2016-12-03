@@ -22,6 +22,8 @@ import android.widget.Toast;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.Fonts;
+import com.trelokopoi.dentist.util.SettingsAdapter;
+import com.trelokopoi.dentist.util.UnitAdapter;
 import com.trelokopoi.dentist.util.WebApi;
 import com.trelokopoi.dentist.util.WebInterface;
 
@@ -70,10 +72,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
 
         String[] values = getResources().getStringArray(R.array.unit_array);
         final ListView listView = (ListView) findViewById(R.id.unit_list);
-        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.unit_list_item, R.id.unit_item, values);
-        TextView listItemTextView = (TextView)findViewById(R.id.unit_item);
-        listItemTextView.setTypeface(latoRegular);
-        listView.setAdapter(settingsAdapter);
+        UnitAdapter unitAdapter = new UnitAdapter(this, R.id.unit_item, R.layout.unit_list_item, values);
+        listView.setAdapter(unitAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view,
@@ -100,10 +100,9 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent i = new Intent(NewProductActivity.this, AddProductActivity.class);
-//                startActivity(i);
-//                finish();
-                dialog();
+                Intent i = new Intent(NewProductActivity.this, AddProductActivity.class);
+                startActivity(i);
+                finish();
             }
         });
 
