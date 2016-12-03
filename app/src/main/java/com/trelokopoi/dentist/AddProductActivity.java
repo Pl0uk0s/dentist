@@ -203,9 +203,9 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             }
         });
 
-        String[] values = getResources().getStringArray(R.array.settings_array);
+        String[] values = getResources().getStringArray(R.array.unit_array);
         ListView listView = (ListView) findViewById(R.id.recent_list);
-        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.settings_list_item, R.id.settings_item, values);
+        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.unit_list_item, R.id.unit_item, values);
         listView.setAdapter(settingsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

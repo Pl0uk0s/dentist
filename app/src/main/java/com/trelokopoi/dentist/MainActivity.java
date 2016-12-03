@@ -74,8 +74,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Tools.setupGoogleAnalytics(MainActivity.this);
 
-        float density = getResources().getDisplayMetrics().density;
-
         Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
         Typeface latoItalic = Fonts.returnFont(this, Fonts.LATO_ITALIC);
@@ -150,10 +148,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         TextView child_lastentry3 = (TextView) findViewById(R.id.child3_last_entry);
         TextView child_lastentry4 = (TextView) findViewById(R.id.child4_last_entry);
 
-        LinearLayout llchild1 = (LinearLayout) findViewById(R.id.child1);
-        LinearLayout llchild2 = (LinearLayout) findViewById(R.id.child2);
-        LinearLayout llchild3 = (LinearLayout) findViewById(R.id.child3);
-        LinearLayout llchild4 = (LinearLayout) findViewById(R.id.child4);
+        RelativeLayout llchild1 = (RelativeLayout) findViewById(R.id.child1);
+        RelativeLayout llchild2 = (RelativeLayout) findViewById(R.id.child2);
+        RelativeLayout llchild3 = (RelativeLayout) findViewById(R.id.child3);
+        RelativeLayout llchild4 = (RelativeLayout) findViewById(R.id.child4);
 
         Integer i = children.length();
 
@@ -249,7 +247,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
+                    RelativeLayout child1_data = (RelativeLayout) findViewById(R.id.child1_data);
 
                     if (child1_data.getVisibility() == View.VISIBLE)
                     {
@@ -277,7 +275,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
+                    RelativeLayout child2_data = (RelativeLayout) findViewById(R.id.child2_data);
 
                     if (child2_data.getVisibility() == View.VISIBLE)
                     {
@@ -305,7 +303,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
+                    RelativeLayout child3_data = (RelativeLayout) findViewById(R.id.child3_data);
 
                     if (child3_data.getVisibility() == View.VISIBLE)
                     {
@@ -333,7 +331,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
+                    RelativeLayout child4_data = (RelativeLayout) findViewById(R.id.child4_data);
 
                     if (child4_data.getVisibility() == View.VISIBLE)
                     {
@@ -537,7 +535,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         if (jsonResult != null) {
             if (thread == LOAD_CHILD_DATA1) {
-                LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
+                RelativeLayout child1_data = (RelativeLayout) findViewById(R.id.child1_data);
                 child1_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child1_detail;
@@ -562,7 +560,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD1_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA2) {
-                LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
+                RelativeLayout child2_data = (RelativeLayout) findViewById(R.id.child2_data);
                 child2_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child2_detail;
@@ -587,7 +585,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD2_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA3) {
-                LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
+                RelativeLayout child3_data = (RelativeLayout) findViewById(R.id.child3_data);
                 child3_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child3_detail;
@@ -612,7 +610,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD3_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA4) {
-                LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
+                RelativeLayout child4_data = (RelativeLayout) findViewById(R.id.child4_data);
                 child4_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child4_detail;

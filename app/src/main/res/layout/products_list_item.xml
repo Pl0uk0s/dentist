@@ -7,8 +7,7 @@
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:padding="10dip"
-        android:textSize="16sp"
-        android:textStyle="bold"/>
+        android:textSize="15sp" />
 
     <TextView android:id="@+id/id"
         android:layout_width="fill_parent"

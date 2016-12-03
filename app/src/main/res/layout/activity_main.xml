@@ -21,17 +21,18 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:id="@+id/children_scrollview"
-        android:layout_below="@+id/topLayout"
-        android:clipToPadding="false">
+        android:layout_below="@+id/topLayout">
 
-        <LinearLayout
+        <!--android:clipToPadding="false"-->
+
+        <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/all_children"
             android:orientation="vertical"
-            android:clipToPadding="false">
+            android:layout_marginBottom="10dp">
 
-            <LinearLayout
+            <RelativeLayout
                 android:id="@+id/title_layout"
                 android:orientation="vertical"
                 android:layout_width="match_parent"
@@ -45,14 +46,20 @@
                     android:textSize="15sp"
                     android:textColor="#54000000"
                     android:text="@string/main_title"/>
-            </LinearLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/title_layout"
                 android:id="@+id/child1"
                 android:orientation="vertical"
-                android:background="@android:drawable/dialog_holo_light_frame"
+                android:background="@color/white"
+                android:elevation="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child1_relative"
@@ -100,20 +107,26 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child1_data"
+                    android:layout_below="@id/child1_relative"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@id/child1"
                 android:id="@+id/child2"
-                android:orientation="vertical"
-                android:background="@android:drawable/dialog_holo_light_frame"
+                android:background="@color/white"
+                android:elevation="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child2_relative"
@@ -160,20 +173,26 @@
                         android:textStyle="italic"/>
 
                 </RelativeLayout>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_below="@id/child2_relative"
                     android:id="@+id/child2_data"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/child3"
-                android:orientation="vertical"
-                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_below="@id/child2"
+                android:background="@color/white"
+                android:elevation="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child3_relative"
@@ -221,20 +240,26 @@
 
                 </RelativeLayout>
 
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child3_data"
+                    android:layout_below="@id/child3_relative"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
 
-            <LinearLayout
+            <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/child4"
-                android:orientation="vertical"
-                android:background="@android:drawable/dialog_holo_light_frame"
+                android:layout_below="@id/child3"
+                android:background="@color/white"
+                android:elevation="3dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginEnd="10dp"
                 android:visibility="gone">
 
                 <RelativeLayout android:id="@+id/child4_relative"
@@ -281,14 +306,15 @@
                         android:textStyle="italic"/>
 
                 </RelativeLayout>
-                <LinearLayout
+                <RelativeLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child4_data"
+                    android:layout_below="@id/child4_relative"
                     android:orientation="vertical">
-                </LinearLayout>
-            </LinearLayout>
-        </LinearLayout>
+                </RelativeLayout>
+            </RelativeLayout>
+        </RelativeLayout>
     </ScrollView>
 
 </RelativeLayout>

@@ -90,4 +90,11 @@
         <item>Terms Of Service And Privacy Policy</item>
         <item>About</item>
     </string-array>
+    <string-array name="unit_array">
+        <item>Grams</item>
+        <item>Milliliters</item>
+        <item>Piece</item>
+        <item>Box</item>
+        <item>Bottle</item>
+    </string-array>
 </resources>

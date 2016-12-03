@@ -8,9 +8,12 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -33,8 +36,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         setContentView(R.layout.activity_add_new_product);
 
         final EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
-        final EditText unit = (EditText) findViewById(R.id.unit_ed);
-        Button save = (Button) findViewById(R.id.save);
+        final TextView unit = (TextView) findViewById(R.id.unit_tv);
+        final Button save = (Button) findViewById(R.id.save);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -45,6 +48,32 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                     prodUnit = unit.getText().toString();
                     new AsyncApiCall(ADD_PRODUCT, NewProductActivity.this, false).execute(WebApi.addProduct(new_prod_name.getText().toString(), unit.getText().toString()));
                 }
+            }
+        });
+
+        String[] values = getResources().getStringArray(R.array.unit_array);
+        final ListView listView = (ListView) findViewById(R.id.unit_list);
+        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.unit_list_item, R.id.unit_item, values);
+        listView.setAdapter(settingsAdapter);
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view,
+                                    int position, long id) {
+                unit.setTextColor(Color.BLACK);
+                unit.setText(parent.getItemAtPosition(position).toString());
+                prodUnit = unit.getText().toString();
+                listView.setVisibility(View.GONE);
+                save.setVisibility(View.VISIBLE);
+            }
+        });
+
+        unit.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                listView.setVisibility(View.VISIBLE);
+                save.setVisibility(View.GONE);
             }
         });
 
