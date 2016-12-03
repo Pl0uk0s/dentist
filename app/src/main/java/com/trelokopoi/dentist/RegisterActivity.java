@@ -237,7 +237,14 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                                 App.userEmail = edit_email.getText().toString();
                                 App.password = WebApi.sha1Hash(edit_password.getText().toString());
                                 App.userId = userId;
-                                getChildrenNames();
+
+                                Calendar c = Calendar.getInstance();
+                                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                                String currentDate = df.format(c.getTime());
+
+                                LocalStorage.setDayForInfo(currentDate);
+
+                                ActivityLoader.load(RegisterActivity.this, ActivityLoader.act1);
                             }
                         }
                     } catch (JSONException e) {
@@ -250,10 +257,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
                 }
             }
         });
-    }
-
-    private void getChildrenNames() {
-        new AsyncApiCall(LOAD_CHILDREN, RegisterActivity.this, false).execute(WebApi.getChidren());
     }
 
     public final static boolean isValidEmail(CharSequence target) {
@@ -311,31 +314,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
 
     @Override
     public void onTaskCompleted(int thread, String result) {
-        JSONObject jsonResult = WebInterface.validateJSON(RegisterActivity.this, result);
 
-        if (jsonResult != null) {
-            if (thread == LOAD_CHILDREN) {
-
-                String success = jsonResult.optString("success", "0");
-
-                if (success.equals("1")) {
-                    JSONArray children = jsonResult.optJSONArray("children");
-                    LocalStorage.setChildren(children);
-
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                    String currentDate = df.format(c.getTime());
-
-                    LocalStorage.setDayForInfo(currentDate);
-
-                    ActivityLoader.load(RegisterActivity.this, ActivityLoader.act1);
-                }
-                else {
-                    Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
-                    Tools.toast(getApplicationContext(), "Sorry, an error occurred. Please reopen the app.");
-                }
-            }
-        }
     }
 
     @Override

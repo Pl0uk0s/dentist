@@ -41,7 +41,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
     final Context context = this;
     private EditText timeEditText, quantityEditText;
-    private String add_product_date, productId, diaryId, amount, productName;
+    private String add_product_date, productId, diaryId, amount, productName, time;
     private JSONArray childrenIds;
     private Typeface latoRegular;
     MyCustomAdapter dataAdapter = null;
@@ -76,6 +76,14 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         productId = extras.getString("productId");
         diaryId = extras.getString("diaryId");
         amount = extras.getString("amount");
+        time = extras.getString("time");
+
+        if (productId == null) {
+            productId = "0";
+        }
+        if (diaryId == null) {
+            diaryId = "0";
+        }
 
         Integer length = productName.length();
         String food30chars;
@@ -95,14 +103,14 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
         quantityEditText = (EditText) findViewById(R.id.quantity_ed);
         quantityEditText.setTypeface(latoRegular);
-        if (diaryId != null && !diaryId.equals("")) {
+        if (diaryId != null && !diaryId.equals("0")) {
             quantityEditText.setText(amount);
         }
 
         timeEditText = (EditText) findViewById(R.id.time_ed);
         timeEditText.setTypeface(latoRegular);
-        if (diaryId != null && !diaryId.equals("")) {
-            timeEditText.setText(add_product_date);
+        if (diaryId != null && !diaryId.equals("0")) {
+            timeEditText.setText(time);
         }
         timeEditText.setInputType(EditorInfo.TYPE_NULL);
         timeEditText.setOnClickListener(new View.OnClickListener() {
@@ -120,7 +128,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             }
         });
 
-        if (diaryId != null && !diaryId.equals("")) {
+        if (diaryId != null && !diaryId.equals("0")) {
             JSONObject Response = WebApi.getOtherChildrenForSameEntry(ProductToChildrenActivity.this, diaryId);
             try {
                 String success = (String) Response.getString("success");
@@ -187,6 +195,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
                                 object.setTime(timeEditText.getText().toString());
                                 object.setQuantity(Integer.parseInt(quantityEditText.getText().toString()));
                                 object.setBelongs(child.optInt("id"));
+                                object.setDiaryId(Integer.parseInt(diaryId));
                                 diaryDataSource.createDiaryObj(context, object);
                             }
                         }catch (JSONException e) {
@@ -211,7 +220,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
     @Override
     public void onBackPressed() {
         Intent i;
-        if (diaryId != null && !diaryId.equals("")) {
+        if (diaryId != null && !diaryId.equals("0")) {
             i = new Intent(ProductToChildrenActivity.this, MainActivity.class);
         }
         else {
@@ -265,8 +274,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             e.printStackTrace();
         }
 
-        dataAdapter = new MyCustomAdapter(this,
-                R.layout.add_to_child_list_item, AddProductToChildList);
+        dataAdapter = new MyCustomAdapter(this, R.layout.add_to_child_list_item, AddProductToChildList);
         ListView listView = (ListView) findViewById(R.id.childrenListView);
         // Assign adapter to ListView
         listView.setAdapter(dataAdapter);
@@ -274,18 +282,19 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             public void onItemClick(AdapterView<?> parent, View view,
                                     int position, long id) {
                 // When clicked, show a toast with the TextView text
-                CheckBox cb = (CheckBox)view.findViewById(R.id.childCheckBox);
-                AddProductToChild AddProductToChild = (AddProductToChild) parent.getItemAtPosition(position);
-                if (cb.isChecked())
-                {
-                    cb.setChecked(false);
-                    AddProductToChild.setSelected(false);
-                }
-                else
-                {
-                    cb.setChecked(true);
-                    AddProductToChild.setSelected(true);
+                if (diaryId != null && !diaryId.equals("0")) {
 
+                }
+                else {
+                    CheckBox cb = (CheckBox) view.findViewById(R.id.childCheckBox);
+                    AddProductToChild AddProductToChild = (AddProductToChild) parent.getItemAtPosition(position);
+                    if (cb.isChecked()) {
+                        cb.setChecked(false);
+                        AddProductToChild.setSelected(false);
+                    } else {
+                        cb.setChecked(true);
+                        AddProductToChild.setSelected(true);
+                    }
                 }
             }
         });
@@ -348,7 +357,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             holder.checkBox.setChecked(AddProductToChild.isSelected());
             holder.checkBox.setTag(AddProductToChild);
 
-            if (diaryId != null && !diaryId.equals("")) {
+            if (diaryId != null && !diaryId.equals("0")) {
                 try {
                     JSONArray children = LocalStorage.getChildren();
                     for(int i = 0; i < children.length(); i++) {

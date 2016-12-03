@@ -28,6 +28,7 @@ public class WebApi {
     private static final String ACTION_GETCHILDINFO = "?action=getChildInfo";
     private static final String ACTION_GETPRODUCTS = "?action=getProducts";
     private static final String ACTION_ADDPRODUCTTOCHILD = "?action=addProductToChild";
+    private static final String ACTION_UPDATEPRODUCTTOCHILD = "?action=updateProductToChild";
     private static final String ACTION_ADDPRODUCT = "?action=addProduct";
     private static final String ACTION_CHANGEPASSWORD = "?action=changePassword";
     private static final String ACTION_CHANGEEMAIL = "?action=changeEmail";
@@ -35,6 +36,7 @@ public class WebApi {
     private static final String ACTION_DELETEPRODUCTFROMCHILD = "?action=deleteProductFromChild";
     private static final String ACTION_GETOTHERCHILDRENFORSAMEENTRY = "?action=getOtherChildrenForSameEntry";
     private static final String ACTION_FORGOTPASSWORD = "?action=forgotPassword";
+    private static final String ACTION_GETTOP10 = "?action=getTop10";
 
     public final static String VALUE_FIELD_VERSION = "&v=";
     private static final String VALUE_USEREMAIL = "&userEmail=";
@@ -125,7 +127,7 @@ public class WebApi {
         return WebInterface.executeWeb(url);
     }
 
-    public static String getChidren() {
+    public static JSONObject getChildren(String date) {
         String url = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_GETCHILDREN;
@@ -133,9 +135,32 @@ public class WebApi {
         url += VALUE_USEREMAIL+App.userEmail;
         url += VALUE_USERPASSWORD+App.password;
         url += VALUE_USERID+App.userId;
-
-        return url;
+        url += VALUE_DATE+date;
+        return WebInterface.executeWeb(url);
     }
+
+    public static JSONObject getTop10() {
+        String url = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETTOP10;
+
+        url += VALUE_USEREMAIL+App.userEmail;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+        return WebInterface.executeWeb(url);
+    }
+
+//    public static String getChidren() {
+//        String url = returnURL();
+//        url += PLAYMAKER_URL;
+//        url += ACTION_GETCHILDREN;
+//
+//        url += VALUE_USEREMAIL+App.userEmail;
+//        url += VALUE_USERPASSWORD+App.password;
+//        url += VALUE_USERID+App.userId;
+//
+//        return url;
+//    }
 
     public static String getChildInfo(String date, int childId) {
         String url = returnURL();
@@ -187,6 +212,21 @@ public class WebApi {
         url += VALUE_DATE+date;
         url += VALUE_TIME+time;
         url += VALUE_CHILD_ID+belongs;
+        return WebInterface.executeWeb(url);
+    }
+
+    public static JSONObject updateProductToChild(Integer diaryId, Integer quantity, String date, String time) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_UPDATEPRODUCTTOCHILD;
+        url += VALUE_USEREMAIL+App.userEmail;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_DIARYID+diaryId;
+        url += VALUE_AMOUNT+quantity;
+        url += VALUE_DATE+date;
+        url += VALUE_TIME+time;
         return WebInterface.executeWeb(url);
     }
 

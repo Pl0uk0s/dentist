@@ -18,6 +18,10 @@ import com.trelokopoi.dentist.App;
 import com.trelokopoi.dentist.BuildConfig;
 import com.trelokopoi.dentist.R;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 public class Tools {
 
     /**
@@ -131,6 +135,22 @@ public class Tools {
     public static void hideKeyboard(Activity act) {
         InputMethodManager inputManager = (InputMethodManager) act.getSystemService(Context.INPUT_METHOD_SERVICE);
         inputManager.hideSoftInputFromWindow(act.getCurrentFocus().getWindowToken(),0);
+    }
+
+    public static String fixDate(String date) {
+        String retDate = "";
+        if (!date.equals("")) {
+            SimpleDateFormat spf = new SimpleDateFormat("yyyy-MM-dd hh:mm:ss");
+            Date newDate = null;
+            try {
+                newDate = spf.parse(date);
+                spf = new SimpleDateFormat("dd/MM/yyyy");
+                retDate = spf.format(newDate);
+            } catch (ParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return retDate;
     }
 
 }

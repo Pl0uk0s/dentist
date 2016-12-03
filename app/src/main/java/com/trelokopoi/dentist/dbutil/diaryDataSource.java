@@ -21,7 +21,8 @@ public class diaryDataSource {
             DB_Helper.TABLE1_COLUMN_QUANTITY,
             DB_Helper.TABLE1_COLUMN_DATE,
             DB_Helper.TABLE1_COLUMN_TIME,
-            DB_Helper.TABLE1_COLUMN_BELONGS
+            DB_Helper.TABLE1_COLUMN_BELONGS,
+            DB_Helper.TABLE1_COLUMN_DIARYID
     };
 
     public diaryDataSource(Context context) {
@@ -49,6 +50,7 @@ public class diaryDataSource {
         values.put(DB_Helper.TABLE1_COLUMN_DATE, object.getDate());
         values.put(DB_Helper.TABLE1_COLUMN_TIME, object.getTime());
         values.put(DB_Helper.TABLE1_COLUMN_BELONGS, object.getBelongs());
+        values.put(DB_Helper.TABLE1_COLUMN_DIARYID, object.getDiaryId());
         try {
             database.insert(DB_Helper.TABLE1_COMMENTS, null, values);
         } catch (SQLiteDiskIOException e) {
@@ -69,7 +71,6 @@ public class diaryDataSource {
                 singleObject = cursorToComment(cursor);
                 aDiaryObjs.add(singleObject);
             }
-
         }
 
         // make sure to close the cursor
@@ -86,6 +87,7 @@ public class diaryDataSource {
         object.setDate(cursor.getString(3));
         object.setTime(cursor.getString(4));
         object.setBelongs(cursor.getInt(5));
+        object.setDiaryId(cursor.getInt(6));
 
         return object;
     }

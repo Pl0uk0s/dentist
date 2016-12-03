@@ -107,13 +107,13 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child1_data"
                     android:layout_below="@id/child1_relative"
                     android:orientation="vertical">
-                </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -173,13 +173,13 @@
                         android:textStyle="italic"/>
 
                 </RelativeLayout>
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_below="@id/child2_relative"
                     android:id="@+id/child2_data"
                     android:orientation="vertical">
-                </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -240,13 +240,13 @@
 
                 </RelativeLayout>
 
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child3_data"
                     android:layout_below="@id/child3_relative"
                     android:orientation="vertical">
-                </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
 
             <RelativeLayout
@@ -306,13 +306,13 @@
                         android:textStyle="italic"/>
 
                 </RelativeLayout>
-                <RelativeLayout
+                <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:id="@+id/child4_data"
                     android:layout_below="@id/child4_relative"
                     android:orientation="vertical">
-                </RelativeLayout>
+                </LinearLayout>
             </RelativeLayout>
         </RelativeLayout>
     </ScrollView>

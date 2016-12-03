@@ -36,7 +36,6 @@ import java.util.Calendar;
 
 public class LoginActivity extends Activity implements AsyncApiCallOnTaskCompleted {
 
-    private int LOAD_CHILDREN = 0;
     private EditText useremail_edittext;
     private EditText password_edittext;
 
@@ -50,7 +49,14 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             App.userEmail = LocalStorage.getUserEmail();
             App.password = LocalStorage.getUserPassword();
             App.userId = LocalStorage.getUserId();
-            getChildrenNames();
+
+            Calendar c = Calendar.getInstance();
+            SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+            String currentDate = df.format(c.getTime());
+
+            LocalStorage.setDayForInfo(currentDate);
+
+            ActivityLoader.load(LoginActivity.this, ActivityLoader.act1);
         }
         else {
 
@@ -198,7 +204,14 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                     App.userEmail = useremail;
                                     App.password = WebApi.sha1Hash(password);
                                     App.userId = userId;
-                                    getChildrenNames();
+
+                                    Calendar c = Calendar.getInstance();
+                                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                                    String currentDate = df.format(c.getTime());
+
+                                    LocalStorage.setDayForInfo(currentDate);
+
+                                    ActivityLoader.load(LoginActivity.this, ActivityLoader.act1);
                                 }
                             }
                         } catch (JSONException e) {
@@ -219,10 +232,6 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                 }
             });
         }
-    }
-
-    private void getChildrenNames() {
-        new AsyncApiCall(LOAD_CHILDREN, LoginActivity.this, false).execute(WebApi.getChidren());
     }
 
     @Override
@@ -267,30 +276,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
 
     @Override
     public void onTaskCompleted(int thread, String result) {
-        JSONObject jsonResult = WebInterface.validateJSON(LoginActivity.this, result);
 
-        if (jsonResult != null) {
-            if (thread == LOAD_CHILDREN) {
-
-                String success = jsonResult.optString("success", "0");
-
-                if (success.equals("1")) {
-                    JSONArray children = jsonResult.optJSONArray("children");
-                    LocalStorage.setChildren(children);
-
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                    String currentDate = df.format(c.getTime());
-
-                    LocalStorage.setDayForInfo(currentDate);
-
-                    ActivityLoader.load(LoginActivity.this, ActivityLoader.act1);
-                }
-                else {
-                    Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
-                }
-            }
-        }
     }
 
     @Override

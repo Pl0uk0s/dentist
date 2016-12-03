@@ -69,7 +69,13 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
             App.password = LocalStorage.getUserPassword();
             App.userId = LocalStorage.getUserId();
             if (WebInterface.hasInternetConnection()) {
-                new AsyncApiCall(LOAD_CHILDREN, SplashScreen.this, false).execute(WebApi.getChidren());
+                Calendar c = Calendar.getInstance();
+                SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+                String currentDate = df.format(c.getTime());
+
+                LocalStorage.setDayForInfo(currentDate);
+
+                ActivityLoader.load(SplashScreen.this, ActivityLoader.act1);
             }
             else {
                 new NoInternetDialog(SplashScreen.this)
@@ -92,30 +98,7 @@ public class SplashScreen extends Activity implements AsyncApiCallOnTaskComplete
 
     @Override
     public void onTaskCompleted(int thread, String result) {
-        JSONObject jsonResult = WebInterface.validateJSON(SplashScreen.this, result);
 
-        if (jsonResult != null) {
-            if (thread == LOAD_CHILDREN) {
-
-                String success = jsonResult.optString("success", "0");
-
-                if (success.equals("1")) {
-                    JSONArray children = jsonResult.optJSONArray("children");
-                    LocalStorage.setChildren(children);
-
-                    Calendar c = Calendar.getInstance();
-                    SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
-                    String currentDate = df.format(c.getTime());
-
-                    LocalStorage.setDayForInfo(currentDate);
-
-                    ActivityLoader.load(SplashScreen.this, ActivityLoader.act1);
-                }
-                else {
-                    Tools.toast(getApplicationContext(), "Sorry, an error occurred. Please reopen the app.");
-                }
-            }
-        }
     }
 
     @Override

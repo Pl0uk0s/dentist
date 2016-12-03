@@ -3,7 +3,7 @@
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="60dp">
 
-    <TextView android:id="@+id/unit_item"
+    <TextView android:id="@+id/product"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:textSize="15sp"
@@ -11,5 +11,10 @@
         android:paddingEnd="10dp"
         android:paddingTop="20dp"
         android:paddingBottom="20dp"/>
+
+    <TextView android:id="@+id/id"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"/>
 
 </LinearLayout>

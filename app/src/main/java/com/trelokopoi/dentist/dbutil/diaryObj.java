@@ -8,6 +8,7 @@ public class diaryObj {
     private String date;
     private String time;
     private int belongs;
+    private int diaryId;
 
     public int getId() {
         return id;
@@ -55,6 +56,14 @@ public class diaryObj {
 
     public void setBelongs(int belongs) {
         this.belongs = belongs;
+    }
+
+    public int getDiaryId() {
+        return diaryId;
+    }
+
+    public void setDiaryId(int diaryId) {
+        this.diaryId = diaryId;
     }
 
 }

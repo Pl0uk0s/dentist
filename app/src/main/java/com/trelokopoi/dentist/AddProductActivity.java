@@ -28,6 +28,7 @@ import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.ProductAdapter;
+import com.trelokopoi.dentist.util.RecentProductAdapter;
 import com.trelokopoi.dentist.util.Tools;
 import com.trelokopoi.dentist.util.WebApi;
 import org.json.JSONArray;
@@ -219,17 +220,40 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             }
         });
 
-        String[] values = getResources().getStringArray(R.array.unit_array);
-        ListView listView = (ListView) findViewById(R.id.recent_list);
-        ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.unit_list_item, R.id.unit_item, values);
-        listView.setAdapter(settingsAdapter);
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view,
-                                    int position, long id) {
+        JSONObject Response = WebApi.getTop10();
+        try {
+            JSONArray products = Response.getJSONArray("products");
+            HashMap<String, String> hmProducts = new HashMap<String, String>();
+            for (int i = 0; i < products.length(); i++) {
+                String value = products.getJSONObject(i).getString("name");
+                String name = products.getJSONObject(i).getString("id");
+                hmProducts.put(name, value);
+            }
+
+            final RecentProductAdapter recentAdapter = new RecentProductAdapter(hmProducts);
+
+            ListView listView = (ListView) findViewById(R.id.recent_list);
+            listView.setAdapter(recentAdapter);
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    HashMap.Entry<String, String> selectedItem = recentAdapter.getItem(position);
+                    inputSearch.setText(selectedItem.getValue());
+
+                    Intent intent = new Intent(AddProductActivity.this, ProductToChildrenActivity.class);
+                    Bundle extras = new Bundle();
+                    extras.putString("date", add_product_date);
+                    extras.putString("productName", selectedItem.getValue());
+                    extras.putString("productId", selectedItem.getKey());
+                    intent.putExtras(extras);
+                    startActivity(intent);
                 }
             });
+        } catch (JSONException e) {
+            e.printStackTrace();
         }
+    }
+
 
     @Override
     public void onBackPressed() {

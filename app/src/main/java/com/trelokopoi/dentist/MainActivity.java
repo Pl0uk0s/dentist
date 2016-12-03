@@ -55,6 +55,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Integer LOAD_CHILD_DATA2 = 2;
     private Integer LOAD_CHILD_DATA3 = 3;
     private Integer LOAD_CHILD_DATA4 = 4;
+    private Integer CHECK_PREVIOUS_DATE = 5;
+    private Integer CHECK_NEXT_DATE = 6;
+    private Integer LOAD_PREVIOUS_DATE = 7;
+    private Integer LOAD_NEXT_DATE = 8;
 
     private Integer CHILD1_HAS_DATA = 0;
     private Integer CHILD2_HAS_DATA = 0;
@@ -63,7 +67,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
     final private Context ctx = this;
 
-    private String currentDate;
+    private String currentDate, previousDate, nextDate;
     private Date valid_date;
     private Integer backButtonCount = 0;
     private ImageView edit, delete;
@@ -108,9 +112,42 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         TextView child4_last_entry = (TextView) findViewById(R.id.child4_last_entry);
         child4_last_entry.setTypeface(latoItalic);
 
-
+        ImageView next = (ImageView) findViewById(R.id.next);
+        ImageView previous = (ImageView) findViewById(R.id.previous);
 
         sendDataToBackend();
+
+        JSONObject Response = WebApi.getChildren(LocalStorage.getDayForInfo());
+        String success = Response.optString("success", "0");
+        if (success.equals("1")) {
+            JSONArray children = Response.optJSONArray("children");
+            LocalStorage.setChildren(children);
+            String hasPreviousDate = Response.optString("hasPreviousDate", "0");
+            String hasNextDate = Response.optString("hasNextDate", "0");
+            previousDate = Response.optString("previousDate", "");
+            nextDate = Response.optString("nextDate", "");
+
+            previousDate = Tools.fixDate(previousDate);
+            nextDate = Tools.fixDate(nextDate);
+
+            if (hasPreviousDate.equals("1")) {
+                previous.setVisibility(ImageView.VISIBLE);
+            }
+            else {
+                previous.setVisibility(ImageView.INVISIBLE);
+            }
+
+            if (hasNextDate.equals("1")) {
+                next.setVisibility(ImageView.VISIBLE);
+            }
+            else {
+                next.setVisibility(ImageView.INVISIBLE);
+            }
+
+        }
+        else {
+            Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
+        }
 
         ScrollView children_scrollview = (ScrollView)findViewById(R.id.children_scrollview);
 
@@ -121,7 +158,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         currentDate = LocalStorage.getDayForInfo();
         dateTxtView.setText(currentDate);
 
-        ImageView next = (ImageView) findViewById(R.id.next);
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
             Date curr_date = df.parse(currentDate);
@@ -247,7 +283,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    RelativeLayout child1_data = (RelativeLayout) findViewById(R.id.child1_data);
+                    LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
 
                     if (child1_data.getVisibility() == View.VISIBLE)
                     {
@@ -275,7 +311,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    RelativeLayout child2_data = (RelativeLayout) findViewById(R.id.child2_data);
+                    LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
 
                     if (child2_data.getVisibility() == View.VISIBLE)
                     {
@@ -303,7 +339,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    RelativeLayout child3_data = (RelativeLayout) findViewById(R.id.child3_data);
+                    LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
 
                     if (child3_data.getVisibility() == View.VISIBLE)
                     {
@@ -331,7 +367,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    RelativeLayout child4_data = (RelativeLayout) findViewById(R.id.child4_data);
+                    LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
 
                     if (child4_data.getVisibility() == View.VISIBLE)
                     {
@@ -345,7 +381,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
         });
 
-        ImageView previous = (ImageView) findViewById(R.id.previous);
         previous.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -421,10 +456,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private void swipeRight() {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date date = (Date) df.parse(currentDate);
+            Date date = (Date) df.parse(previousDate);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
-            cal.add(Calendar.DATE, -1);
             String dateToSave = df.format(cal.getTime());
             LocalStorage.setDayForInfo(dateToSave);
         } catch (ParseException e) {
@@ -436,21 +470,21 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private void swipeLeft() {
         SimpleDateFormat df = new SimpleDateFormat("dd/MM/yyyy");
         try {
-            Date date = df.parse(currentDate);
+            Date date = df.parse(nextDate);
             Calendar cal = Calendar.getInstance();
             cal.setTime(date);
-            cal.add(Calendar.DATE, 1);
             String dateToSave = df.format(cal.getTime());
             Date newDate = df.parse(dateToSave);
-            if (!newDate.after(valid_date))
-            {
-                LocalStorage.setDayForInfo(dateToSave);
-                Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
-            }
-
+            LocalStorage.setDayForInfo(dateToSave);
+//            if (!newDate.after(valid_date))
+//            {
+//                LocalStorage.setDayForInfo(dateToSave);
+//                Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
+//            }
         } catch (ParseException e) {
             L.debug(e.toString());
         }
+        Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
     }
 
     private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
@@ -494,9 +528,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, ProductToChildrenActivity.class);
                 Bundle extras = new Bundle();
-                extras.putString("date", time);
+                extras.putString("date", currentDate);
+                extras.putString("time", time);
                 extras.putString("productName", food);
-                extras.putString("productId", "");
+                extras.putString("productId", "0");
                 extras.putString("amount", amount);
                 extras.putString("diaryId", diaryId);
                 intent.putExtras(extras);
@@ -535,7 +570,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         if (jsonResult != null) {
             if (thread == LOAD_CHILD_DATA1) {
-                RelativeLayout child1_data = (RelativeLayout) findViewById(R.id.child1_data);
+                LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
                 child1_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child1_detail;
@@ -560,7 +595,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD1_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA2) {
-                RelativeLayout child2_data = (RelativeLayout) findViewById(R.id.child2_data);
+                LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
                 child2_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child2_detail;
@@ -585,7 +620,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD2_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA3) {
-                RelativeLayout child3_data = (RelativeLayout) findViewById(R.id.child3_data);
+                LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
                 child3_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child3_detail;
@@ -610,7 +645,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 CHILD3_HAS_DATA = 1;
             }
             else if (thread == LOAD_CHILD_DATA4) {
-                RelativeLayout child4_data = (RelativeLayout) findViewById(R.id.child4_data);
+                LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
                 child4_data.removeAllViews();
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child4_detail;
@@ -702,22 +737,49 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 String date = obj.getDate();
                 String time = obj.getTime();
                 Integer belongs = obj.getBelongs();
+                Integer diaryId = obj.getDiaryId();
 
-                //async call
-                JSONObject Response = WebApi.addProductToChild(prodId, quantity, date, time, belongs);
-                try {
-                    String success = (String) Response.getString("success");
+                if (diaryId == 0) {
+                    JSONObject Response = WebApi.addProductToChild(prodId, quantity, date, time, belongs);
+                    try {
+                        String success = (String) Response.getString("success");
 
-                    if (success.equals("1")) {
-                        diaryDataSource.deleteOld(this.getApplicationContext(), id);
+                        if (success.equals("1")) {
+                            diaryDataSource.deleteOld(this.getApplicationContext(), id);
+                            CHILD1_HAS_DATA = 0;
+                            CHILD2_HAS_DATA = 0;
+                            CHILD3_HAS_DATA = 0;
+                            CHILD4_HAS_DATA = 0;
+                        }
+                        else {
+                            L.debug(Response.toString());
+                        }
+
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
                     }
-                    else {
-                        L.debug(Response.toString());
-                    }
+                }
+                else {
+                    JSONObject Response = WebApi.updateProductToChild(diaryId, quantity, date, time);
+                    try {
+                        String success = (String) Response.getString("success");
 
-                } catch (JSONException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                        if (success.equals("1")) {
+                            diaryDataSource.deleteOld(this.getApplicationContext(), id);
+                            CHILD1_HAS_DATA = 0;
+                            CHILD2_HAS_DATA = 0;
+                            CHILD3_HAS_DATA = 0;
+                            CHILD4_HAS_DATA = 0;
+                        }
+                        else {
+                            L.debug(Response.toString());
+                        }
+
+                    } catch (JSONException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
                 }
             }
         }
