@@ -95,7 +95,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             btn_back.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    LoginActivity.this.onBackPressed();
+                    Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
+                    startActivity(intent);
+                    finish();
                 }
             });
 
@@ -163,9 +165,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                     String password = password_edittext.getText().toString();
 
                     if (useremail.length() == 0) {
-                        Tools.toast(getApplicationContext(), getString(R.string.str_noEmail));
+                        Toast.makeText(getApplicationContext(), getString(R.string.str_noEmail), Toast.LENGTH_LONG).show();
                     } else if (password.length() == 0) {
-                        Tools.toast(getApplicationContext(), getString(R.string.str_noPass));
+                        Toast.makeText(getApplicationContext(), getString(R.string.str_noPass), Toast.LENGTH_LONG).show();
                     } else if (isValidPassword(password) && isValidEmail(useremail)) {
                         JSONObject Response = WebApi.authenticate(LoginActivity.this, useremail, password);
                         try {
@@ -179,7 +181,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                             if (showMsgBox.equals("1")) {
                                 L.debug(App.TAG, "show msgbox");
                                 String msg = (String) Response.getString("msg");
-                                Tools.toast(getApplicationContext(), msg);
+                                Toast.makeText(getApplicationContext(), msg, Toast.LENGTH_LONG).show();
                             }
 
                             if (exists.equals("0")) {
@@ -218,6 +220,9 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                             // TODO Auto-generated catch block
                             e.printStackTrace();
                         }
+                    }
+                    else {
+                        Toast.makeText(getApplicationContext(), getString(R.string.str_noValid), Toast.LENGTH_LONG).show();
                     }
                 }
             });

@@ -401,6 +401,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
+                finish();
             }
         });
 

@@ -7,6 +7,7 @@
     <string name="txt_welcome2">Let\'s work together \nto improve our kids\' \ndental hygiene.</string>
     <string name="btn_signin">Sign in as an existing user</string>
     <string name="btn_register">Register as a new user</string>
+    <string name="noInternet">No internet</string>
 
     <string name="txt_login">Sign in</string>
     <string name="txt_email">EMAIL ADDRESS</string>
@@ -16,6 +17,7 @@
     <string name="btn_done">Done</string>
     <string name="str_noEmail">Please enter an email</string>
     <string name="str_noPass">Please enter a password</string>
+    <string name="str_noValid">Please enter a valid email and password</string>
     <string name="str_error">Sorry, an error occurred. Please reopen the app.</string>
 
     <string name="txt_register">Register</string>
