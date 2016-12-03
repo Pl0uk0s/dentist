@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -25,6 +26,7 @@ import com.trelokopoi.dentist.dbutil.diaryDataSource;
 import com.trelokopoi.dentist.dbutil.diaryObj;
 import com.trelokopoi.dentist.util.AddProductToChild;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.WebApi;
 
@@ -41,6 +43,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
     private EditText timeEditText, quantityEditText;
     private String add_product_date, productId, diaryId, amount, productName;
     private JSONArray childrenIds;
+    private Typeface latoRegular;
     MyCustomAdapter dataAdapter = null;
     ArrayList<AddProductToChild> AddProductToChildList;
 
@@ -48,6 +51,24 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_to_children);
+
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView quanTitleTextView = (TextView)findViewById(R.id.quantity_title);
+        quanTitleTextView.setTypeface(latoBold);
+
+        TextView quanTextView = (TextView)findViewById(R.id.quantity_tv);
+        quanTextView.setTypeface(latoRegular);
+
+        TextView measureTextView = (TextView)findViewById(R.id.measurement_tv);
+        measureTextView.setTypeface(latoRegular);
+
+        TextView timeTitleTextView = (TextView)findViewById(R.id.time_title);
+        timeTitleTextView.setTypeface(latoBold);
+
+        TextView whoTextView = (TextView)findViewById(R.id.who_title);
+        whoTextView.setTypeface(latoBold);
 
         Bundle extras = getIntent().getExtras();
         add_product_date = extras.getString("date");
@@ -69,14 +90,17 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         }
 
         TextView titleTextView = (TextView) findViewById(R.id.product_to_children_header);
+        titleTextView.setTypeface(latoRegular);
         titleTextView.setText(food30chars);
 
         quantityEditText = (EditText) findViewById(R.id.quantity_ed);
+        quantityEditText.setTypeface(latoRegular);
         if (diaryId != null && !diaryId.equals("")) {
             quantityEditText.setText(amount);
         }
 
         timeEditText = (EditText) findViewById(R.id.time_ed);
+        timeEditText.setTypeface(latoRegular);
         if (diaryId != null && !diaryId.equals("")) {
             timeEditText.setText(add_product_date);
         }
@@ -121,6 +145,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         });
 
         Button save = (Button) findViewById(R.id.save);
+        save.setTypeface(latoRegular);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -295,6 +320,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
                 holder = new MyCustomAdapter.ViewHolder();
                 holder.childName = (TextView) convertView.findViewById(R.id.childName);
+                holder.childName.setTypeface(latoRegular);
                 holder.checkBox = (CheckBox) convertView.findViewById(R.id.childCheckBox);
                 convertView.setTag(holder);
 

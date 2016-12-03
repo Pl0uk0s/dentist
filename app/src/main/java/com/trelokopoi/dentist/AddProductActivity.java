@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -20,7 +21,10 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
+
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.L;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.ProductAdapter;
@@ -44,12 +48,24 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
 
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView headerTextView = (TextView)findViewById(R.id.settings_header);
+        headerTextView.setTypeface(latoRegular);
+
+        TextView addNewProdTextView = (TextView)findViewById(R.id.add_new_product_tv);
+        addNewProdTextView.setTypeface(latoRegular);
+
+        TextView recentTextView = (TextView)findViewById(R.id.recent_title);
+        recentTextView.setTypeface(latoRegular);
+
         add_product_date = getIntent().getStringExtra("date");
 
         final RelativeLayout new_product = (RelativeLayout) findViewById(R.id.add_new_product);
-        final LinearLayout prod_detail_layout = (LinearLayout) findViewById(R.id.prod_detail_layout);
         productsListView = (ListView) findViewById(R.id.products_list);
         inputSearch = (EditText) findViewById(R.id.search_ed);
+        inputSearch.setTypeface(latoRegular);
         line = findViewById(R.id.view1);
 
         inputSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {

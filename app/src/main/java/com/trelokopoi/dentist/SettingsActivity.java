@@ -6,6 +6,7 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -21,6 +22,7 @@ import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.WebApi;
 import com.trelokopoi.dentist.util.WebInterface;
@@ -38,10 +40,23 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView emailHeaderTextView = (TextView)findViewById(R.id.settings_header);
+        emailHeaderTextView.setTypeface(latoRegular);
+
+        TextView emailTitleTextView = (TextView)findViewById(R.id.settings_title);
+        emailTitleTextView.setTypeface(latoBold);
+
         final TextView emailTextView = (TextView)findViewById(R.id.emailTextView);
+        emailTextView.setTypeface(latoBold);
         final TextView emailTextView2 = (TextView)findViewById(R.id.emailTextView2);
+        emailTextView2.setTypeface(latoRegular);
         final EditText emailEditText = (EditText)findViewById(R.id.emailEditText);
+        emailEditText.setTypeface(latoRegular);
         final Button signOut = (Button) findViewById(R.id.sign_out);
+        signOut.setTypeface(latoRegular);
         button_txt = signOut.getText().toString();
         emailTextView2.setText(LocalStorage.getUserEmail());
         emailEditText.setText(LocalStorage.getUserEmail());
@@ -71,6 +86,8 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         String[] values = getResources().getStringArray(R.array.settings_array);
         ListView listView = (ListView) findViewById(R.id.settings_list);
         ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.settings_list_item, R.id.settings_item, values);
+        TextView listItem = (TextView)findViewById(R.id.settings_item);
+        listItem.setTypeface(latoBold);
         listView.setAdapter(settingsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

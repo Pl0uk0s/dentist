@@ -3,6 +3,7 @@ package com.trelokopoi.dentist;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
@@ -10,10 +11,12 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.LocalStorage;
 import com.trelokopoi.dentist.util.WebApi;
 import com.trelokopoi.dentist.util.WebInterface;
@@ -30,7 +33,26 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_change_password);
 
+        final Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView titleTextView = (TextView)findViewById(R.id.change_pass_header);
+        titleTextView.setTypeface(latoRegular);
+
+        TextView headerTextView = (TextView)findViewById(R.id.change_pass_title);
+        headerTextView.setTypeface(latoBold);
+
+        TextView oldPassTextView = (TextView)findViewById(R.id.oldPassword);
+        oldPassTextView.setTypeface(latoBold);
+
+        TextView newPassTextView = (TextView)findViewById(R.id.newPassword);
+        newPassTextView.setTypeface(latoBold);
+
+        TextView newPassAgainTextView = (TextView)findViewById(R.id.newPasswordAgain);
+        newPassAgainTextView.setTypeface(latoBold);
+
         EditText oldPassword = (EditText) findViewById(R.id.oldPasswordEditText);
+        oldPassword.setTypeface(latoRegular);
         oldPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -56,6 +78,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         });
 
         EditText newPassword = (EditText) findViewById(R.id.newPasswordEditText);
+        newPassword.setTypeface(latoRegular);
         newPassword.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -80,7 +103,8 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
             }
         });
 
-        EditText newPasswordAgain = (EditText) findViewById(R.id.newPasswordAgainEditText);
+        final EditText newPasswordAgain = (EditText) findViewById(R.id.newPasswordAgainEditText);
+        newPasswordAgain.setTypeface(latoRegular);
         newPasswordAgain.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -106,12 +130,14 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         });
 
         Button done = (Button) findViewById(R.id.submit);
+        done.setTypeface(latoRegular);
         done.setOnClickListener(new View.OnClickListener(){
         @Override
         public void onClick(View v){
             EditText oldPassword = (EditText) findViewById(R.id.oldPasswordEditText);
+            oldPassword.setTypeface(latoRegular);
             EditText newPassword = (EditText) findViewById(R.id.newPasswordEditText);
-            EditText newPasswordAgain = (EditText) findViewById(R.id.newPasswordAgainEditText);
+            newPassword.setTypeface(latoRegular);
 
             String sOldPassword = oldPassword.getText().toString();
             String sNewPassword = newPassword.getText().toString();

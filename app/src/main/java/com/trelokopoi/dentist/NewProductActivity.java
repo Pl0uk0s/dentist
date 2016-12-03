@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Dialog;
 import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
@@ -20,6 +21,7 @@ import android.widget.Toast;
 
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
+import com.trelokopoi.dentist.util.Fonts;
 import com.trelokopoi.dentist.util.WebApi;
 import com.trelokopoi.dentist.util.WebInterface;
 
@@ -35,9 +37,24 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
 
+        final Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        TextView headerTextView = (TextView)findViewById(R.id.new_product_header);
+        headerTextView.setTypeface(latoRegular);
+
+        TextView nameTitleTextView = (TextView)findViewById(R.id.name_title);
+        nameTitleTextView.setTypeface(latoBold);
+
+        TextView unitTitleTextView = (TextView)findViewById(R.id.unit_title);
+        unitTitleTextView.setTypeface(latoBold);
+
         final EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
+        new_prod_name.setTypeface(latoRegular);
         final TextView unit = (TextView) findViewById(R.id.unit_tv);
+        unit.setTypeface(latoRegular);
         final Button save = (Button) findViewById(R.id.save);
+        save.setTypeface(latoRegular);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -54,6 +71,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         String[] values = getResources().getStringArray(R.array.unit_array);
         final ListView listView = (ListView) findViewById(R.id.unit_list);
         ArrayAdapter<String> settingsAdapter = new ArrayAdapter<>(this, R.layout.unit_list_item, R.id.unit_item, values);
+        TextView listItemTextView = (TextView)findViewById(R.id.unit_item);
+        listItemTextView.setTypeface(latoRegular);
         listView.setAdapter(settingsAdapter);
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override

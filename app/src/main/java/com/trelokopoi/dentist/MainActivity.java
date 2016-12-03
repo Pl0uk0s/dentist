@@ -458,7 +458,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
-        RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.layout1);
+        RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.child_item);
 
         TextView view1 = (TextView)view.findViewById(R.id.txt1);
         TextView view2 = (TextView)view.findViewById(R.id.txt2);
