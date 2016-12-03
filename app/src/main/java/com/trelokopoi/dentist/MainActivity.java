@@ -713,7 +713,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             intent.addCategory(Intent.CATEGORY_HOME);
             intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             startActivity(intent);
-            this.finish();
+            finishAffinity();
         }
         else
         {

@@ -91,7 +91,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                if (cs.length() > 3) {
+                if (cs.length() > 1) {
                     //api call
                     JSONObject Response = WebApi.getProducts(cs.toString());
                     try {
