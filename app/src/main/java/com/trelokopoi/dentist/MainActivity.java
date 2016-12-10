@@ -59,10 +59,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Integer LOAD_CHILD_DATA2 = 2;
     private Integer LOAD_CHILD_DATA3 = 3;
     private Integer LOAD_CHILD_DATA4 = 4;
-    private Integer CHECK_PREVIOUS_DATE = 5;
-    private Integer CHECK_NEXT_DATE = 6;
-    private Integer LOAD_PREVIOUS_DATE = 7;
-    private Integer LOAD_NEXT_DATE = 8;
 
     private Integer CHILD1_HAS_DATA = 0;
     private Integer CHILD2_HAS_DATA = 0;
@@ -72,7 +68,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     final private Context ctx = this;
 
     private String currentDate, previousDate, nextDate;
-    private Date valid_date;
+    private Date dateToday;
     private Integer backButtonCount = 0;
     private ImageView edit, delete;
     @Override
@@ -141,8 +137,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         TextView dateTxtView = (TextView) findViewById(R.id.date);
         dateTxtView.setTypeface(latoBold);
-        TextView todayTxtView = (TextView) findViewById(R.id.today);
-        todayTxtView.setTypeface(latoBold);
         currentDate = LocalStorage.getDayForInfo();
         dateTxtView.setText(currentDate);
 
@@ -151,11 +145,16 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             Date curr_date = df.parse(currentDate);
             Calendar cal = Calendar.getInstance();
             String validDateUntil = df.format(cal.getTime());
-            valid_date = df.parse(validDateUntil);
-            if (curr_date.equals((valid_date))) {
+            dateToday = df.parse(validDateUntil);
+            if (curr_date.equals((dateToday))) {
                 next.setVisibility(View.INVISIBLE);
-                dateTxtView.setVisibility(View.INVISIBLE);
-                todayTxtView.setVisibility(View.VISIBLE);
+                dateTxtView.setText(R.string.today);
+            }
+            cal.add(Calendar.DATE, -1);
+            String validYesterday = df.format(cal.getTime());
+            Date dateYesterday = df.parse(validYesterday);
+            if (curr_date.equals((dateYesterday))) {
+                dateTxtView.setText(R.string.yesterday);
             }
         } catch (ParseException e) {
             L.debug(e.toString());
