@@ -11,7 +11,7 @@ public class ActivityLoader {
 	public static String act0  = "LoginActivity";
 	public static String act1  = "MainActivity";
 
-	private static String pkg = "com.trelokopoi.dentist.";
+	private static String pkg = "com.kieslog.";
 	
 	public static String actionStart = "start";
 	public static String actionGoBack = "back";
