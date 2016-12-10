@@ -107,14 +107,17 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             ImageView imgShow = (ImageView) findViewById(R.id.imgShow);
             imgShow.setOnTouchListener(new View.OnTouchListener() {
                 public boolean onTouch(View v, MotionEvent event) {
+                    Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
                     switch ( event.getAction() ) {
                         case MotionEvent.ACTION_DOWN:
                             edit_password.setInputType(InputType.TYPE_CLASS_TEXT);
                             edit_password.setSelection(edit_password.getText().length());
+                            edit_password.setTypeface(latoRegular);
                             break;
                         case MotionEvent.ACTION_UP:
                             edit_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                             edit_password.setSelection(edit_password.getText().length());
+                            edit_password.setTypeface(latoRegular);
                             break;
                     }
                     return true;

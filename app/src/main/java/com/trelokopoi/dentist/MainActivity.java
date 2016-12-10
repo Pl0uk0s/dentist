@@ -9,13 +9,8 @@ import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
-import android.media.Image;
-import android.os.Build;
 import android.os.Bundle;
-import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
-import android.support.v4.content.ContextCompat;
-import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -25,14 +20,11 @@ import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.trelokopoi.dentist.dbutil.diaryDataSource;
 import com.trelokopoi.dentist.dbutil.diaryObj;
-import com.trelokopoi.dentist.util.ActivityLoader;
 import com.trelokopoi.dentist.util.AsyncApiCall;
 import com.trelokopoi.dentist.util.AsyncApiCallOnTaskCompleted;
 import com.trelokopoi.dentist.util.Fonts;
@@ -46,7 +38,6 @@ import com.trelokopoi.dentist.util.WebInterface;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Text;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -191,13 +182,30 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
                 child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
+                String gender1 = child1.optString("gender", "male");
+                ImageView child1Image = (ImageView) findViewById(R.id.child1Image);
+                if (gender1.equals("male")) {
+                    child1Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child1Image.setImageResource(R.drawable.avatar_eleni);
+                }
 
-            } else if (i == 2) {
+            }
+            else if (i == 2) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
                 child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
+                String gender1 = child1.optString("gender", "male");
+                ImageView child1Image = (ImageView) findViewById(R.id.child1Image);
+                if (gender1.equals("male")) {
+                    child1Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child1Image.setImageResource(R.drawable.avatar_eleni);
+                }
 
 
                 JSONObject child2 = children.getJSONObject(1);
@@ -205,13 +213,30 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
                 child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
-            } else if (i == 3) {
+                String gender2 = child2.optString("gender", "male");
+                ImageView child2Image = (ImageView) findViewById(R.id.child2Image);
+                if (gender2.equals("male")) {
+                    child2Image.setImageResource(R.drawable.avatar_panos);
+                }
+                else {
+                    child2Image.setImageResource(R.drawable.avatar_maria);
+                }
+            }
+            else if (i == 3) {
 
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
                 child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
+                String gender1 = child1.optString("gender", "male");
+                ImageView child1Image = (ImageView) findViewById(R.id.child1Image);
+                if (gender1.equals("male")) {
+                    child1Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child1Image.setImageResource(R.drawable.avatar_eleni);
+                }
 
 
                 JSONObject child2 = children.getJSONObject(1);
@@ -219,19 +244,43 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
                 child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
-
+                String gender2 = child2.optString("gender", "male");
+                ImageView child2Image = (ImageView) findViewById(R.id.child2Image);
+                if (gender2.equals("male")) {
+                    child2Image.setImageResource(R.drawable.avatar_panos);
+                }
+                else {
+                    child2Image.setImageResource(R.drawable.avatar_maria);
+                }
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
                 child_lastentry3.setText("last entry at " + child3.optString("lastEntry", ""));
-            } else if (i == 4) {
+                String gender3 = child3.optString("gender", "male");
+                ImageView child3Image = (ImageView) findViewById(R.id.child3Image);
+                if (gender3.equals("male")) {
+                    child3Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child3Image.setImageResource(R.drawable.avatar_eleni);
+                }
+            }
+            else if (i == 4) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
                 child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
+                String gender1 = child1.optString("gender", "male");
+                ImageView child1Image = (ImageView) findViewById(R.id.child1Image);
+                if (gender1.equals("male")) {
+                    child1Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child1Image.setImageResource(R.drawable.avatar_eleni);
+                }
 
 
                 JSONObject child2 = children.getJSONObject(1);
@@ -239,19 +288,42 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
                 child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
-
+                String gender2 = child2.optString("gender", "male");
+                ImageView child2Image = (ImageView) findViewById(R.id.child2Image);
+                if (gender2.equals("male")) {
+                    child2Image.setImageResource(R.drawable.avatar_panos);
+                }
+                else {
+                    child2Image.setImageResource(R.drawable.avatar_maria);
+                }
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
                 child_lastentry3.setText("last entry at " + child3.optString("lastEntry", ""));
+                String gender3 = child3.optString("gender", "male");
+                ImageView child3Image = (ImageView) findViewById(R.id.child3Image);
+                if (gender3.equals("male")) {
+                    child3Image.setImageResource(R.drawable.avatar_kostas);
+                }
+                else {
+                    child3Image.setImageResource(R.drawable.avatar_eleni);
+                }
 
                 JSONObject child4 = children.getJSONObject(3);
                 llchild4.setVisibility(View.VISIBLE);
                 child4_relative.setVisibility(View.VISIBLE);
                 child_name4.setText(child4.optString("name", ""));
                 child_lastentry4.setText("last entry at " + child4.optString("lastEntry", ""));
+                String gender4 = child4.optString("gender", "male");
+                ImageView child4Image = (ImageView) findViewById(R.id.child4Image);
+                if (gender4.equals("male")) {
+                    child4Image.setImageResource(R.drawable.avatar_panos);
+                }
+                else {
+                    child4Image.setImageResource(R.drawable.avatar_maria);
+                }
             }
         } catch (JSONException e) {
             // TODO Auto-generated catch block

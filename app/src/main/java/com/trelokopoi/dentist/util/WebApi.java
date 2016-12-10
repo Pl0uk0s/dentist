@@ -68,16 +68,16 @@ public class WebApi {
         return FINALURL;
     }
 
-    private static String deviceDataUrl() {
-
-        String url = VALUE_USER_DEVICE_OS+DeviceInfo.returnAndroidVersion();
-        url += VALUE_USER_DEVICE_HW+DeviceInfo.returnDeviceName();
-        url += VALUE_USER_DEVICE_SCR+DeviceInfo.returnScreenDimensions();
-        url += VALUE_USER_NETWORK_CARRIER+DeviceInfo.returnNetworkCarrier();
-        url += VALUE_USER_NETWORK_OPERATOR+DeviceInfo.returnNetworkOperator();
-        url += VALUE_USER_PHONE_NUMBER+DeviceInfo.returnPhoneNumber();
-        return url;
-    }
+//    private static String deviceDataUrl() {
+//
+//        String url = VALUE_USER_DEVICE_OS+DeviceInfo.returnAndroidVersion();
+//        url += VALUE_USER_DEVICE_HW+DeviceInfo.returnDeviceName();
+//        url += VALUE_USER_DEVICE_SCR+DeviceInfo.returnScreenDimensions();
+//        url += VALUE_USER_NETWORK_CARRIER+DeviceInfo.returnNetworkCarrier();
+//        url += VALUE_USER_NETWORK_OPERATOR+DeviceInfo.returnNetworkOperator();
+//        url += VALUE_USER_PHONE_NUMBER+DeviceInfo.returnPhoneNumber();
+//        return url;
+//    }
 
     public static JSONObject authenticate(Context context, String userEmail, String password) {
 
@@ -90,7 +90,7 @@ public class WebApi {
         url += ACTION_AUTHENTICATE;
         url += VALUE_USEREMAIL+userEmail;
         url += VALUE_USERPASSWORD+sha1Hash(password);
-        url += deviceDataUrl();
+//        url += deviceDataUrl();
 
         url += VALUE_FIELD_VERSION+App.VERSION;
         return WebInterface.executeWeb(url);
@@ -107,7 +107,7 @@ public class WebApi {
         url += VALUE_USEREMAIL + userEmail;
         url += VALUE_ACCESSCODE + accessCode;
         url += VALUE_USERPASSWORD + sha1Hash(password);
-        url += deviceDataUrl();
+//        url += deviceDataUrl();
 
         url += VALUE_FIELD_VERSION + App.VERSION;
         return WebInterface.executeWeb(url);

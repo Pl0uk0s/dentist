@@ -135,14 +135,17 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         imgShowPass.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
                 switch ( event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
                         newPassword.setInputType(InputType.TYPE_CLASS_TEXT);
                         newPassword.setSelection(newPassword.getText().length());
+                        newPassword.setTypeface(latoRegular);
                         break;
                     case MotionEvent.ACTION_UP:
                         newPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         newPassword.setSelection(newPassword.getText().length());
+                        newPassword.setTypeface(latoRegular);
                         break;
                 }
                 return true;
@@ -153,14 +156,17 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         imgShowRePass.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
                 switch ( event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
                         newPasswordAgain.setInputType(InputType.TYPE_CLASS_TEXT);
                         newPasswordAgain.setSelection(newPasswordAgain.getText().length());
+                        newPasswordAgain.setTypeface(latoRegular);
                         break;
                     case MotionEvent.ACTION_UP:
                         newPasswordAgain.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         newPasswordAgain.setSelection(newPasswordAgain.getText().length());
+                        newPasswordAgain.setTypeface(latoRegular);
                         break;
                 }
                 return true;

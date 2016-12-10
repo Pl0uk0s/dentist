@@ -48,7 +48,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
 
         this.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_PAN);
 
-        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        final Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView txt_register = (TextView) findViewById(R.id.txt_register);
@@ -96,14 +96,17 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
         imgShowPass.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
                 switch ( event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
                         edit_password.setInputType(InputType.TYPE_CLASS_TEXT);
                         edit_password.setSelection(edit_password.getText().length());
+                        edit_password.setTypeface(latoRegular);
                         break;
                     case MotionEvent.ACTION_UP:
                         edit_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         edit_password.setSelection(edit_password.getText().length());
+                        edit_password.setTypeface(latoRegular);
                         break;
                 }
                 return true;
@@ -114,14 +117,17 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
         imgShowRePass.setOnTouchListener(new View.OnTouchListener() {
             @Override
             public boolean onTouch(View v, MotionEvent event) {
+                Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
                 switch ( event.getAction() ) {
                     case MotionEvent.ACTION_DOWN:
                         edit_repassword.setInputType(InputType.TYPE_CLASS_TEXT);
                         edit_repassword.setSelection(edit_repassword.getText().length());
+                        edit_repassword.setTypeface(latoRegular);
                         break;
                     case MotionEvent.ACTION_UP:
                         edit_repassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
                         edit_repassword.setSelection(edit_repassword.getText().length());
+                        edit_repassword.setTypeface(latoRegular);
                         break;
                 }
                 return true;

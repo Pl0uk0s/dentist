@@ -87,17 +87,15 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         }
 
         Integer length = productName.length();
-        String food30chars;
         String more = "...";
         String food20chars;
-        food20chars = productName.substring(0, 20) + more;
-        if (length > 30)
+        if (length > 20)
         {
-            food30chars = productName.substring(0, 30) + more;
+            food20chars = productName.substring(0, 20) + more;
         }
         else
         {
-            food30chars = productName;
+            food20chars = productName;
         }
 
         TextView titleTextView = (TextView) findViewById(R.id.product_to_children_header);
@@ -283,7 +281,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         try {
             for (int i = 0; i < chlength; i++) {
                 JSONObject child = children.getJSONObject(i);
-                AddProductToChild AddProductToChild = new AddProductToChild(child.optString("name", ""),false);
+                AddProductToChild AddProductToChild = new AddProductToChild(child.optString("name", ""), false, child.optString("gender", "male"));
                 AddProductToChildList.add(AddProductToChild);
             }
         } catch (JSONException e) {
@@ -330,6 +328,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         private class ViewHolder {
             TextView childName;
             CheckBox checkBox;
+            ImageView childImage;
         }
 
         @Override
@@ -348,6 +347,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
                 holder.childName.setTypeface(latoRegular);
                 holder.checkBox = (CheckBox) convertView.findViewById(R.id.childCheckBox);
                 convertView.setTag(holder);
+                holder.childImage = (ImageView) convertView.findViewById(R.id.childImage);
 
                 holder.checkBox.setOnClickListener( new View.OnClickListener() {
                     public void onClick(View v) {
@@ -372,6 +372,19 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             holder.childName.setText(AddProductToChild.getChildName());
             holder.checkBox.setChecked(AddProductToChild.isSelected());
             holder.checkBox.setTag(AddProductToChild);
+
+            if (AddProductToChild.getChildGender().equals("male") && (position == 0 || position == 2)) {
+                holder.childImage.setImageResource(R.drawable.avatar_kostas);
+            }
+            else if (AddProductToChild.getChildGender().equals("female") && (position == 0 || position == 2)) {
+                holder.childImage.setImageResource(R.drawable.avatar_eleni);
+            }
+            else if (AddProductToChild.getChildGender().equals("male") && (position == 1 || position == 3)) {
+                holder.childImage.setImageResource(R.drawable.avatar_panos);
+            }
+            else if (AddProductToChild.getChildGender().equals("female") && (position == 1 || position == 3)) {
+                holder.childImage.setImageResource(R.drawable.avatar_maria);
+            }
 
             if (diaryId != null && !diaryId.equals("0")) {
                 try {

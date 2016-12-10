@@ -122,7 +122,8 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                         // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
-                } else {
+                }
+                else {
                     HashMap<String, String> hmProducts = new HashMap<String, String>();
                     adapter = new ProductAdapter(hmProducts);
                     productsListView.setAdapter(adapter);
@@ -240,7 +241,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
                 @Override
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     HashMap.Entry<String, String> selectedItem = recentAdapter.getItem(position);
-                    inputSearch.setText(selectedItem.getValue());
+//                    inputSearch.setText(selectedItem.getValue());
 
                     Intent intent = new Intent(AddProductActivity.this, ProductToChildrenActivity.class);
                     Bundle extras = new Bundle();
