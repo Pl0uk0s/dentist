@@ -4,12 +4,14 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -511,6 +513,22 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         title.setTypeface(latoBold);
         TextView text = (TextView) thedialog.findViewById(R.id.txt_dia2);
         text.setTypeface(latoBold);
+        thedialog.setOnKeyListener(new Dialog.OnKeyListener() {
+
+            @Override
+            public boolean onKey(DialogInterface arg0, int keyCode,
+                                 KeyEvent event) {
+                // TODO Auto-generated method stub
+                if (keyCode == KeyEvent.KEYCODE_BACK) {
+                    Intent intent = new Intent(Intent.ACTION_MAIN);
+                    intent.addCategory(Intent.CATEGORY_HOME);
+                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
+                    finishAffinity();
+                }
+                return true;
+            }
+        });
         thedialog.show();
 //        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia);
 //        Button btn = (Button) thedialog.findViewById(R.id.btn_yes);
@@ -811,19 +829,16 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     @Override
     public void onBackPressed()
     {
-        if(backButtonCount >= 1)
-        {
-            Intent intent = new Intent(Intent.ACTION_MAIN);
-            intent.addCategory(Intent.CATEGORY_HOME);
-            intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-            startActivity(intent);
-            finishAffinity();
-        }
-        else
-        {
-            Toast.makeText(this, "Press Back once again to exit the Application.", Toast.LENGTH_SHORT).show();
-            backButtonCount++;
-        }
+            if (backButtonCount >= 1) {
+                Intent intent = new Intent(Intent.ACTION_MAIN);
+                intent.addCategory(Intent.CATEGORY_HOME);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
+                finishAffinity();
+            } else {
+                Toast.makeText(this, "Press Back once again to exit the Application.", Toast.LENGTH_SHORT).show();
+                backButtonCount++;
+            }
     }
 
     public void sendDataToBackend() {
