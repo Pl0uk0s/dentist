@@ -63,6 +63,16 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         inputSearch.setTypeface(latoRegular);
         line = findViewById(R.id.view1);
 
+        RelativeLayout search_layout = (RelativeLayout) findViewById(R.id.search_layout);
+        search_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                inputSearch.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(inputSearch, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+
         inputSearch.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
@@ -85,7 +95,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         inputSearch.addTextChangedListener(new TextWatcher() {
             @Override
             public void onTextChanged(CharSequence cs, int arg1, int arg2, int arg3) {
-                if (cs.length() > 1) {
+                if (cs.length() > 2) {
                     //api call
                     JSONObject Response = WebApi.getProducts(cs.toString());
                     try {

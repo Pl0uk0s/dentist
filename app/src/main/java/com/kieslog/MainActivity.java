@@ -501,6 +501,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 //        thedialog.getWindow().clearFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         thedialog.getWindow().addFlags(WindowManager.LayoutParams.FLAG_DIM_BEHIND);
         thedialog.getWindow().setLayout(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        TextView title = (TextView) thedialog.findViewById(R.id.txt_dia1);
+        title.setTypeface(latoBold);
+        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia2);
+        text.setTypeface(latoBold);
         thedialog.show();
 //        TextView text = (TextView) thedialog.findViewById(R.id.txt_dia);
 //        Button btn = (Button) thedialog.findViewById(R.id.btn_yes);

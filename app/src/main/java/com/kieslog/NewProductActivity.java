@@ -15,6 +15,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import com.kieslog.util.AsyncApiCall;
@@ -53,6 +54,19 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         TextView unitTitleTextView = (TextView)findViewById(R.id.unit_title);
         unitTitleTextView.setTypeface(latoBold);
 
+        final EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
+        new_prod_name.setTypeface(latoRegular);
+
+        RelativeLayout name_layout = (RelativeLayout) findViewById(R.id.name_layout);
+        name_layout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                new_prod_name.requestFocus();
+                InputMethodManager imm = (InputMethodManager) getSystemService(Context.INPUT_METHOD_SERVICE);
+                imm.showSoftInput(new_prod_name, InputMethodManager.SHOW_IMPLICIT);
+            }
+        });
+
         final TextView unit = (TextView) findViewById(R.id.unit_tv);
         unit.setTypeface(latoRegular);
         final Button save = (Button) findViewById(R.id.save);
@@ -60,8 +74,6 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
-                new_prod_name.setTypeface(latoRegular);
                 if (new_prod_name.getText().toString().trim().equals("") || unit.getText().toString().trim().equals("Portion unit")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewProductActivity.this);
                     LayoutInflater inflater = NewProductActivity.this.getLayoutInflater();
