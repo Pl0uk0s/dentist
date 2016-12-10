@@ -120,7 +120,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 next.setVisibility(ImageView.INVISIBLE);
             }
 
-        } else {
+            String hasFinished = Response.optString("hasFinished", "0");
+            if (hasFinished.equals("true")) {
+                dialog();
+            }
+
+        }
+        else {
             Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG).show();
         }
 

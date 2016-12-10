@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
-    android:background="#4EA991"
+    android:background="@drawable/background"
     android:paddingStart="25dp"
     android:clipToPadding="false">
 
@@ -137,16 +137,16 @@
         android:textAllCaps="false"
         android:layout_marginTop="40dp"/>
 
-    <CheckBox
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/chk_rememberme"
-        android:text="@string/chk_rememberme"
-        android:buttonTint="@color/white"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        android:layout_alignBaseline="@+id/btn_done"
-        android:layout_alignBottom="@+id/btn_done"
-        android:layout_marginStart="150dp" />
+    <!--<CheckBox-->
+        <!--android:layout_width="wrap_content"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:id="@+id/chk_rememberme"-->
+        <!--android:text="@string/chk_rememberme"-->
+        <!--android:buttonTint="@color/white"-->
+        <!--android:textColor="@color/white"-->
+        <!--android:textSize="14sp"-->
+        <!--android:layout_alignBaseline="@+id/btn_done"-->
+        <!--android:layout_alignBottom="@+id/btn_done"-->
+        <!--android:layout_marginStart="150dp" />-->
 
 </RelativeLayout>

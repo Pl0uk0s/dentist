@@ -85,7 +85,7 @@
     <string name="about_dialog_header">Information about this app.\nLorem ipsum dolor sit amet,\ncosectetur adipiscing elit.\nQuisque nunc est, luctus eget\nneque et, rutrum elementum dui.</string>
     <string name="new_prod_dialog_title">Fill the product name and\nsugar per 100 gr/ml in order\nto Submit the new product</string>
     <string name="txt_dia1">All done!</string>
-    <string name="txt_dia2">Thanks for your\n cooperation using kieslog.\n Now your dentist can\n review your children's\n dietary habits. Together,\n you can make small\n adjustments to improve\n your kid's dental hygiene.</string>
+    <string name="txt_dia2">Thanks for your\n cooperation using kieslog.\n Now your dentist can\n review your children\'s\n dietary habits. Together,\n you can make small\n adjustments to improve\n your kid\'s dental hygiene.</string>
 
 
 

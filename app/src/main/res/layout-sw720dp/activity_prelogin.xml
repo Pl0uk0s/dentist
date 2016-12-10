@@ -2,16 +2,25 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical" android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#4EA991">
+    android:background="@drawable/background">
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/imgLogo"
+        android:src="@drawable/logo"
+        android:layout_marginTop="42pt"
+        android:layout_marginStart="10dp"/>
 
     <TextView
         android:id="@+id/txt_welcome"
         android:text="@string/txt_welcome"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_below="@id/imgLogo"
         android:textSize="36sp"
         android:textColor="@color/white"
-        android:layout_marginTop="42pt"
+        android:layout_marginTop="10dp"
         android:layout_marginStart="20dp"
         android:lineSpacingExtra="6sp"/>
 
