@@ -248,7 +248,7 @@ public class WebInterface {
 		}
 		else if (!msgShownAlready) {
 			//Toast.makeText(applicationContext, applicationContext.getResources().getString(R.string.error_backend), Toast.LENGTH_LONG).show();
-			Tools.toast(applicationContext, "No internet connection. Cannot connect to the server. Please reopen the app.");
+			Toast.makeText(applicationContext, "No internet connection. Cannot connect to the server. Please reopen the app.", Toast.LENGTH_LONG).show();
 		}
 		
 	}
