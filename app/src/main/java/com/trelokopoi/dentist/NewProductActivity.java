@@ -37,6 +37,7 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
 
     private Integer ADD_PRODUCT = 0;
     private String prodName, prodUnit, add_product_date;
+    private View line;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,6 +48,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
 
         final Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+
+        line = findViewById(R.id.unit_view);
 
         TextView headerTextView = (TextView)findViewById(R.id.new_product_header);
         headerTextView.setTypeface(latoBold);
@@ -66,15 +69,15 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
             public void onClick(View v) {
                 EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
                 new_prod_name.setTypeface(latoRegular);
-                if (new_prod_name.getText().toString().trim().equals("") || unit.getText().toString().trim().equals("")) {
+                if (new_prod_name.getText().toString().trim().equals("") || unit.getText().toString().trim().equals("Portion unit")) {
                     AlertDialog.Builder builder = new AlertDialog.Builder(NewProductActivity.this);
                     LayoutInflater inflater = NewProductActivity.this.getLayoutInflater();
                     View dialogView = inflater.inflate(R.layout.custom_prod_to_child_dialog, null);
                     final AlertDialog alert = builder.create();
                     alert.setView(dialogView);
-                    TextView about_header = (TextView) dialogView.findViewById(R.id.prod_to_children_header);
-                    about_header.setTypeface(latoRegular);
-                    about_header.setText(R.string.new_prod_dialog_title);
+                    TextView new_prod_header = (TextView) dialogView.findViewById(R.id.prod_to_children_header);
+                    new_prod_header.setTypeface(latoRegular);
+                    new_prod_header.setText(R.string.new_prod_dialog_title);
                     Button button_ok = (Button) dialogView.findViewById(R.id.dialog_ok);
                     button_ok.setTypeface(latoBold);
                     button_ok.setOnClickListener(new View.OnClickListener() {
@@ -103,6 +106,7 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                 unit.setTextColor(Color.BLACK);
                 unit.setText(parent.getItemAtPosition(position).toString());
                 prodUnit = unit.getText().toString();
+                line.setVisibility(View.GONE);
                 listView.setVisibility(View.GONE);
                 save.setVisibility(View.VISIBLE);
             }
@@ -118,6 +122,7 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                     InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
                     imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
                 }
+                line.setVisibility(View.VISIBLE);
                 listView.setVisibility(View.VISIBLE);
                 save.setVisibility(View.GONE);
             }

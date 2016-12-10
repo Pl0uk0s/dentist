@@ -104,15 +104,26 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="10dp"/>
         </RelativeLayout>
+
+    <View
+        android:id="@+id/unit_view"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:visibility="gone"
+        android:layout_below="@+id/unit_layout"
+        android:elevation="3dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:background="#EAEAEA" />
         <ListView
             android:id="@+id/unit_list"
-            android:layout_below="@+id/unit_layout"
+            android:layout_below="@+id/unit_view"
             android:layout_height="wrap_content"
             android:layout_width="match_parent"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
             android:layout_marginBottom="10dp"
-            android:background="@color/white"
+            android:background="@drawable/shape"
             android:elevation="3dp"
             android:divider="@null"
             android:dividerHeight="0dp"
