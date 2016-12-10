@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">kieslog</string>
+    <string name="app_name">Kieslog</string>
     <string name="versionBackend">a-m-</string>
 
     <!-- Strings related to login -->

@@ -7,7 +7,7 @@
     android:gravity="fill_horizontal"
     android:orientation="vertical"
     android:background="#ECEFF1"
-    tools:context="com.trelokopoi.dentist.MainActivity">
+    tools:context=".MainActivity">
 
     <include
         android:id="@+id/topLayout"

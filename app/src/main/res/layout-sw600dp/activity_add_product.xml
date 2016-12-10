@@ -3,7 +3,7 @@
 xmlns:tools="http://schemas.android.com/tools"
 android:layout_width="match_parent"
 android:layout_height="match_parent" android:background="#ECEFF1"
-tools:context="com.trelokopoi.dentist.AddProductActivity">
+tools:context=".AddProductActivity">
 
     <!--android:background="#EEEEEE"-->
     <!-- Dummy item to prevent AutoCompleteTextView from receiving focus -->
