@@ -79,8 +79,8 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             final EditText edit_password = (EditText) findViewById(R.id.edit_password);
             edit_password.setTypeface(latoRegular);
 
-            CheckBox chk_rememberme = (CheckBox) findViewById(R.id.chk_rememberme);
-            chk_rememberme.setTypeface(latoRegular);
+//            CheckBox chk_rememberme = (CheckBox) findViewById(R.id.chk_rememberme);
+//            chk_rememberme.setTypeface(latoRegular);
 
             TextView txt_forgotPassword = (TextView) findViewById(R.id.txt_forgotPassword);
             txt_forgotPassword.setTypeface(latoRegular);
@@ -212,14 +212,14 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                                     L.debug(App.TAG, "login successful");
                                     String userId = (String) Response.getString("userId");
 
-                                    CheckBox checkRemember = (CheckBox) findViewById(R.id.chk_rememberme);
-                                    Boolean remember = checkRemember.isChecked();
+//                                    CheckBox checkRemember = (CheckBox) findViewById(R.id.chk_rememberme);
+//                                    Boolean remember = checkRemember.isChecked();
 
                                     LocalStorage.setLogin(useremail, WebApi.sha1Hash(password), userId);
 
-                                    if (remember) {
-                                        LocalStorage.setUserLogin(true);
-                                    }
+//                                    if (remember) {
+//                                        LocalStorage.setUserLogin(true);
+//                                    }
                                     App.userEmail = useremail;
                                     App.password = WebApi.sha1Hash(password);
                                     App.userId = userId;
