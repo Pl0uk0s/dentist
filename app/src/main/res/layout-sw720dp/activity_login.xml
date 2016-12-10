@@ -80,6 +80,16 @@
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
 
+    <ImageView
+        android:layout_width="25dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/imgShow"
+        android:src="@drawable/ic_remove_red_eye_white_36dp"
+        android:layout_below="@id/edit_email"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_alignParentEnd="true"/>
+
     <EditText
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"

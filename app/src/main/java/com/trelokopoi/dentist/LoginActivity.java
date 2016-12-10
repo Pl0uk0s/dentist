@@ -3,10 +3,13 @@ package com.trelokopoi.dentist;
 import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextUtils;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -79,7 +82,7 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
             TextView txt_password = (TextView) findViewById(R.id.txt_password);
             txt_password.setTypeface(latoRegular);
 
-            EditText edit_password = (EditText) findViewById(R.id.edit_password);
+            final EditText edit_password = (EditText) findViewById(R.id.edit_password);
             edit_password.setTypeface(latoRegular);
 
             CheckBox chk_rememberme = (CheckBox) findViewById(R.id.chk_rememberme);
@@ -98,6 +101,23 @@ public class LoginActivity extends Activity implements AsyncApiCallOnTaskComplet
                     Intent intent = new Intent(LoginActivity.this, PreLoginActivity.class);
                     startActivity(intent);
                     finish();
+                }
+            });
+
+            ImageView imgShow = (ImageView) findViewById(R.id.imgShow);
+            imgShow.setOnTouchListener(new View.OnTouchListener() {
+                public boolean onTouch(View v, MotionEvent event) {
+                    switch ( event.getAction() ) {
+                        case MotionEvent.ACTION_DOWN:
+                            edit_password.setInputType(InputType.TYPE_CLASS_TEXT);
+                            edit_password.setSelection(edit_password.getText().length());
+                            break;
+                        case MotionEvent.ACTION_UP:
+                            edit_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                            edit_password.setSelection(edit_password.getText().length());
+                            break;
+                    }
+                    return true;
                 }
             });
 

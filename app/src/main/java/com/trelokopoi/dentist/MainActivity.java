@@ -12,6 +12,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
 import android.util.TypedValue;
@@ -269,11 +270,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 } else {
                     LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
-
+                    ImageView child1DownArrow = (ImageView) findViewById(R.id.child1DownArrow);
                     if (child1_data.getVisibility() == View.VISIBLE) {
                         child1_data.setVisibility(View.GONE);
+                        child1DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_down_black_36dp);
                     } else {
                         child1_data.setVisibility(View.VISIBLE);
+                        child1DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                     }
                 }
             }
@@ -293,11 +296,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 } else {
                     LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
-
+                    ImageView child2DownArrow = (ImageView) findViewById(R.id.child2DownArrow);
                     if (child2_data.getVisibility() == View.VISIBLE) {
                         child2_data.setVisibility(View.GONE);
+                        child2DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_down_black_36dp);
                     } else {
                         child2_data.setVisibility(View.VISIBLE);
+                        child2DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                     }
                 }
             }
@@ -317,11 +322,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 } else {
                     LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
-
+                    ImageView child3DownArrow = (ImageView) findViewById(R.id.child3DownArrow);
                     if (child3_data.getVisibility() == View.VISIBLE) {
                         child3_data.setVisibility(View.GONE);
+                        child3DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_down_black_36dp);
                     } else {
                         child3_data.setVisibility(View.VISIBLE);
+                        child3DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                     }
                 }
             }
@@ -341,11 +348,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 } else {
                     LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
-
+                    ImageView child4DownArrow = (ImageView) findViewById(R.id.child4DownArrow);
                     if (child4_data.getVisibility() == View.VISIBLE) {
                         child4_data.setVisibility(View.GONE);
+                        child4DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_down_black_36dp);
                     } else {
                         child4_data.setVisibility(View.VISIBLE);
+                        child4DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                     }
                 }
             }
@@ -558,6 +567,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             if (thread == LOAD_CHILD_DATA1) {
                 LinearLayout child1_data = (LinearLayout) findViewById(R.id.child1_data);
                 child1_data.removeAllViews();
+                ImageView child1DownArrow = (ImageView) findViewById(R.id.child1DownArrow);
+                child1DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child1_detail;
 
@@ -583,6 +594,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             else if (thread == LOAD_CHILD_DATA2) {
                 LinearLayout child2_data = (LinearLayout) findViewById(R.id.child2_data);
                 child2_data.removeAllViews();
+                ImageView child2DownArrow = (ImageView) findViewById(R.id.child2DownArrow);
+                child2DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child2_detail;
 
@@ -608,6 +621,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             else if (thread == LOAD_CHILD_DATA3) {
                 LinearLayout child3_data = (LinearLayout) findViewById(R.id.child3_data);
                 child3_data.removeAllViews();
+                ImageView child3DownArrow = (ImageView) findViewById(R.id.child3DownArrow);
+                child3DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child3_detail;
 
@@ -633,6 +648,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             else if (thread == LOAD_CHILD_DATA4) {
                 LinearLayout child4_data = (LinearLayout) findViewById(R.id.child4_data);
                 child4_data.removeAllViews();
+                ImageView child4DownArrow = (ImageView) findViewById(R.id.child4DownArrow);
+                child4DownArrow.setImageResource(R.drawable.ic_keyboard_arrow_up_black_36dp);
                 RelativeLayout.LayoutParams p = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 RelativeLayout child4_detail;
 
