@@ -5,7 +5,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -67,13 +69,13 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
         TextView txt_password = (TextView) findViewById(R.id.txt_password);
         txt_password.setTypeface(latoRegular);
 
-        EditText edit_password = (EditText) findViewById(R.id.edit_password);
+        final EditText edit_password = (EditText) findViewById(R.id.edit_password);
         edit_password.setTypeface(latoRegular);
 
         TextView txt_repassword = (TextView) findViewById(R.id.txt_repassword);
         txt_repassword.setTypeface(latoRegular);
 
-        EditText edit_repassword = (EditText) findViewById(R.id.edit_repassword);
+        final EditText edit_repassword = (EditText) findViewById(R.id.edit_repassword);
         edit_repassword.setTypeface(latoRegular);
 
         Button btn_done = (Button) findViewById(R.id.btn_done);
@@ -87,6 +89,42 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             @Override
             public void onClick(View v) {
                 RegisterActivity.this.onBackPressed();
+            }
+        });
+
+        ImageView imgShowPass = (ImageView) findViewById(R.id.imgShowPass);
+        imgShowPass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        edit_password.setInputType(InputType.TYPE_CLASS_TEXT);
+                        edit_password.setSelection(edit_password.getText().length());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        edit_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        edit_password.setSelection(edit_password.getText().length());
+                        break;
+                }
+                return true;
+            }
+        });
+
+        ImageView imgShowRePass = (ImageView) findViewById(R.id.imgShowRePass);
+        imgShowRePass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        edit_repassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        edit_repassword.setSelection(edit_repassword.getText().length());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        edit_repassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        edit_repassword.setSelection(edit_repassword.getText().length());
+                        break;
+                }
+                return true;
             }
         });
 
@@ -175,7 +213,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
 
             @Override
             public void afterTextChanged(Editable s) {
-                EditText edit_password = (EditText) findViewById(R.id.edit_password);
                 if (!s.toString().equals("") && s.toString().equals(edit_password.getText().toString())) {
                     ImageView img_checkRePassword = (ImageView) findViewById(R.id.img_checkRePassword);
                     img_checkRePassword.setVisibility(ImageView.VISIBLE);

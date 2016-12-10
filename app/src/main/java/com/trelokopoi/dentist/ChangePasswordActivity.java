@@ -6,7 +6,9 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -77,7 +79,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
             }
         });
 
-        EditText newPassword = (EditText) findViewById(R.id.newPasswordEditText);
+        final EditText newPassword = (EditText) findViewById(R.id.newPasswordEditText);
         newPassword.setTypeface(latoRegular);
         newPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -118,7 +120,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
 
             @Override
             public void afterTextChanged(Editable s) {
-                if (isValidPassword(s)) {
+                if (!s.toString().equals("") && s.toString().equals(newPassword.getText().toString())) {
                     ImageView img_checkNewPassAgain = (ImageView) findViewById(R.id.img_checkNewPassAgain);
                     img_checkNewPassAgain.setVisibility(ImageView.VISIBLE);
                 }
@@ -126,6 +128,42 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
                     ImageView img_checkNewPassAgain = (ImageView) findViewById(R.id.img_checkNewPassAgain);
                     img_checkNewPassAgain.setVisibility(ImageView.INVISIBLE);
                 }
+            }
+        });
+
+        ImageView imgShowPass = (ImageView) findViewById(R.id.imgShowPass);
+        imgShowPass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        newPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        newPassword.setSelection(newPassword.getText().length());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        newPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        newPassword.setSelection(newPassword.getText().length());
+                        break;
+                }
+                return true;
+            }
+        });
+
+        ImageView imgShowRePass = (ImageView) findViewById(R.id.imgShowRePass);
+        imgShowRePass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        newPasswordAgain.setInputType(InputType.TYPE_CLASS_TEXT);
+                        newPasswordAgain.setSelection(newPasswordAgain.getText().length());
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        newPasswordAgain.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        newPasswordAgain.setSelection(newPasswordAgain.getText().length());
+                        break;
+                }
+                return true;
             }
         });
 
