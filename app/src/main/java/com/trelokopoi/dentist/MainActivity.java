@@ -19,6 +19,7 @@ import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.LinearLayout;
@@ -71,6 +72,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private Date dateToday;
     private Integer backButtonCount = 0;
     private ImageView edit, delete;
+    private Typeface latoRegular, latoBold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -78,8 +80,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
 
         Tools.setupGoogleAnalytics(MainActivity.this);
 
-        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
-        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+        latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
         Typeface latoItalic = Fonts.returnFont(this, Fonts.LATO_ITALIC);
 
         TextView main_title = (TextView) findViewById(R.id.main_title);
@@ -477,8 +479,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
-        final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
-
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.child_item);
 
         TextView view1 = (TextView)view.findViewById(R.id.txt1);
@@ -531,19 +531,34 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             @Override
             public void onClick(View v) {
                 AlertDialog.Builder builder = new AlertDialog.Builder(MainActivity.this);
-                builder.setMessage("Are you sure you want to delete this item? The portion and time of consume will be deleted from the daily log of your child.")
-                        .setPositiveButton("DELETE", new DialogInterface.OnClickListener()
-                        {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                Bundle data = new Bundle();
-                                data.putInt("child", child);
-                                new AsyncApiCall(DELETE_PRODUCT, data, MainActivity.this, false).execute(WebApi.deleteProductFromChild(diaryId));
-                            }
-
-                        })
-                        .setNegativeButton("CANCEL", null)
-                        .show();
+                LayoutInflater inflater = MainActivity.this.getLayoutInflater();
+                View dialogView = inflater.inflate(R.layout.custom_alert_dialog, null);
+                final AlertDialog alert = builder.create();
+                alert.setView(dialogView);
+                TextView delete_title = (TextView) dialogView.findViewById(R.id.delete_title);
+                delete_title.setTypeface(latoBold);
+                TextView delete_header = (TextView) dialogView.findViewById(R.id.delete_header);
+                delete_header.setTypeface(latoRegular);
+                Button button_cancel = (Button) dialogView.findViewById(R.id.dialog_cancel);
+                button_cancel.setTypeface(latoBold);
+                button_cancel.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        alert.dismiss();
+                    }
+                    });
+                Button button_delete = (Button) dialogView.findViewById(R.id.dialog_delete);
+                button_delete.setTypeface(latoBold);
+                button_delete.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Bundle data = new Bundle();
+                        data.putInt("child", child);
+                        alert.dismiss();
+                        new AsyncApiCall(DELETE_PRODUCT, data, MainActivity.this, false).execute(WebApi.deleteProductFromChild(diaryId));
+                    }
+                });
+                alert.show();
             }
         });
 

@@ -1,6 +1,7 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
@@ -43,7 +44,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
     private EditText timeEditText, quantityEditText;
     private String add_product_date, productId, diaryId, amount, productName, time;
     private JSONArray childrenIds;
-    private Typeface latoRegular;
+    private Typeface latoRegular, latoBold;
     MyCustomAdapter dataAdapter = null;
     ArrayList<AddProductToChild> AddProductToChildList;
 
@@ -52,7 +53,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_to_children);
 
-        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView quanTitleTextView = (TextView)findViewById(R.id.quantity_title);
@@ -174,7 +175,22 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
                 if(timeEditText.getText().toString().trim().equals("") || quantityEditText.getText().toString().trim().equals("") || !(aChildIsChecked))
                 {
-                    Toast.makeText(ProductToChildrenActivity.this, "Fill both fields & check at least 1 child in order to Save the product", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(ProductToChildrenActivity.this);
+                    LayoutInflater inflater = ProductToChildrenActivity.this.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.custom_prod_to_child_dialog, null);
+                    final AlertDialog alert = builder.create();
+                    alert.setView(dialogView);
+                    TextView about_header = (TextView) dialogView.findViewById(R.id.prod_to_children_header);
+                    about_header.setTypeface(latoRegular);
+                    Button button_ok = (Button) dialogView.findViewById(R.id.dialog_ok);
+                    button_ok.setTypeface(latoBold);
+                    button_ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alert.dismiss();
+                        }
+                    });
+                    alert.show();
                 }
                 else
                 {

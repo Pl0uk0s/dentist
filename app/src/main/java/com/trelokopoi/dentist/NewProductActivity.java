@@ -1,6 +1,7 @@
 package com.trelokopoi.dentist;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.Intent;
@@ -8,6 +9,7 @@ import android.graphics.Color;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
@@ -65,7 +67,23 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                 EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
                 new_prod_name.setTypeface(latoRegular);
                 if (new_prod_name.getText().toString().trim().equals("") || unit.getText().toString().trim().equals("")) {
-                    Toast.makeText(NewProductActivity.this, "Fill the product name & sugar per 100 gr/ml in order to Submit new product", Toast.LENGTH_SHORT).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(NewProductActivity.this);
+                    LayoutInflater inflater = NewProductActivity.this.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.custom_prod_to_child_dialog, null);
+                    final AlertDialog alert = builder.create();
+                    alert.setView(dialogView);
+                    TextView about_header = (TextView) dialogView.findViewById(R.id.prod_to_children_header);
+                    about_header.setTypeface(latoRegular);
+                    about_header.setText(R.string.new_prod_dialog_title);
+                    Button button_ok = (Button) dialogView.findViewById(R.id.dialog_ok);
+                    button_ok.setTypeface(latoBold);
+                    button_ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alert.dismiss();
+                        }
+                    });
+                    alert.show();
                 } else {
                     prodName = new_prod_name.getText().toString();
                     prodUnit = unit.getText().toString();

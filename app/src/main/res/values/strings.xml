@@ -48,8 +48,11 @@
     <string name="quantity_tv">Quan:</string>
     <string name="measurement_tv">gr/ml</string>
     <string name="button_save">Done</string>
+    <string name="button_cancel">Cancel</string>
+    <string name="button_delete">Delete</string>
     <string name="button_login">Sign In</string>
     <string name="button_sign_out">Sign Out</string>
+    <string name="button_ok">OK</string>
     <string name="checkbox_remember">Remember Me</string>
     <string name="username">User Email</string>
     <string name="password">Password</string>
@@ -69,11 +72,18 @@
     <string name="who">Who</string>
     <string name="settings_email">Email</string>
     <string name="terms_title">Terms of Service and Privacy Policy</string>
+    <string name="about_title">About</string>
+    <string name="delete_title">Delete item</string>
     <string name="time_title">When</string>
     <string name="quantity_title">Quantity</string>
     <string name="new_prod_tv">New Product Name</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
     <string name="last_entry_tv">last entry at </string>
+    <string name="delete_dialog_title">Are you sure you want to delete\nthis item? The portion and time\nof consume will be deleted from\nthe daily log of your child.</string>
+    <string name="sing_out_dialog_title">Are you sure\nyou want to sign out?</string>
+    <string name="prod_to_child_dialog_title">Fill Quantity and Time field\nand check at least one child\nin order to Save the product</string>
+    <string name="about_dialog_header">Information about this app.\nLorem ipsum dolor sit amet,\ncosectetur adipiscing elit.\nQuisque nunc est, luctus eget\nneque et, rutrum elementum dui.</string>
+    <string name="new_prod_dialog_title">Fill the product name and\nsugar per 100 gr/ml in order\nto Submit the new product</string>
 
 
 

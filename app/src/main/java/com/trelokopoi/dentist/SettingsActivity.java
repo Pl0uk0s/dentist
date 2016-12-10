@@ -6,8 +6,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.AdapterView;
@@ -35,14 +37,15 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
     final Context context = this;
     private int CHANGE_EMAIL = 0;
     String button_txt;
+    private Typeface latoBold, latoRegular;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
-        Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+        latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
+        latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView emailHeaderTextView = (TextView)findViewById(R.id.settings_header);
         emailHeaderTextView.setTypeface(latoBold);
@@ -104,20 +107,24 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                 }
                 else if (position == 2)
                 {
-                    // Inflate the about message contents
-                    View messageView = getLayoutInflater().inflate(R.layout.about_dialog, null, false);
-
-                    // When linking text, force to always use default color. This works
-                    // around a pressed color state bug.
-                    TextView textView = (TextView) messageView.findViewById(R.id.about_credits);
-                    int defaultColor = textView.getTextColors().getDefaultColor();
-                    textView.setTextColor(defaultColor);
-
                     AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                    builder.setTitle(R.string.app_name);
-                    builder.setView(messageView);
-                    builder.create();
-                    builder.show();
+                    LayoutInflater inflater = SettingsActivity.this.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.custom_about_dialog, null);
+                    final AlertDialog alert = builder.create();
+                    alert.setView(dialogView);
+                    TextView about_title = (TextView) dialogView.findViewById(R.id.about_title);
+                    about_title.setTypeface(latoBold);
+                    TextView about_header = (TextView) dialogView.findViewById(R.id.about_header);
+                    about_header.setTypeface(latoRegular);
+                    Button button_ok = (Button) dialogView.findViewById(R.id.dialog_ok);
+                    button_ok.setTypeface(latoBold);
+                    button_ok.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alert.dismiss();
+                        }
+                    });
+                    alert.show();
                 }
             }
         });
@@ -135,20 +142,32 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                 }
                 else {
                     AlertDialog.Builder builder = new AlertDialog.Builder(SettingsActivity.this);
-                            builder.setMessage("Are you sure you want to sign out?")
-                            .setPositiveButton("SIGN OUT", new DialogInterface.OnClickListener()
-                            {
-                                @Override
-                                public void onClick(DialogInterface dialog, int which) {
-                                    LocalStorage.setUserLogout();
-                                    Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
-                                    startActivity(intent);
-                                    finish();
-                                }
-
-                            })
-                            .setNegativeButton("CANCEL", null)
-                            .show();
+                    LayoutInflater inflater = SettingsActivity.this.getLayoutInflater();
+                    View dialogView = inflater.inflate(R.layout.custom_sign_out_dialog, null);
+                    final AlertDialog alert = builder.create();
+                    alert.setView(dialogView);
+                    TextView sign_out_header = (TextView) dialogView.findViewById(R.id.sign_out_header);
+                    sign_out_header.setTypeface(latoBold);
+                    Button button_cancel = (Button) dialogView.findViewById(R.id.sign_out_cancel);
+                    button_cancel.setTypeface(latoBold);
+                    button_cancel.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            alert.dismiss();
+                        }
+                    });
+                    Button button_sign_out = (Button) dialogView.findViewById(R.id.dialog_sign_out);
+                    button_sign_out.setTypeface(latoBold);
+                    button_sign_out.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            LocalStorage.setUserLogout();
+                            Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
+                            startActivity(intent);
+                            finish();
+                        }
+                    });
+                    alert.show();
                 }
             }
         });
