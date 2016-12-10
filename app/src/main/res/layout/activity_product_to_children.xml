@@ -29,11 +29,11 @@
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
         android:gravity="center"
-        android:layout_toEndOf="@+id/back"
+        android:layout_centerHorizontal="true"
         android:layout_marginStart="15dp"
         android:layout_marginEnd="5dp"
         android:textColor="@color/white"
-        android:textSize="17sp"/>
+        android:textSize="20sp"/>
     </RelativeLayout>
 
     <RelativeLayout
@@ -69,7 +69,7 @@
                 android:maxLines="1"
                 android:layout_centerVertical="true"
                 android:textAlignment="center"
-                android:background="@color/white"
+                android:background="@drawable/shape"
                 android:layout_marginStart="10dp"
                 android:elevation="3dp"/>
 
@@ -82,7 +82,7 @@
                 android:layout_centerVertical="true"
                 android:elevation="3dp"
                 android:layout_marginStart="20dp"
-                android:background="@color/white"
+                android:background="@drawable/shape"
                 android:layout_marginEnd="10dp"
                 android:layout_toEndOf="@+id/quantity_ed" />
         </RelativeLayout>
@@ -90,13 +90,13 @@
         <TextView
             android:id="@+id/time_title"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="38dp"
             android:layout_below="@+id/quantity_layout"
             android:text="@string/time_title"
             android:textSize="15sp"
+            android:paddingBottom="5dp"
             android:gravity="center_vertical"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="5dp"
             />
 
         <RelativeLayout
@@ -105,7 +105,7 @@
             android:layout_height="48dp"
             android:layout_below="@+id/time_title"
             android:elevation="3dp"
-            android:background="@color/white"
+            android:background="@drawable/shape"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginBottom="5dp"
@@ -135,14 +135,15 @@
         <TextView
             android:id="@+id/who_title"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="38dp"
             android:layout_below="@+id/time_layout"
             android:text="@string/who"
             android:textSize="15sp"
+            android:paddingBottom="5dp"
             android:gravity="center_vertical"
             android:layout_marginStart="20dp"
             android:layout_marginTop="5dp"
-            android:layout_marginBottom="10dp"
+            android:layout_marginBottom="5dp"
             />
 
         <ListView
@@ -154,7 +155,7 @@
             android:layout_marginEnd="10dp"
             android:divider="@null"
             android:dividerHeight="0dp"
-            android:background="@color/white"
+            android:background="@drawable/shape"
             android:elevation="3dp"/>
 
         <Button
@@ -169,10 +170,11 @@
             android:adjustViewBounds="true"
             android:scaleType="centerInside"
             android:text="@string/button_save"
+            android:textAllCaps="false"
             android:textSize="15sp"
             android:elevation="3dp"
             android:textColor="@color/white"
-            android:background="#0097A7" />
+            android:background="@drawable/shape3" />
     </RelativeLayout>
 
     </RelativeLayout>

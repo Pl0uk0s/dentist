@@ -57,6 +57,6 @@
         android:text="@string/button_save"
         android:textSize="20sp"
         android:textColor="@color/white"
-        android:background="@color/blue"/>
+        android:background="@drawable/shape3"/>
 
 </LinearLayout>

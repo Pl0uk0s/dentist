@@ -2,6 +2,7 @@ package com.trelokopoi.dentist;
 
 import android.app.Activity;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.Typeface;
@@ -9,6 +10,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -32,18 +34,20 @@ import org.json.JSONObject;
 public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskCompleted {
 
     private Integer ADD_PRODUCT = 0;
-    private String prodName, prodUnit;
+    private String prodName, prodUnit, add_product_date;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_new_product);
 
+        add_product_date = getIntent().getStringExtra("date");
+
         final Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView headerTextView = (TextView)findViewById(R.id.new_product_header);
-        headerTextView.setTypeface(latoRegular);
+        headerTextView.setTypeface(latoBold);
 
         TextView nameTitleTextView = (TextView)findViewById(R.id.name_title);
         nameTitleTextView.setTypeface(latoBold);
@@ -51,8 +55,6 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         TextView unitTitleTextView = (TextView)findViewById(R.id.unit_title);
         unitTitleTextView.setTypeface(latoBold);
 
-        final EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
-        new_prod_name.setTypeface(latoRegular);
         final TextView unit = (TextView) findViewById(R.id.unit_tv);
         unit.setTypeface(latoRegular);
         final Button save = (Button) findViewById(R.id.save);
@@ -60,6 +62,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
         save.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                EditText new_prod_name = (EditText) findViewById(R.id.name_ed);
+                new_prod_name.setTypeface(latoRegular);
                 if (new_prod_name.getText().toString().trim().equals("") || unit.getText().toString().trim().equals("")) {
                     Toast.makeText(NewProductActivity.this, "Fill the product name & sugar per 100 gr/ml in order to Submit new product", Toast.LENGTH_SHORT).show();
                 } else {
@@ -91,6 +95,11 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
             @Override
             public void onClick(View v)
             {
+                View view = NewProductActivity.this.getCurrentFocus();
+                if (view != null) {
+                    InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                    imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                }
                 listView.setVisibility(View.VISIBLE);
                 save.setVisibility(View.GONE);
             }
@@ -101,6 +110,7 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
             @Override
             public void onClick(View v) {
                 Intent i = new Intent(NewProductActivity.this, AddProductActivity.class);
+                i.putExtra("date", add_product_date);
                 startActivity(i);
                 finish();
             }
@@ -118,8 +128,9 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                 String success = jsonResult.optString("success", "0");
                 if (success.equals("1")) {
                     String productId = jsonResult.optString("productId", "0");
-                    Intent i = new Intent(NewProductActivity.this, AddProductActivity.class);
+                    Intent i = new Intent(NewProductActivity.this, ProductToChildrenActivity.class);
                     Bundle extras = new Bundle();
+                    extras.putString("date", add_product_date);
                     extras.putString("productName", prodName);
                     extras.putString("productId", productId);
                     extras.putString("unit",prodUnit);

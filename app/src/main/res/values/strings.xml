@@ -72,6 +72,7 @@
     <string name="quantity_title">Quantity</string>
     <string name="new_prod_tv">New Product Name</string>
     <string name="sugar_per_100_tv">Sugar Per 100 gr/ml</string>
+    <string name="last_entry_tv">last entry at </string>
 
 
 

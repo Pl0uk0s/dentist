@@ -27,7 +27,7 @@
             android:layout_height="wrap_content"
             android:text="@string/add_new_product_tv"
             android:textColor="@color/white"
-            android:textSize="17sp"
+            android:textSize="20sp"
             android:layout_centerVertical="true"
             android:layout_centerHorizontal="true" />
     </RelativeLayout>
@@ -35,13 +35,13 @@
     <TextView
         android:id="@+id/name_title"
         android:layout_width="wrap_content"
-        android:layout_height="48dp"
+        android:layout_height="43dp"
         android:layout_below="@+id/header"
         android:text="@string/name_title"
+        android:paddingTop="5dp"
         android:textSize="15sp"
         android:gravity="center_vertical"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="5dp"
         />
 
     <RelativeLayout
@@ -50,7 +50,7 @@
         android:layout_height="48dp"
         android:layout_below="@+id/name_title"
         android:elevation="3dp"
-        android:background="@color/white"
+        android:background="@drawable/shape"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
         android:layout_marginBottom="5dp"
@@ -62,9 +62,9 @@
             android:id="@+id/name_ed"
             android:inputType="text"
             android:maxLines="1"
-            android:textSize="15sp"
+            android:textSize="16sp"
             android:background="@android:color/transparent"
-            android:textColor="#54000000"
+            android:textColor="#000000"
             android:textColorHint="#54000000"
             android:hint="@string/name_hint"
             android:layout_centerVertical="true"
@@ -74,7 +74,7 @@
         <TextView
             android:id="@+id/unit_title"
             android:layout_width="wrap_content"
-            android:layout_height="48dp"
+            android:layout_height="38dp"
             android:layout_below="@+id/name_layout"
             android:text="@string/unit_title"
             android:textSize="15sp"
@@ -87,7 +87,7 @@
             android:layout_height="48dp"
             android:layout_below="@+id/unit_title"
             android:elevation="3dp"
-            android:background="@color/white"
+            android:background="@drawable/shape"
             android:layout_marginStart="10dp"
             android:layout_marginEnd="10dp"
             android:layout_marginTop="5dp">
@@ -97,7 +97,7 @@
                 android:layout_height="48dp"
                 android:id="@+id/unit_tv"
                 android:text="@string/unit_hint"
-                android:textSize="15sp"
+                android:textSize="16sp"
                 android:gravity="center_vertical"
                 android:textColor="#54000000"
                 android:layout_centerVertical="true"
@@ -128,7 +128,7 @@
         android:layout_marginStart="10dp"
         android:adjustViewBounds="true"
         android:scaleType="centerInside"
-        android:background="#0097A7"
+        android:background="@drawable/shape3"
         android:text="@string/button_save"
         android:textSize="15sp"
         android:elevation="3dp"

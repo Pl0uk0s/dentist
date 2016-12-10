@@ -32,8 +32,8 @@ public class UnitAdapter extends ArrayAdapter<String> {
 
         TextView text = (TextView) mView.findViewById(R.id.unit_item);
 
-        Typeface latoBold = Fonts.returnFont(mContext, Fonts.LATO_BOLD);
-        text.setTypeface(latoBold);
+        Typeface latoRegular = Fonts.returnFont(mContext, Fonts.LATO_REGULAR);
+        text.setTypeface(latoRegular);
         text.setText(items[position]);
 
         return mView;

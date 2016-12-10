@@ -53,7 +53,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_marginTop="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        android:background="@color/white"
+        android:background="@drawable/shape"
         android:elevation="6dp"
         android:layout_below="@+id/add_top">
 
@@ -91,8 +91,8 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:visibility="gone"
         android:layout_below="@+id/search_layout"
         android:elevation="6dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:background="#EAEAEA" />
 
     <RelativeLayout
@@ -105,7 +105,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_marginEnd="10dp"
         android:elevation="3dp"
         android:layout_below="@+id/search_layout"
-        android:background="#D84315">
+        android:background="@drawable/shape4">
 
         <ImageView
             android:layout_width="wrap_content"
@@ -142,7 +142,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_height="wrap_content"
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
-        android:background="@color/white"
+        android:background="@drawable/shape"
         android:elevation="6dp"
         android:visibility="gone"/>
 
@@ -154,7 +154,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@color/white"
+        android:background="@drawable/shape7"
         android:elevation="3dp"
         android:layout_below="@+id/recent_title"
         android:divider="@null"
@@ -166,7 +166,7 @@ tools:context="com.trelokopoi.dentist.AddProductActivity">
             android:layout_height="wrap_content"
             android:textSize="15sp"
             android:textColor="#38000000"
-            android:background="@color/white"
+            android:background="@drawable/shape6"
             android:text="@string/recent_title"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"

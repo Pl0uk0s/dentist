@@ -87,9 +87,11 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
         Integer length = productName.length();
         String food30chars;
+        String more = "...";
+        String food20chars;
+        food20chars = productName.substring(0, 20) + more;
         if (length > 30)
         {
-            String more = "...";
             food30chars = productName.substring(0, 30) + more;
         }
         else
@@ -98,8 +100,8 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         }
 
         TextView titleTextView = (TextView) findViewById(R.id.product_to_children_header);
-        titleTextView.setTypeface(latoRegular);
-        titleTextView.setText(food30chars);
+        titleTextView.setTypeface(latoBold);
+        titleTextView.setText(food20chars);
 
         if (diaryId != null && !diaryId.equals("0")) {
             quantityEditText.setText(amount);

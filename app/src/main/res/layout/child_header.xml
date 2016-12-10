@@ -2,19 +2,20 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#E1F5FE"
+    android:background="@drawable/shape2"
     android:id="@+id/child_item" >
 
     <TableLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:background="#E1F5FE"
+        android:background="@drawable/shape2"
         android:id="@+id/layout2" >
     <TableRow
         android:id="@+id/tableRow1"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape2"
         >
 
         <TextView
@@ -24,11 +25,13 @@
             android:paddingTop="19dp"
             android:gravity="center_horizontal"
             android:textSize="16sp"
-            android:textColor="@color/black"
+            android:textColor="#87000000"
             />
 
         <TableRow
             android:id="@+id/tableRow2"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/shape2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" >
 
@@ -42,7 +45,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:gravity="bottom"
-                    android:textColor="@color/black"
+                    android:textColor="#87000000"
                     android:textSize="16sp"
                     android:lineSpacingExtra="2sp"
                     />
@@ -52,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="36dp"
                     android:gravity="top"
-                    android:textColor="@color/black"
+                    android:textColor="#54000000"
                     android:textSize="14sp"
                     android:lineSpacingExtra="4sp"
                     />

@@ -14,6 +14,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.content.ContextCompat;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -86,34 +87,19 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         Typeface latoItalic = Fonts.returnFont(this, Fonts.LATO_ITALIC);
 
         TextView main_title = (TextView) findViewById(R.id.main_title);
-        main_title.setTypeface(latoRegular);
-
-        TextView today = (TextView) findViewById(R.id.today);
-        today.setTypeface(latoBold);
+        main_title.setTypeface(latoBold);
 
         TextView child_name1 = (TextView) findViewById(R.id.child_name1);
         child_name1.setTypeface(latoBold);
 
-        TextView child1_last_entry = (TextView) findViewById(R.id.child1_last_entry);
-        child1_last_entry.setTypeface(latoItalic);
-
         TextView child_name2 = (TextView) findViewById(R.id.child_name2);
         child_name2.setTypeface(latoBold);
-
-        TextView child2_last_entry = (TextView) findViewById(R.id.child2_last_entry);
-        child2_last_entry.setTypeface(latoItalic);
 
         TextView child_name3 = (TextView) findViewById(R.id.child_name3);
         child_name3.setTypeface(latoBold);
 
-        TextView child3_last_entry = (TextView) findViewById(R.id.child3_last_entry);
-        child3_last_entry.setTypeface(latoItalic);
-
         TextView child_name4 = (TextView) findViewById(R.id.child_name4);
         child_name4.setTypeface(latoBold);
-
-        TextView child4_last_entry = (TextView) findViewById(R.id.child4_last_entry);
-        child4_last_entry.setTypeface(latoItalic);
 
         ImageView next = (ImageView) findViewById(R.id.next);
         ImageView previous = (ImageView) findViewById(R.id.previous);
@@ -146,7 +132,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
 
         } else {
-            Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG);
+            Toast.makeText(this, getString(R.string.str_error), Toast.LENGTH_LONG).show();
         }
 
         ScrollView children_scrollview = (ScrollView) findViewById(R.id.children_scrollview);
@@ -154,7 +140,9 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         JSONArray children = LocalStorage.getChildren();
 
         TextView dateTxtView = (TextView) findViewById(R.id.date);
+        dateTxtView.setTypeface(latoBold);
         TextView todayTxtView = (TextView) findViewById(R.id.today);
+        todayTxtView.setTypeface(latoBold);
         currentDate = LocalStorage.getDayForInfo();
         dateTxtView.setText(currentDate);
 
@@ -179,9 +167,13 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         RelativeLayout child4_relative = (RelativeLayout) findViewById(R.id.child4_relative);
 
         TextView child_lastentry1 = (TextView) findViewById(R.id.child1_last_entry);
+        child_lastentry1.setTypeface(latoItalic);
         TextView child_lastentry2 = (TextView) findViewById(R.id.child2_last_entry);
+        child_lastentry2.setTypeface(latoItalic);
         TextView child_lastentry3 = (TextView) findViewById(R.id.child3_last_entry);
+        child_lastentry3.setTypeface(latoItalic);
         TextView child_lastentry4 = (TextView) findViewById(R.id.child4_last_entry);
+        child_lastentry4.setTypeface(latoItalic);
 
         RelativeLayout llchild1 = (RelativeLayout) findViewById(R.id.child1);
         RelativeLayout llchild2 = (RelativeLayout) findViewById(R.id.child2);
@@ -196,68 +188,68 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
+                child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
 
             } else if (i == 2) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
+                child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
+                child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
             } else if (i == 3) {
 
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
+                child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
+                child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
 
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
-                child_lastentry3.setText("Last entry at " + child3.optString("lastEntry", ""));
+                child_lastentry3.setText("last entry at " + child3.optString("lastEntry", ""));
             } else if (i == 4) {
                 JSONObject child1 = children.getJSONObject(0);
                 llchild1.setVisibility(View.VISIBLE);
                 child1_relative.setVisibility(View.VISIBLE);
                 child_name1.setText(child1.optString("name", ""));
-                child_lastentry1.setText("Last entry at " + child1.optString("lastEntry", ""));
+                child_lastentry1.setText("last entry at " + child1.optString("lastEntry", ""));
 
 
                 JSONObject child2 = children.getJSONObject(1);
                 llchild2.setVisibility(View.VISIBLE);
                 child2_relative.setVisibility(View.VISIBLE);
                 child_name2.setText(child2.optString("name", ""));
-                child_lastentry2.setText("Last entry at " + child2.optString("lastEntry", ""));
+                child_lastentry2.setText("last entry at " + child2.optString("lastEntry", ""));
 
 
                 JSONObject child3 = children.getJSONObject(2);
                 llchild3.setVisibility(View.VISIBLE);
                 child3_relative.setVisibility(View.VISIBLE);
                 child_name3.setText(child3.optString("name", ""));
-                child_lastentry3.setText("Last entry at " + child3.optString("lastEntry", ""));
+                child_lastentry3.setText("last entry at " + child3.optString("lastEntry", ""));
 
                 JSONObject child4 = children.getJSONObject(3);
                 llchild4.setVisibility(View.VISIBLE);
                 child4_relative.setVisibility(View.VISIBLE);
                 child_name4.setText(child4.optString("name", ""));
-                child_lastentry4.setText("Last entry at " + child4.optString("lastEntry", ""));
+                child_lastentry4.setText("last entry at " + child4.optString("lastEntry", ""));
             }
         } catch (JSONException e) {
             // TODO Auto-generated catch block
@@ -737,7 +729,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 if (diaryId == 0) {
                     JSONObject Response = WebApi.addProductToChild(prodId, quantity, date, time, belongs);
                     try {
-                        String success = (String) Response.getString("success");
+                        String success = Response.getString("success");
 
                         if (success.equals("1")) {
                             diaryDataSource.deleteOld(this.getApplicationContext(), id);
@@ -758,7 +750,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 else {
                     JSONObject Response = WebApi.updateProductToChild(diaryId, quantity, date, time);
                     try {
-                        String success = (String) Response.getString("success");
+                        String success = Response.getString("success");
 
                         if (success.equals("1")) {
                             diaryDataSource.deleteOld(this.getApplicationContext(), id);

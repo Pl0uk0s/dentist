@@ -51,9 +51,10 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
         setContentView(R.layout.activity_add_product);
 
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
+        Typeface latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
 
         TextView headerTextView = (TextView)findViewById(R.id.add_product_title);
-        headerTextView.setTypeface(latoRegular);
+        headerTextView.setTypeface(latoBold);
 
         TextView addNewProdTextView = (TextView)findViewById(R.id.add_new_product_tv);
         addNewProdTextView.setTypeface(latoRegular);
@@ -215,6 +216,7 @@ public class AddProductActivity extends Activity implements AsyncApiCallOnTaskCo
             @Override
             public void onClick(View arg0) {
                 Intent i = new Intent(AddProductActivity.this, NewProductActivity.class);
+                i.putExtra("date", add_product_date);
                 startActivity(i);
                 finish();
             }

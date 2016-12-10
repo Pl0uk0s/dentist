@@ -37,7 +37,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         final Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView titleTextView = (TextView)findViewById(R.id.change_pass_header);
-        titleTextView.setTypeface(latoRegular);
+        titleTextView.setTypeface(latoBold);
 
         TextView headerTextView = (TextView)findViewById(R.id.change_pass_title);
         headerTextView.setTypeface(latoBold);

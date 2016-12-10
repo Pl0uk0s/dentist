@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/shape2"
+    android:id="@+id/child_item" >
+
+    <TableLayout
+        android:orientation="vertical"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:background="@drawable/shape2"
+        android:id="@+id/layout2" >
+    <TableRow
+        android:id="@+id/tableRow1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/shape2"
+        >
+
+        <TextView
+            android:layout_width="60dp"
+            android:layout_height="72dp"
+            android:id="@+id/txt1"
+            android:paddingTop="19dp"
+            android:gravity="center_horizontal"
+            android:textSize="16sp"
+            android:textColor="#87000000"
+            />
+
+        <TableRow
+            android:id="@+id/tableRow2"
+            android:layout_marginStart="5dp"
+            android:background="@drawable/shape2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" >
+
+                <TextView
+                    android:id="@+id/txt2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="bottom"
+                    android:textColor="#87000000"
+                    android:textSize="16sp"
+                    android:lineSpacingExtra="2sp"
+                    />
+
+                <TextView
+                    android:id="@+id/txt3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="36dp"
+                    android:gravity="top"
+                    android:textColor="#54000000"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4sp"
+                    />
+                <TextView
+                    android:id="@+id/txt4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+
+            </LinearLayout>
+
+        </TableRow>
+
+    </TableRow>
+
+</TableLayout>
+
+    <ImageView
+        android:id="@+id/editImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_edit_black_36dp"
+        android:layout_toStartOf="@+id/deleteImageView"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="15dp"/>
+
+    <ImageView
+        android:id="@+id/deleteImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_centerVertical="true"
+        android:src="@drawable/ic_delete_black_36dp"
+        android:layout_alignParentEnd="true"
+        android:layout_marginEnd="10dp"/>
+
+</RelativeLayout>

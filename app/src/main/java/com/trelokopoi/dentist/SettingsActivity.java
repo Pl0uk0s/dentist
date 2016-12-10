@@ -45,7 +45,7 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
         Typeface latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
         TextView emailHeaderTextView = (TextView)findViewById(R.id.settings_header);
-        emailHeaderTextView.setTypeface(latoRegular);
+        emailHeaderTextView.setTypeface(latoBold);
 
         TextView emailTitleTextView = (TextView)findViewById(R.id.settings_title);
         emailTitleTextView.setTypeface(latoBold);

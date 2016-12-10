@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/new_prod_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/new_prod_tv"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/new_prod_ed"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:maxLines="2"/>
+
+    <TextView
+        android:id="@+id/sugar_per_100_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="50dp"
+        android:text="@string/sugar_per_100_tv"
+        android:gravity="center"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_gravity="center" />
+
+    <EditText
+        android:layout_width="110dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/sugar_per_100_ed"
+        android:inputType="number"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:layout_gravity="center"
+        android:textAlignment="center"
+        android:maxLines="2"
+/>
+
+    <Button
+        android:id="@+id/submit"
+        android:layout_width="150dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center"
+        android:adjustViewBounds="true"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        android:scaleType="centerInside"
+        android:text="@string/button_save"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        android:background="@drawable/shape3"/>
+
+</LinearLayout>

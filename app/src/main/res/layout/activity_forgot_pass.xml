@@ -88,7 +88,7 @@
         android:id="@+id/btn_done"
         android:textSize="16sp"
         android:textColor="#439EAA"
-        android:background="@color/white"
+        android:background="@drawable/shape"
         android:text="@string/btn_done"
         android:elevation="20dp"
         android:textAllCaps="false"

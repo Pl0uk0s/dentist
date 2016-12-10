@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#4EA991">
+
+    <TextView
+        android:id="@+id/txt_welcome"
+        android:text="@string/txt_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="42pt"
+        android:layout_marginStart="20dp"
+        android:lineSpacingExtra="6sp"/>
+
+    <TextView
+        android:id="@+id/txt_welcome2"
+        android:layout_below="@id/txt_welcome"
+        android:text="@string/txt_welcome2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="26sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="7dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28pt"
+        android:lineSpacingExtra="2sp"/>
+
+    <TextView
+        android:id="@+id/btn_signin"
+        android:text="@string/btn_signin"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_alignParentBottom="true"
+        android:textSize="16sp"
+        android:textColor="@color/white"
+        android:gravity="center"
+        android:layout_marginBottom="7dp"
+        android:lineSpacingExtra="2sp"/>
+
+    <Button
+        android:id="@+id/btn_register"
+        android:text="@string/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_above="@id/btn_signin"
+        android:textSize="16sp"
+        android:textColor="#0097A7"
+        android:background="@drawable/shape"
+        android:layout_margin="9dp"
+        android:elevation="3dp"
+        android:textAllCaps="false"
+        android:lineSpacingExtra="2sp"/>
+
+</RelativeLayout>
