@@ -92,7 +92,8 @@ public class NewProductActivity extends Activity  implements AsyncApiCallOnTaskC
                         }
                     });
                     alert.show();
-                } else {
+                }
+                else {
                     prodName = new_prod_name.getText().toString();
                     prodUnit = unit.getText().toString();
                     new AsyncApiCall(ADD_PRODUCT, NewProductActivity.this, false).execute(WebApi.addProduct(new_prod_name.getText().toString(), unit.getText().toString()));

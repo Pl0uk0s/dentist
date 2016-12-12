@@ -22,7 +22,8 @@ public class diaryDataSource {
             DB_Helper.TABLE1_COLUMN_DATE,
             DB_Helper.TABLE1_COLUMN_TIME,
             DB_Helper.TABLE1_COLUMN_BELONGS,
-            DB_Helper.TABLE1_COLUMN_DIARYID
+            DB_Helper.TABLE1_COLUMN_DIARYID,
+            DB_Helper.TABLE1_COLUMN_PRODUNIT
     };
 
     public diaryDataSource(Context context) {
@@ -51,6 +52,7 @@ public class diaryDataSource {
         values.put(DB_Helper.TABLE1_COLUMN_TIME, object.getTime());
         values.put(DB_Helper.TABLE1_COLUMN_BELONGS, object.getBelongs());
         values.put(DB_Helper.TABLE1_COLUMN_DIARYID, object.getDiaryId());
+        values.put(DB_Helper.TABLE1_COLUMN_PRODUNIT, object.getProdUnit());
         try {
             database.insert(DB_Helper.TABLE1_COMMENTS, null, values);
         } catch (SQLiteDiskIOException e) {
@@ -64,14 +66,14 @@ public class diaryDataSource {
 
         Cursor cursor = database.query(DB_Helper.TABLE1_COMMENTS, null, null, null, null, null, null);
 
-        cursor.moveToFirst();
-        int count = cursor.getCount();
-        if (count > 0) {
-            while (cursor.moveToNext()) {
-                singleObject = cursorToComment(cursor);
-                aDiaryObjs.add(singleObject);
-            }
+//        cursor.moveToFirst();
+//        int count = cursor.getCount();
+//        if (count > 0) {
+        while (cursor.moveToNext()) {
+            singleObject = cursorToComment(cursor);
+            aDiaryObjs.add(singleObject);
         }
+//        }
 
         // make sure to close the cursor
         cursor.close();
@@ -88,6 +90,7 @@ public class diaryDataSource {
         object.setTime(cursor.getString(4));
         object.setBelongs(cursor.getInt(5));
         object.setDiaryId(cursor.getInt(6));
+        object.setProdUnit(cursor.getString(7));
 
         return object;
     }

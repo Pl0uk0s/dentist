@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
+import android.media.Image;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputType;
@@ -53,7 +54,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
         TextView newPassAgainTextView = (TextView)findViewById(R.id.newPasswordAgain);
         newPassAgainTextView.setTypeface(latoBold);
 
-        EditText oldPassword = (EditText) findViewById(R.id.oldPasswordEditText);
+        final EditText oldPassword = (EditText) findViewById(R.id.oldPasswordEditText);
         oldPassword.setTypeface(latoRegular);
         oldPassword.addTextChangedListener(new TextWatcher() {
             @Override
@@ -128,6 +129,27 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
                     ImageView img_checkNewPassAgain = (ImageView) findViewById(R.id.img_checkNewPassAgain);
                     img_checkNewPassAgain.setVisibility(ImageView.INVISIBLE);
                 }
+            }
+        });
+
+        ImageView imgShowOldPass = (ImageView) findViewById(R.id.imgShowOldPass);
+        imgShowOldPass.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                Typeface latoRegular = Fonts.returnFont(getApplicationContext(), Fonts.LATO_REGULAR);
+                switch ( event.getAction() ) {
+                    case MotionEvent.ACTION_DOWN:
+                        oldPassword.setInputType(InputType.TYPE_CLASS_TEXT);
+                        oldPassword.setSelection(oldPassword.getText().length());
+                        oldPassword.setTypeface(latoRegular);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        oldPassword.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                        oldPassword.setSelection(oldPassword.getText().length());
+                        oldPassword.setTypeface(latoRegular);
+                        break;
+                }
+                return true;
             }
         });
 

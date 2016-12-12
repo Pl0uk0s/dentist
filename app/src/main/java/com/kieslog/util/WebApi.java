@@ -35,6 +35,7 @@ public class WebApi {
     private static final String ACTION_CHANGEPRODUCTFORCHILD = "?action=changeProductForChild";
     private static final String ACTION_DELETEPRODUCTFROMCHILD = "?action=deleteProductFromChild";
     private static final String ACTION_GETOTHERCHILDRENFORSAMEENTRY = "?action=getOtherChildrenForSameEntry";
+    private static final String ACTION_GETPRODUCTUNITS = "?action=getProductUnits";
     private static final String ACTION_FORGOTPASSWORD = "?action=forgotPassword";
     private static final String ACTION_GETTOP10 = "?action=getTop10";
 
@@ -43,12 +44,6 @@ public class WebApi {
     private static final String VALUE_ACCESSCODE = "&accessCode=";
     private static final String VALUE_USERPASSWORD = "&userPassword=";
     private static final String VALUE_USERID = "&userId=";
-    private static final String VALUE_USER_DEVICE_OS = "&userDeviceOs=";
-    private static final String VALUE_USER_DEVICE_HW = "&userDeviceHardware=";
-    private static final String VALUE_USER_DEVICE_SCR = "&userDeviceScreen=";
-    private static final String VALUE_USER_NETWORK_CARRIER = "&userNetworkCarrier=";
-    private static final String VALUE_USER_NETWORK_OPERATOR = "&userNetworkOperator=";
-    private static final String VALUE_USER_PHONE_NUMBER = "&userPhoneNumber=";
     private static final String VALUE_DATE = "&date=";
     private static final String VALUE_CHILD_ID = "&childId=";
     private static final String VALUE_LETTERS = "&letters=";
@@ -127,6 +122,20 @@ public class WebApi {
         return WebInterface.executeWeb(url);
     }
 
+    public static JSONObject getProductUnits(Context context, String productId) {
+        String url  = returnURL();
+        url += PLAYMAKER_URL;
+        url += ACTION_GETPRODUCTUNITS;
+        url += VALUE_USEREMAIL+App.userEmail;
+        url += VALUE_USERPASSWORD+App.password;
+        url += VALUE_USERID+App.userId;
+
+        url += VALUE_ITEMID+productId;
+
+        url += VALUE_FIELD_VERSION+App.VERSION;
+        return WebInterface.executeWeb(url);
+    }
+
     public static JSONObject getChildren(String date) {
         String url = returnURL();
         url += PLAYMAKER_URL;
@@ -199,7 +208,7 @@ public class WebApi {
         return WebInterface.executeWeb(url);
     }
 
-    public static JSONObject addProductToChild(Integer prodId, Integer quantity, String date, String time, Integer belongs) {
+    public static JSONObject addProductToChild(Integer prodId, Integer quantity, String prodUnit, String date, String time, Integer belongs) {
         String url  = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_ADDPRODUCTTOCHILD;
@@ -209,13 +218,14 @@ public class WebApi {
 
         url += VALUE_ITEMID+prodId;
         url += VALUE_AMOUNT+quantity;
+        url += VALUE_UNIT+prodUnit;
         url += VALUE_DATE+date;
         url += VALUE_TIME+time;
         url += VALUE_CHILD_ID+belongs;
         return WebInterface.executeWeb(url);
     }
 
-    public static JSONObject updateProductToChild(Integer diaryId, Integer quantity, String date, String time) {
+    public static JSONObject updateProductToChild(Integer diaryId, Integer quantity, String prodUnit, String date, String time) {
         String url  = returnURL();
         url += PLAYMAKER_URL;
         url += ACTION_UPDATEPRODUCTTOCHILD;
@@ -225,6 +235,7 @@ public class WebApi {
 
         url += VALUE_DIARYID+diaryId;
         url += VALUE_AMOUNT+quantity;
+        url += VALUE_UNIT+prodUnit;
         url += VALUE_DATE+date;
         url += VALUE_TIME+time;
         return WebInterface.executeWeb(url);

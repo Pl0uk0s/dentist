@@ -17,6 +17,7 @@ public class DB_Helper extends SQLiteOpenHelper {
 	public static final String TABLE1_COLUMN_TIME = "time";
 	public static final String TABLE1_COLUMN_BELONGS = "belongs";
 	public static final String TABLE1_COLUMN_DIARYID = "diaryId";
+	public static final String TABLE1_COLUMN_PRODUNIT = "prodUnit";
 	    
 	public static final String TABLE2_COMMENTS = "chats";
 	public static final String TABLE2_COLUMN_ID = "_id";
@@ -37,7 +38,8 @@ public class DB_Helper extends SQLiteOpenHelper {
 		+ TABLE1_COLUMN_DATE + " text,"
 		+ TABLE1_COLUMN_TIME + " text,"
 		+ TABLE1_COLUMN_BELONGS + " integer not null,"
-		+ TABLE1_COLUMN_DIARYID + " integer not null"
+		+ TABLE1_COLUMN_DIARYID + " integer not null,"
+		+ TABLE1_COLUMN_PRODUNIT + " text"
 		+");";
 
 //	private static final String DATABASE_CREATE2 = "create table "

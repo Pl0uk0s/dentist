@@ -5,6 +5,7 @@ import android.app.AlertDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.util.Log;
@@ -29,6 +30,7 @@ import com.kieslog.util.AddProductToChild;
 import com.kieslog.util.AsyncApiCallOnTaskCompleted;
 import com.kieslog.util.Fonts;
 import com.kieslog.util.LocalStorage;
+import com.kieslog.util.UnitAdapter;
 import com.kieslog.util.WebApi;
 
 import org.json.JSONArray;
@@ -41,7 +43,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
 
     final Context context = this;
     private EditText timeEditText, quantityEditText;
-    private String add_product_date, productId, diaryId, amount, productName, time;
+    private String add_product_date, productId, diaryId, amount, productName, time, prodUnit;
     private JSONArray childrenIds;
     private Typeface latoRegular, latoBold;
     MyCustomAdapter dataAdapter = null;
@@ -52,6 +54,8 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_product_to_children);
 
+        final Button save = (Button) findViewById(R.id.save);
+
         latoBold = Fonts.returnFont(this, Fonts.LATO_BOLD);
         latoRegular = Fonts.returnFont(this, Fonts.LATO_REGULAR);
 
@@ -61,7 +65,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         quantityEditText = (EditText)findViewById(R.id.quantity_ed);
         quantityEditText.setTypeface(latoRegular);
 
-        TextView measureTextView = (TextView)findViewById(R.id.measurement_tv);
+        final TextView measureTextView = (TextView)findViewById(R.id.measurement_tv);
         measureTextView.setTypeface(latoRegular);
 
         TextView timeTitleTextView = (TextView)findViewById(R.id.time_title);
@@ -74,6 +78,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         add_product_date = extras.getString("date");
         productName = extras.getString("productName");
         productId = extras.getString("productId");
+        prodUnit = extras.getString("foodUnit");
         diaryId = extras.getString("diaryId");
         amount = extras.getString("amount");
         time = extras.getString("time");
@@ -95,6 +100,59 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
         else
         {
             food20chars = productName;
+        }
+
+        if (productId != null && !productId.equals("0")) {
+            JSONObject Response = WebApi.getProductUnits(ProductToChildrenActivity.this, productId);
+            String success = Response.optString("success", "0");
+            if (success.equals("1")) {
+                JSONArray productUnits = Response.optJSONArray("productUnits");
+                ArrayList<String> valuesTmp = new ArrayList<String>();
+                for(int i = 0, count = productUnits.length(); i< count; i++)
+                {
+                    valuesTmp.add(productUnits.opt(i).toString());
+                }
+                //set first item as a default
+                if (prodUnit == null || prodUnit.equals("")) {
+                    String defUnit = productUnits.opt(0).toString();
+                    prodUnit = defUnit;
+                    measureTextView.setText(defUnit);
+                }
+                else {
+                    measureTextView.setText(prodUnit);
+                }
+
+                String[] values = new String[valuesTmp.size()];
+                values = valuesTmp.toArray(values);
+                final ListView listView = (ListView) findViewById(R.id.unit_list);
+                UnitAdapter unitAdapter = new UnitAdapter(this, R.id.unit_item, R.layout.unit_list_item, values);
+                listView.setAdapter(unitAdapter);
+                listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view,
+                                            int position, long id) {
+                        measureTextView.setTextColor(Color.BLACK);
+                        measureTextView.setText(parent.getItemAtPosition(position).toString());
+                        prodUnit = measureTextView.getText().toString();
+                        listView.setVisibility(View.GONE);
+                    }
+                });
+                measureTextView.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        View view = ProductToChildrenActivity.this.getCurrentFocus();
+                        if (view != null) {
+                            InputMethodManager imm = (InputMethodManager)getSystemService(Context.INPUT_METHOD_SERVICE);
+                            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+                        }
+                        listView.setVisibility(View.VISIBLE);
+                        listView.bringToFront();
+                    }
+                });
+            }
+
         }
 
         TextView titleTextView = (TextView) findViewById(R.id.product_to_children_header);
@@ -150,7 +208,6 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
             }
         });
 
-        Button save = (Button) findViewById(R.id.save);
         save.setTypeface(latoRegular);
         save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -209,6 +266,7 @@ public class ProductToChildrenActivity extends Activity implements AsyncApiCallO
                                 object.setQuantity(Integer.parseInt(quantityEditText.getText().toString()));
                                 object.setBelongs(child.optInt("id"));
                                 object.setDiaryId(Integer.parseInt(diaryId));
+                                object.setProdUnit(prodUnit);
                                 diaryDataSource.createDiaryObj(context, object);
                             }
                         }catch (JSONException e) {

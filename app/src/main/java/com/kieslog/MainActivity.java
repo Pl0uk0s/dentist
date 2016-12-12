@@ -64,7 +64,6 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
     private String currentDate, previousDate, nextDate;
     private Date dateToday;
     private Integer backButtonCount = 0;
-    private ImageView edit, delete;
     private Typeface latoRegular, latoBold;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -584,7 +583,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         Tools.startNewActivityRight(MainActivity.this, MainActivity.class);
     }
 
-    private RelativeLayout getChildDetail(final String time, final String food, final String diaryId, final String amount, final int child) {
+    private RelativeLayout getChildDetail(final String time, final String food, final String foodId, final String foodUnit, final String diaryId, final String amount, final int child) {
         View view = LayoutInflater.from(this).inflate(R.layout.child_header,null);
 
         RelativeLayout child1_detail = (RelativeLayout)view.findViewById(R.id.child_item);
@@ -614,7 +613,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
         }
         view1.setText(time);
         view2.setText(food30chars);
-        view3.setText(amount);
+        view3.setText(amount+" "+foodUnit);
         view4.setText(diaryId);
 
         ImageView edit = (ImageView) view.findViewById(R.id.editImageView);
@@ -626,7 +625,8 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 extras.putString("date", currentDate);
                 extras.putString("time", time);
                 extras.putString("productName", food);
-                extras.putString("productId", "0");
+                extras.putString("productId", foodId);
+                extras.putString("foodUnit", foodUnit);
                 extras.putString("amount", amount);
                 extras.putString("diaryId", diaryId);
                 intent.putExtras(extras);
@@ -693,9 +693,11 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String foodId = oneFood.optString("foodId", "");
+                        String foodUnit = oneFood.optString("foodUnit", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child1_detail = getChildDetail(time, food, diaryId, amount, 1);
+                        child1_detail = getChildDetail(time, food, foodId, foodUnit, diaryId, amount, 1);
                         child1_data.addView(child1_detail, p);
                     }
                     catch (JSONException e) {
@@ -720,9 +722,11 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String foodId = oneFood.optString("foodId", "");
+                        String foodUnit = oneFood.optString("foodUnit", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child2_detail = getChildDetail(time, food, diaryId, amount, 2);
+                        child2_detail = getChildDetail(time, food, foodId, foodUnit, diaryId, amount, 2);
                         child2_data.addView(child2_detail, p);
                     }
                     catch (JSONException e) {
@@ -747,9 +751,11 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String foodId = oneFood.optString("foodId", "");
+                        String foodUnit = oneFood.optString("foodUnit", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child3_detail = getChildDetail(time, food, diaryId, amount, 3);
+                        child3_detail = getChildDetail(time, food, foodId, foodUnit, diaryId, amount, 3);
                         child3_data.addView(child3_detail, p);
                     }
                     catch (JSONException e) {
@@ -774,9 +780,11 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                         JSONObject oneFood = childData.getJSONObject(i);
                         String time = oneFood.optString("time", "");
                         String food = oneFood.optString("food", "");
+                        String foodId = oneFood.optString("foodId", "");
+                        String foodUnit = oneFood.optString("foodUnit", "");
                         String diaryId = oneFood.optString("diaryId", "");
                         String amount = oneFood.optString("amount", "");
-                        child4_detail = getChildDetail(time, food, diaryId, amount, 4);
+                        child4_detail = getChildDetail(time, food, foodId, foodUnit, diaryId, amount, 4);
                         child4_data.addView(child4_detail, p);
                     }
                     catch (JSONException e) {
@@ -852,9 +860,10 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                 String time = obj.getTime();
                 Integer belongs = obj.getBelongs();
                 Integer diaryId = obj.getDiaryId();
+                String prodUnit = obj.getProdUnit();
 
                 if (diaryId == 0) {
-                    JSONObject Response = WebApi.addProductToChild(prodId, quantity, date, time, belongs);
+                    JSONObject Response = WebApi.addProductToChild(prodId, quantity, prodUnit, date, time, belongs);
                     try {
                         String success = Response.getString("success");
 
@@ -875,7 +884,7 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
                     }
                 }
                 else {
-                    JSONObject Response = WebApi.updateProductToChild(diaryId, quantity, date, time);
+                    JSONObject Response = WebApi.updateProductToChild(diaryId, quantity, prodUnit, date, time);
                     try {
                         String success = Response.getString("success");
 

@@ -9,6 +9,7 @@ public class diaryObj {
     private String time;
     private int belongs;
     private int diaryId;
+    private String prodUnit;
 
     public int getId() {
         return id;
@@ -64,6 +65,14 @@ public class diaryObj {
 
     public void setDiaryId(int diaryId) {
         this.diaryId = diaryId;
+    }
+
+    public String getProdUnit() {
+        return prodUnit;
+    }
+
+    public void setProdUnit(String prodUnit) {
+        this.prodUnit = prodUnit;
     }
 
 }
