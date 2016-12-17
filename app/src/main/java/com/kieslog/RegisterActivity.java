@@ -84,6 +84,7 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             @Override
             public void onClick(View v) {
                 RegisterActivity.this.onBackPressed();
+                finish();
             }
         });
 
@@ -231,7 +232,6 @@ public class RegisterActivity extends Activity implements AsyncApiCallOnTaskComp
             public void onClick(View v) {
                 Intent intent = new Intent(RegisterActivity.this, AccessCodeInfoActivity.class);
                 startActivity(intent);
-                finish();
             }
         });
 

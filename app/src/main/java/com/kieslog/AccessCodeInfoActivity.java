@@ -33,8 +33,7 @@ public class AccessCodeInfoActivity extends Activity implements AsyncApiCallOnTa
         btn_back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(AccessCodeInfoActivity.this, RegisterActivity.class);
-                startActivity(intent);
+                AccessCodeInfoActivity.super.onBackPressed();
                 finish();
             }
         });
