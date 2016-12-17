@@ -475,29 +475,22 @@ public class MainActivity extends Activity implements AsyncApiCallOnTaskComplete
             }
         });
 
-        children_scrollview.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-                return false;
-            }
-        });
-
-        children_scrollview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
-            public void onSwipeTop() {
-            }
-
-            public void onSwipeRight() {
-                swipeRight();
-            }
-
-            public void onSwipeLeft() {
-                swipeLeft();
-            }
-
-            public void onSwipeBottom() {
-            }
-
-        });
+//        children_scrollview.setOnTouchListener(new OnSwipeTouchListener(MainActivity.this) {
+//            public void onSwipeTop() {
+//            }
+//
+//            public void onSwipeRight() {
+//                swipeRight();
+//            }
+//
+//            public void onSwipeLeft() {
+//                swipeLeft();
+//            }
+//
+//            public void onSwipeBottom() {
+//            }
+//
+//        });
     }
 
     private void dialog() {
