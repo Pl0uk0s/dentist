@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    android:paddingStart="25dp"
     android:clipToPadding="false">
 
     <LinearLayout
@@ -28,6 +27,7 @@
                 android:layout_height="wrap_content"
                 android:src="@drawable/ic_keyboard_arrow_left_white_36dp"
                 android:layout_marginTop="20dp"
+                android:layout_marginStart="16dp"
                 android:id="@+id/btn_back"
                 android:layout_alignParentTop="true"
                 android:layout_alignParentStart="true" />
@@ -37,6 +37,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/btn_back"
                 android:id="@+id/txt_register"
+                android:layout_marginStart="25dp"
                 android:text="@string/txt_register"
                 android:textSize="36sp"
                 android:textColor="@color/white"
@@ -47,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txt_register"
                 android:id="@+id/txt_email"
+                android:layout_marginStart="25dp"
                 android:text="@string/txt_email"
                 android:textSize="14sp"
                 android:textColor="@color/white"
@@ -62,6 +64,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
+                android:layout_marginStart="25dp"
                 android:textCursorDrawable="@null"
                 android:backgroundTint="#DADDDF"
                 android:maxLines="1" />
@@ -84,6 +87,7 @@
                 android:textSize="14sp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp"
+                android:layout_marginStart="25dp"
                 android:layout_below="@+id/edit_email" />
 
             <ImageView
@@ -104,6 +108,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
+                android:layout_marginStart="25dp"
                 android:textCursorDrawable="@null"
                 android:backgroundTint="#DADDDF"
                 android:maxLines="1" />
@@ -125,6 +130,7 @@
                 android:id="@+id/txt_password"
                 android:text="@string/txt_password"
                 android:textSize="14sp"
+                android:layout_marginStart="25dp"
                 android:textColor="@color/white"
                 android:layout_marginTop="40dp" />
 
@@ -148,6 +154,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
+                android:layout_marginStart="25dp"
                 android:textCursorDrawable="@null"
                 android:backgroundTint="#DADDDF"
                 android:maxLines="1" />
@@ -170,7 +177,8 @@
                 android:text="@string/txt_repassword"
                 android:textSize="14sp"
                 android:textColor="@color/white"
-                android:layout_marginTop="40dp" />
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="25dp"/>
 
             <ImageView
                 android:layout_width="25dp"
@@ -192,6 +200,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="60dp"
+                android:layout_marginStart="25dp"
                 android:textCursorDrawable="@null"
                 android:backgroundTint="#DADDDF"
                 android:maxLines="1" />
@@ -217,7 +226,8 @@
                 android:text="@string/button_save"
                 android:elevation="3dp"
                 android:textAllCaps="false"
-                android:layout_marginTop="40dp"/>
+                android:layout_marginTop="40dp"
+                android:layout_marginStart="25dp"/>
 
             <TextView
                 android:id="@+id/txt_terms"
@@ -227,6 +237,7 @@
                 android:textColor="@color/white"
                 android:layout_marginTop="20dp"
                 android:layout_marginBottom="20dp"
+                android:layout_marginStart="25dp"
                 android:textSize="14sp"
                 android:text="@string/txt_terms"/>
             </RelativeLayout>

@@ -79,8 +79,8 @@
 
                     <ImageView
                         android:id="@+id/child1DownArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
@@ -148,8 +148,8 @@
 
                     <ImageView
                         android:id="@+id/child2DownArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
@@ -216,8 +216,8 @@
 
                     <ImageView
                         android:id="@+id/child3DownArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_keyboard_arrow_down_black_36dp"
@@ -285,8 +285,8 @@
 
                     <ImageView
                         android:id="@+id/child4DownArrow"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_width="24dp"
+                        android:layout_height="24dp"
                         android:layout_alignParentEnd="true"
                         android:layout_centerVertical="true"
                         android:src="@drawable/ic_keyboard_arrow_down_black_36dp"

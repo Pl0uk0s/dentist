@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
     android:background="@drawable/background"
-    android:paddingStart="25dp"
     android:clipToPadding="false">
 
     <LinearLayout
@@ -23,6 +22,7 @@
         android:src="@drawable/ic_keyboard_arrow_left_white_36dp"
         android:layout_marginTop="20dp"
         android:id="@+id/btn_back"
+        android:layout_marginStart="16dp"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
 
@@ -32,6 +32,7 @@
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_login"
         android:text="@string/txt_login"
+        android:layout_marginStart="25dp"
         android:textSize="36sp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
@@ -42,6 +43,7 @@
         android:layout_below="@id/txt_login"
         android:id="@+id/txt_email"
         android:text="@string/txt_email"
+        android:layout_marginStart="25dp"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
@@ -52,6 +54,7 @@
         android:id="@+id/edit_email"
         android:inputType="textEmailAddress"
         android:layout_below="@id/txt_email"
+        android:layout_marginStart="25dp"
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginTop="10dp"
@@ -76,6 +79,7 @@
         android:layout_below="@id/edit_email"
         android:id="@+id/txt_password"
         android:text="@string/txt_password"
+        android:layout_marginStart="25dp"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
@@ -98,6 +102,7 @@
         android:layout_below="@id/txt_password"
         android:textSize="18sp"
         android:textColor="@color/white"
+        android:layout_marginStart="25dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="60dp"
         android:textCursorDrawable="@null"
@@ -120,6 +125,7 @@
         android:layout_below="@id/edit_password"
         android:id="@+id/txt_forgotPassword"
         android:text="@string/txt_forgotPassword"
+        android:layout_marginStart="25dp"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:layout_marginTop="20dp" />
@@ -133,6 +139,7 @@
         android:textColor="#439EAA"
         android:background="@drawable/shape"
         android:text="@string/btn_done"
+        android:layout_marginStart="25dp"
         android:elevation="3dp"
         android:textAllCaps="false"
         android:layout_marginTop="40dp"/>

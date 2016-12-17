@@ -5,7 +5,6 @@
     android:layout_height="match_parent"
     android:gravity="fill_horizontal"
     android:background="@drawable/background"
-    android:paddingLeft="25dp"
     android:clipToPadding="false">
 
     <LinearLayout
@@ -22,6 +21,7 @@
         android:layout_height="wrap_content"
         android:src="@drawable/ic_keyboard_arrow_left_white_36dp"
         android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
         android:id="@+id/btn_back"
         android:layout_alignParentTop="true"
         android:layout_alignParentStart="true" />
@@ -32,6 +32,7 @@
         android:layout_below="@id/btn_back"
         android:id="@+id/txt_header"
         android:text="@string/txt_header"
+        android:layout_marginStart="25dp"
         android:textSize="36sp"
         android:textColor="@color/white"
         android:layout_marginTop="30dp"
@@ -42,6 +43,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@id/txt_header"
         android:id="@+id/txt_text1"
+        android:layout_marginStart="25dp"
         android:text="@string/txt_text1"
         android:textSize="16sp"
         android:textColor="@color/white"
@@ -53,6 +55,7 @@
         android:layout_below="@id/txt_text1"
         android:id="@+id/txt_email"
         android:text="@string/txt_email"
+        android:layout_marginStart="25dp"
         android:textSize="14sp"
         android:textColor="@color/white"
         android:layout_marginTop="40dp" />
@@ -66,7 +69,8 @@
         android:textSize="18sp"
         android:textColor="@color/white"
         android:layout_marginTop="20dp"
-        android:layout_marginRight="60dp"
+        android:layout_marginStart="25dp"
+        android:layout_marginEnd="60dp"
         android:textCursorDrawable="@null"
         android:backgroundTint="#DADDDF"
         android:maxLines="1" />
@@ -89,6 +93,7 @@
         android:textSize="16sp"
         android:textColor="#439EAA"
         android:background="@drawable/shape"
+        android:layout_marginStart="25dp"
         android:text="@string/btn_done"
         android:elevation="20dp"
         android:textAllCaps="false"

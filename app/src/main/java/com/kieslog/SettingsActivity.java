@@ -158,7 +158,7 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                             LocalStorage.setUserLogout();
                             Intent intent = new Intent(SettingsActivity.this, LoginActivity.class);
                             startActivity(intent);
-                            finish();
+                            finishAffinity();
                         }
                     });
                     alert.show();
