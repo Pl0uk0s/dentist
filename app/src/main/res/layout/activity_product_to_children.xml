@@ -36,12 +36,15 @@
         android:textSize="20sp"/>
     </RelativeLayout>
 
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/header">
     <RelativeLayout
         android:id="@+id/prod_detail_layout"
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/header">
+        android:layout_height="wrap_content">
 
         <TextView
             android:id="@+id/quantity_title"
@@ -132,7 +135,8 @@
                 android:inputType="time"
                 android:textSize="16sp"
                 android:textAlignment="center"
-                android:layout_alignParentTop="true"
+                android:layout_centerVertical="true"
+                android:background="@drawable/shape"
                 android:layout_centerHorizontal="true" />
 
             <TextView
@@ -193,5 +197,6 @@
             android:textColor="@color/white"
             android:background="@drawable/shape3" />
     </RelativeLayout>
+    </ScrollView>
 
     </RelativeLayout>

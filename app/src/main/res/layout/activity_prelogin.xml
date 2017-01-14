@@ -4,39 +4,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
-        android:id="@+id/imgLogo"
-        android:src="@drawable/logo"
-        android:layout_marginTop="42pt"
-        android:layout_marginStart="10dp"/>
-
-    <TextView
-        android:id="@+id/txt_welcome"
-        android:text="@string/txt_welcome"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/imgLogo"
-        android:textSize="36sp"
-        android:textColor="@color/white"
-        android:layout_marginTop="10dp"
-        android:layout_marginStart="20dp"
-        android:lineSpacingExtra="6sp"/>
-
-    <TextView
-        android:id="@+id/txt_welcome2"
-        android:layout_below="@id/txt_welcome"
-        android:text="@string/txt_welcome2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:textSize="26sp"
-        android:textColor="@color/white"
-        android:layout_marginBottom="7dp"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="28pt"
-        android:lineSpacingExtra="2sp"/>
-
     <TextView
         android:id="@+id/btn_signin"
         android:text="@string/btn_signin"
@@ -62,5 +29,38 @@
         android:elevation="3dp"
         android:textAllCaps="false"
         android:lineSpacingExtra="2sp"/>
+
+    <TextView
+        android:id="@+id/txt_welcome2"
+        android:text="@string/txt_welcome2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_register"
+        android:textSize="26sp"
+        android:textColor="@color/white"
+        android:layout_marginBottom="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="40dp"
+        android:lineSpacingExtra="2sp"/>
+
+    <TextView
+        android:id="@+id/txt_welcome"
+        android:text="@string/txt_welcome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/txt_welcome2"
+        android:textSize="36sp"
+        android:textColor="@color/white"
+        android:layout_marginTop="10dp"
+        android:layout_marginStart="20dp"
+        android:lineSpacingExtra="6sp"/>
+
+    <ImageView
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:id="@+id/imgLogo"
+        android:src="@drawable/logo"
+        android:layout_above="@+id/txt_welcome"
+        android:layout_marginStart="10dp"/>
 
 </RelativeLayout>

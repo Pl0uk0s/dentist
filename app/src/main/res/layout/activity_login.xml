@@ -15,6 +15,14 @@
         android:layout_height="0px"
         android:id="@+id/linearLayout"
         android:clipToPadding="false"/>
+    <ScrollView
+        android:id="@+id/scroll_view"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:id="@+id/scroll_layout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
 
     <ImageView
         android:layout_width="wrap_content"
@@ -90,7 +98,7 @@
         android:id="@+id/imgShow"
         android:src="@drawable/ic_remove_red_eye_white_36dp"
         android:layout_below="@id/edit_email"
-        android:layout_marginRight="20dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginTop="30dp"
         android:layout_alignParentEnd="true"/>
 
@@ -155,5 +163,6 @@
         <!--android:layout_alignBaseline="@+id/btn_done"-->
         <!--android:layout_alignBottom="@+id/btn_done"-->
         <!--android:layout_marginStart="150dp" />-->
-
+            </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
