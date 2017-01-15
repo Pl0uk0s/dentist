@@ -187,6 +187,7 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
                 if (success.equals("1")) {
                     String email = jsonResult.optString("email", "");
                     LocalStorage.setUserEmail(email);
+                    App.userEmail = email;
                     Toast.makeText(getApplicationContext(), "The email has been changed.", Toast.LENGTH_LONG).show();
                 }
                 else if (success.equals("0")) {
@@ -199,5 +200,13 @@ public class SettingsActivity extends Activity implements AsyncApiCallOnTaskComp
     @Override
     public void onTaskCompleted(int thread, Bundle vars, String result) {
 
+    }
+
+    @Override
+    public void onBackPressed()
+    {
+        Intent intent = new Intent(SettingsActivity.this, MainActivity.class);
+        startActivity(intent);
+        finish();
     }
 }

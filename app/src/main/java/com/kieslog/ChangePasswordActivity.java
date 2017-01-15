@@ -259,6 +259,7 @@ public class ChangePasswordActivity extends Activity implements AsyncApiCallOnTa
                 if (success.equals("1")) {
                     String pass = jsonResult.optString("pass", "");
                     LocalStorage.setUserPassword(pass);
+                    App.password = pass;
                     Toast.makeText(getApplicationContext(), "The password has been changed.", Toast.LENGTH_LONG).show();
                 }
                 else if (success.equals("0")) {
